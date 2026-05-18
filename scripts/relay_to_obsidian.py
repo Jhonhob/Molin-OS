@@ -93,7 +93,7 @@ def handle_arxiv_papers(filepath: Path, tracker: dict) -> bool:
         papers.append(current)
 
     # Build Obsidian entry
-    obsidian_path = VAULT / "知识" / "每日·Arxiv论文.md"
+    obsidian_path = VAULT / "知识" / "玄骨｜每日·Arxiv论文.md"
     today = date.today().isoformat()
 
     entry = f"""
@@ -176,7 +176,7 @@ tags: [arxiv, 论文, 每日]
         obsidian_path.parent.mkdir(parents=True, exist_ok=True)
         obsidian_path.write_text(new_content, encoding="utf-8")
 
-    print(f"  ✅ 已同步 arxiv → 知识/每日·Arxiv论文.md ({len(papers)}篇)")
+    print(f"  ✅ 已同步 arxiv → 知识/玄骨｜每日·Arxiv论文.md ({len(papers)}篇)")
     tracker[key] = fingerprint
     return True
 
@@ -213,7 +213,7 @@ def handle_price_monitor(filepath: Path, tracker: dict) -> bool:
 - [ ] 接入真实爬虫获取闲鱼/猪八戒实时价格
 """
 
-    obsidian_path = VAULT / "知识" / "每日·副业价格监控.md"
+    obsidian_path = VAULT / "知识" / "玄骨｜每日·副业价格监控.md"
     if obsidian_path.exists():
         existing = obsidian_path.read_text(encoding="utf-8")
         lines_existing = existing.split("\n")

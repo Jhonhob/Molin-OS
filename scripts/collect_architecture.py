@@ -263,7 +263,7 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
         "",
     ]
 
-    (sys_dir / "architecture.md").write_text("\\n".join(lines), encoding="utf-8")
+    (sys_dir / "系统｜架构.md").write_text("\n".join(lines), encoding="utf-8")
     print(f"  ✅ 配置/architecture.md")
 
     # ── 每个 Agent 的详情文档 ──
@@ -316,10 +316,8 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
             "",
         ]
 
-    (sys_dir / "memory-map.md").write_text("\\n".join(lines), encoding="utf-8")
-    print(f"  ✅ 配置/memory-map.md")
-
-    # ── 记忆映射文档 ──
+    (sys_dir / "系统｜记忆映射.md").write_text("\n".join(lines), encoding="utf-8")
+    print(f"  ✅ 配置/系统｜记忆映射.md (Agent配置详情)")
     lines = [
         "---",
         f"date: {NOW.strftime('%Y-%m-%d')}",
@@ -363,8 +361,14 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
         "| Phoenix Live Dashboard | N/A | 监控集群 (如有) |",
         "",
     ]
-    (sys_dir / "memory-map.md").write_text("\\n".join(lines), encoding="utf-8")
-    print(f"  ✅ 配置/memory-map.md")
+    # v3.0: 追加记忆映射到已有文件（不覆写 Agent 配置详情段）
+    mem_map_path = sys_dir / "系统｜记忆映射.md"
+    if mem_map_path.exists():
+        existing = mem_map_path.read_text(encoding="utf-8")
+        mem_map_path.write_text(existing + "\n\n" + "\n".join(lines), encoding="utf-8")
+    else:
+        mem_map_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"  ✅ 配置/系统｜记忆映射.md (记忆映射追加)")
 
 
 # ═══════════════════════════════════════════════

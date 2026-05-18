@@ -8,6 +8,12 @@ import os, sys
 from pathlib import Path
 from collections import defaultdict
 
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
+
 VAULT = Path(os.path.expanduser(
     "~/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 ))
@@ -18,7 +24,7 @@ ALLOWED_ROOT_GLOB = {"*.md"}  # only .md files at root
 ROGUE_NAMES = {"Agents", "Daily", "System", "env",
                 "项目", "知识库", "Makefile", "README.md"}
 
-def check():
+def check(skip_yaml: bool = False):
     issues = []
 
     # 1. Check top-level dirs
@@ -62,6 +68,32 @@ def check():
     # 5. Check duplicate filenames
     # v3.0 flat vault: cross-directory same-name is valid — directory IS the namespace
     # No dupe-check needed in v3.0
+
+    # 5. YAML frontmatter compliance check (Obsidian 弹窗警告根因)
+    if HAS_YAML and not skip_yaml:
+        import yaml as _yaml
+        yaml_issues = 0
+        for md_file in VAULT.rglob("*.md"):
+            if any(p.startswith('.') for p in md_file.parts):
+                continue
+            try:
+                txt = md_file.read_text(encoding="utf-8", errors="replace")
+            except Exception:
+                continue
+            if not txt.startswith('---'):
+                continue
+            end = txt.find('\n---\n', 1)
+            if end == -1:
+                end = txt.find('\n---', 3)
+            if end != -1:
+                fm = txt[4:end]
+                try:
+                    _yaml.safe_load(fm)
+                except _yaml.YAMLError as e:
+                    yaml_issues += 1
+                    issues.append(f"🔴 YAML错误: {md_file.relative_to(VAULT)} — {str(e)[:100]}")
+        if yaml_issues:
+            issues.insert(0, f"🔴 发现 {yaml_issues} 个YAML解析错误（会导致Obsidian弹红框）")
 
     # Report
     if not issues:

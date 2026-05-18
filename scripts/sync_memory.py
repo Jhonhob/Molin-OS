@@ -28,6 +28,13 @@ AGENTS = {
     "media": "银月传媒", "shared": "玄骨中枢", "side": "宋玉创业",
 }
 
+# v3.0 flat vault biz prefixes (short form for filenames)
+BIZ_PREFIX = {
+    "edu": "元瑶", "global": "梅凝", "media": "银月",
+    "shared": "玄骨", "side": "宋玉", "system": "系统",
+    "kpi": "KPI",
+}
+
 SUPERMEMORY_API_KEY = os.environ.get("SUPERMEMORY_API_KEY", "")
 SUPERMEMORY_TAGS = {
     "edu": "edu", "global": "molin-global", "media": "molin-media",
@@ -404,7 +411,8 @@ def write_to_obsidian(agent_id: str, category: str, topic: str,
     """
     tags = entry_data.get("tags", [])
     source = entry_data.get("source", "实时同步")
-    filename = f"{topic}.md"
+    prefix = BIZ_PREFIX.get(agent_id, "系统")
+    filename = f"{prefix}｜{topic}.md"
 
     target_dir = VAULT / category
     target_dir.mkdir(parents=True, exist_ok=True)
@@ -647,7 +655,7 @@ def process_session(session_path: Path, agent_id: str) -> Optional[dict]:
         "details": detail_points,
         "next_steps": next_steps,
         "tags": [category, agent_id],
-        "source": f"对话: {session_path.stem}",
+        "source": f'"对话: {session_path.stem}"',
     }
 
     return {
