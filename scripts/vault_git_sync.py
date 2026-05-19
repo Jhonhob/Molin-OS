@@ -27,7 +27,7 @@ VAULT_PATH = Path(os.path.expanduser(
 ))
 MIRROR_PATH = Path(os.path.expanduser("~/Molin-OS/.vault-git-mirror"))
 GIT_REMOTE = "https://github.com/moye-tech/Molin-OS.git"
-GIT_BRANCH = "main"
+GIT_BRANCH = "vault"
 
 # rsync 同步的文件类型
 RSYNC_INCLUDE = ["*.md", "*.json", "*.canvas", "*.css", "*.js"]
