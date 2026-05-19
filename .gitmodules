@@ -4,6 +4,6 @@
 [submodule "last30days-skill"]
 	path = last30days-skill
 	url = https://github.com/mvanhorn/last30days-skill.git
-[submodule ".vault-git-mirror"]
-	path = .vault-git-mirror
-	url = https://github.com/moye-tech/Molin-OS.git
+# .vault-git-mirror 不再作为 submodule 追踪
+# 部署时 deploy.sh 会初始化 vault 分支镜像
+# 参见: scripts/vault_git_sync.py
