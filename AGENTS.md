@@ -3,29 +3,29 @@
 
 本文件在每次会话启动时注入系统提示。
 它描述公司的执行模型、子公司-Worker 映射、常用 CLI 命令和治理规则。
-所有名字与 company.toml 和 Worker 文件名严格对齐。
+所有名字与 Worker 文件名严格对齐。
 
-注意：治理级别定义以 config/governance.yaml 为单一真相源。
-     本文件中治理相关描述仅作摘要参考，如需精确配置请查阅 governance.yaml。
+治理级别直接定义在此文件中（摘要版），完整参考见 AGENT_REGISTRY.md。
 
-最新更新: 2026-05-06 — v5.0 全面同步
+最新更新: 2026-05-19 — v5.0 架构重构后同步
 -->
 
 # 墨麟 AI 集团 · 项目上下文
 
 ## 核心文档体系
 
-系统从多文件分散模式升级为 **3 个核心文件**：
+系统文档体系：
 
 | 文件 | 用途 | 地位 |
 |------|------|------|
 | `SYSTEM.md` | 主脑文档 — 所有 Agent SOP 合并为模块块 | 单一真相源 |
 | `AGENT_REGISTRY.md` | Agent 轻量索引 | 快速导航 |
-| `scheduler.yaml` | 统一调度配置 | 唯一调度源 |
+| `config/hermes-agent/cron_jobs.md` | 19 个 Cron 作业定义 | 调度参考 |
 | `molib/memory/retriever.py` | 记忆检索入口 | 知识决策核心 |
 
 **重要**: Agent SOP 不再放在独立 skill 文件中。所有 SOP 定义见 `SYSTEM.md`。
 skill 文件继续存在（作为专业知识库），但执行流程以 `SYSTEM.md` 为准。
+Cron 调度通过 Hermes cronjob 工具管理，不依赖独立的调度文件。
 
 ## 执行模型
 
@@ -35,11 +35,11 @@ Hermes（你，大脑）→ terminal工具（神经）→ python -m molib <comma
 
 - **纯思考/规划/决策** → 直接在对话中完成，不需要调 Python
 - **需要真实执行**（发消息/生成文件/调用API/读写数据） → 用 terminal 执行 molib CLI
-- **cron 定时任务** → Hermes cron 按 jobs.yaml 配置，加载对应 SKILL.md，执行后产生 relay/ 文件
+- **cron 定时任务** → Hermes cron 工具管理，加载对应 skill，执行后产生 relay/ 文件
 
 ## 企业架构（治理级别）
 
-治理级别定义见 `config/governance.yaml`（单一真相源）。摘要如下：
+治理级别定义在此（摘要版）。完整参考见 AGENT_REGISTRY.md。
 
 ### L0 自动执行 (auto)
 低风险操作：自动回复、内容生成、数据采集、例行报告
@@ -277,43 +277,40 @@ Agent 输出通过 `molib/memory/output_writer.py` 强制结构化模板写入�
 ~/.hermes/events/                  # FileEventBus 事件
 ~/.hermes/os/                      # Hermes Agent 系统文件
 ~/.hermes/plugins/claude-mem/      # claude-mem 插件
-~/hermes-os/docs/                  # 系统文档
+~/.hermes/skills/                  # 389 技能文件（由 Molin-OS/skills/ 链接）
 ```
 
 ## 系统关键文件位置
 
 ```
-~/.hermes/os/                             # Hermes Agent 系统
-~/hermes-os/                              # 工作目录
-~/hermes-os/SOUL.md                       # CEO 认知框架（灵魂文件）
-~/hermes-os/AGENTS.md                     # 公司上下文（本文件）
-~/hermes-os/config/company.toml           # 子公司映射（唯一配置源）
-~/hermes-os/molib/                        # Python 执行包（129文件）
-~/hermes-os/molib/__main__.py             # CLI 统一入口
-~/hermes-os/molib/ceo/                    # CEO引擎（10模块）
-~/hermes-os/molib/agencies/               # 执行层（handoff/planning/workers）
-~/hermes-os/molib/shared/                 # 共享层（AI/分析/内容/知识/发布/存储）
-~/hermes-os/bots/                         # 24个机器人脚本
-~/hermes-os/business/                     # 9个商业化方案
-~/hermes-os/cron/jobs.yaml                # 8个定时作业
-~/hermes-os/relay/                        # 飞轮接力数据
-~/hermes-os/docs/                         # 27个系统文档
+~/Molin-OS/                               # 仓库根目录
+~/Molin-OS/hermes/                        # Hermes Agent 源码（v0.14.0）
+~/Molin-OS/setup.sh                       # 一键部署脚本
+~/Molin-OS/scripts/deploy.sh              # 配置部署脚本
+~/Molin-OS/scripts/vault_git_sync.py      # Vault 同步
+~/Molin-OS/scripts/relay_to_obsidian.py   # Relay → Obsidian
+~/Molin-OS/AGENTS.md                      # 公司上下文（本文件）
+~/Molin-OS/SYSTEM.md                      # 主脑 SOP 文档
+~/Molin-OS/SOUL.md                        # CEO 认知框架（灵魂文件）
+~/Molin-OS/config/hermes-agent/           # 配置模板
+~/Molin-OS/config/hermes-agent/cron_jobs.md # 19 个 cron 作业定义
+~/Molin-OS/.vault-git-mirror/             # Obsidian vault 镜像
 ```
 
-## Agent SOP 体系（v2.0 — 2026-05-17 — 主脑文档模式）
+## Agent SOP 体系（v2.0 — 2026-05-19 — 主脑文档模式）
 
 **架构升级**: 从多文件 SOP → 单一主脑文档 `SYSTEM.md`。
 
 所有 Agent SOP 定义在 `SYSTEM.md` 中作为模块块存在。
 `AGENT_REGISTRY.md` 提供轻量索引。
-`scheduler.yaml` 是唯一调度源。
+Cron 调度见 `config/hermes-agent/cron_jobs.md`。
 
 每个 Agent 统一采用四层架构：
 
 ```
 Agent
  ├── SOP Block  —— 在 SYSTEM.md 中定义
- ├── Cron        —— 在 scheduler.yaml 中定义
+ ├── Cron        —— 通过 Hermes cronjob 工具注册
  ├── KPI         —— 由 kpi-tracker 采集
  └── Memory      —— 由 retriever.py 检索 + output_writer.py 写入
 ```
@@ -358,7 +355,7 @@ Agent
 
 ### 经营节奏
 
-调度配置见 `scheduler.yaml`（唯一真相源）。
+调度配置见 `config/hermes-agent/cron_jobs.md`（Hermes cronjob 工具管理）。
 
 | 时间 | Agent | 任务 | 加载技能 |
 |------|-------|------|----------|
@@ -404,7 +401,7 @@ Agent
 
 ## Cron 作业清单
 
-调度以 `scheduler.yaml` 为准。Hermes 当前 14 个活跃 Cron job：
+Hermes 当前 14 个活跃 Cron job（通过 Hermes cronjob 工具管理）：
 
 | 时间 | 作业 | 功能 |
 |:---:|:-----|:-----|
