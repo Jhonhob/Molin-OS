@@ -1,0 +1,21 @@
+# Obsidian (track only essential config, ignore volatile)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/obsidian-git/data.json
+
+# MolinOS-Ultra
+.env
+__pycache__/
+*.pyc
+node_modules/
+.memory/
+*.log
+dist/
+build/
+.hermes/cache/
+.hermes/sessions/
+.hermes/logs/
+
+# Common
+.DS_Store
+.trash/

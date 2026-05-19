@@ -1,0 +1,500 @@
+---
+title: 墨麟 OS 记忆智能层设计方案
+status: 迭代中 (Active)
+last_updated: 2026-05-19
+agent_sync: true
+---
+
+## 记忆系统映射
+
+## 配置 (config.yaml)
+```yaml
+model:
+  default: deepseek-v4-flash
+  provider: deepseek
+  base_url: https://api.deepseek.com/v1
+providers: {}
+fallback_providers: []
+credential_pool_strategies: {}
+toolsets:
+  - hermes-cli
+agent:
+  max_turns: 90
+  gateway_timeout: 1800
+  restart_drain_timeout: 180
+  api_max_retries: 3
+  service_tier: ""
+  tool_use_enforcement: auto
+  gateway_timeout_warning: 900
+  clarify_timeout: 600
+  gateway_notify_interval: 180
+  gateway_auto_continue_freshness: 3600
+  image_input_mode: auto
+  disabled_toolsets: []
+terminal:
+  backend: local
+  modal_mode: auto
+  cwd: .
+  timeout: 180
+  env_passthrough: []
+  shell_init_files: []
+  auto_source_bashrc: true
+  docker_image: nikolaik/python-nodejs:python3.11-nodejs20
+  docker_forward_env: []
+  docker_env: {}
+  singularity_image: docker://nikolaik/python-nodejs:python3.11-nodejs20
+  modal_image: nikolaik/python-nodejs:python3.11-nodejs20
+  daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
+  vercel_runtime: node24
+  container_cpu: 1
+  container_memory: 5120
+  container_disk: 51200
+  container_persistent: true
+  docker_volumes: []
+  docker_mount_cwd_to_workspace: false
+  docker_extra_args: []
+  docker_run_as_host_user: false
+  persistent_shell: true
+web:
+  backend: ""
+  search_backend: ""
+  extract_backend: ""
+browser:
+  inactivity_timeout: 120
+  command_timeout: 30
+  record_sessions: false
+  allow_private_urls: false
+  engine: auto
+  auto_local_for_private_urls: true
+  cdp_url: ""
+  dialog_policy: must_respond
+  dialog_timeout_s: 300
+  camofox:
+    managed_persistence: false
+    user_id: ""
+    session_key: ""
+    adopt_existing_tab: false
+checkpoints:
+  enabled: false
+  max_snapshots: 20
+  max_total_size_mb: 500
+  max_file_size_mb: 10
+  auto_prune: true
+  retention_days: 7
+  delete_orphans: true
+  min_interval_hours: 24
+file_read_max_chars: 100000
+tool_output:
+  max_bytes: 50000
+  max_lines: 2000
+  max_line_length: 2000
+tool_loop_guardrails:
+  warnings_enabled: true
+  hard_stop_enabled: false
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
+compression:
+  enabled: true
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+  hygiene_hard_message_limit: 400
+  protect_first_n: 3
+prompt_caching:
+  cache_ttl: 5m
+openrouter:
+  response_cache: true
+  response_cache_ttl: 300
+  min_coding_score: 0.65
+bedrock:
+  region: ""
+  discovery:
+    enabled: true
+    provider_filter: []
+    refresh_interval: 3600
+  guardrail:
+    guardrail_identifier: ""
+    guardrail_version: ""
+    stream_processing_mode: async
+    trace: disabled
+auxiliary:
+  vision:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 120
+    extra_body: {}
+    download_timeout: 30
+  web_extract:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 360
+    extra_body: {}
+  compression:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 120
+    extra_body: {}
+  session_search:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 30
+    extra_body: {}
+    max_concurrency: 3
+  skills_hub:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 30
+    extra_body: {}
+  approval:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 30
+    extra_body: {}
+  mcp:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 30
+    extra_body: {}
+  title_generation:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 30
+    extra_body: {}
+  triage_specifier:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 120
+    extra_body: {}
+  curator:
+    provider: auto
+    model: ""
+    base_url: ""
+    api_key: ""
+    timeout: 600
+    extra_body: {}
+display:
+  compact: false
+  personality: kawaii
+  resume_display: full
+  busy_input_mode: interrupt
+  tui_auto_resume_recent: false
+  bell_on_complete: false
+  show_reasoning: false
+  streaming: false
+  timestamps: false
+  final_response_markdown: strip
+  persistent_output: true
+  persistent_output_max_lines: 200
+  inline_diffs: true
+  file_mutation_verifier: true
+  show_cost: false
+  skin: default
+  language: en
+  tui_status_indicator: kaomoji
+  user_message_preview:
+    first_lines: 2
+    last_lines: 2
+  interim_assistant_messages: true
+  tool_progress_command: false
+  tool_progress_overrides: {}
+  tool_preview_length: 0
+  ephemeral_system_ttl: 0
+  platforms: {}
+  runtime_footer:
+    enabled: false
+    fields:
+      - model
+      - context_pct
+      - cwd
+  copy_shortcut: auto
+dashboard:
+  theme: default
+  show_token_analytics: false
+privacy:
+  redact_pii: false
+tts:
+  provider: edge
+  edge:
+    voice: en-US-AriaNeural
+  elevenlabs:
+    voice_id: pNInz6obpgDQGcFmaJgB
+    model_id: eleven_multilingual_v2
+  openai:
+    model: gpt-4o-mini-tts
+    voice: alloy
+  xai:
+    voice_id: eve
+    language: en
+    sample_rate: 24000
+    bit_rate: 128000
+  mistral:
+    model: voxtral-mini-tts-2603
+    voice_id: c69964a6-ab8b-4f8a-9465-ec0925096ec8
+  neutts:
+    ref_audio: ""
+    ref_text: ""
+    model: neuphonic/neutts-air-q4-gguf
+    device: cpu
+  piper:
+    voice: en_US-lessac-medium
+stt:
+  enabled: true
+  provider: local
+  local:
+    model: base
+    language: ""
+  openai:
+    model: whisper-1
+  mistral:
+    model: voxtral-mini-latest
+voice:
+  record_key: ctrl+b
+  max_recording_seconds: 120
+  auto_tts: false
+  beep_enabled: true
+  silence_threshold: 200
+  silence_duration: 3
+human_delay:
+  mode: "off"
+  min_ms: 800
+  max_ms: 2500
+context:
+  engine: compressor
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2200
+  user_char_limit: 1375
+  provider: supermemory
+delegation:
+  model: ""
+  provider: ""
+  base_url: ""
+  api_key: ""
+  api_mode: ""
+  inherit_mcp_toolsets: true
+  max_iterations: 50
+  child_timeout_seconds: 600
+  reasoning_effort: ""
+  max_concurrent_children: 3
+  max_spawn_depth: 1
+  orchestrator_enabled: true
+  subagent_auto_approve: false
+prefill_messages_file: /Users/laomo/.hermes/profiles/prefill_feishu_format.json
+goals:
+  max_turns: 20
+skills:
+  external_dirs: []
+  template_vars: true
+  inline_shell: false
+  inline_shell_timeout: 10
+  guard_agent_created: false
+curator:
+  enabled: true
+  interval_hours: 168
+  min_idle_hours: 2
+  stale_after_days: 30
+  archive_after_days: 90
+  backup:
+    enabled: true
+    keep: 5
+honcho: {}
+timezone: ""
+slack:
+  require_mention: true
+  free_response_channels: ""
+  allowed_channels: ""
+  channel_prompts: {}
+discord:
+  require_mention: true
+  free_response_channels: ""
+  allowed_channels: ""
+  auto_thread: true
+  thread_require_mention: false
+  history_backfill: true
+  history_backfill_limit: 50
+  reactions: true
+  channel_prompts: {}
+  dm_role_auth_guild: ""
+  server_actions: ""
+whatsapp: {}
+telegram:
+  reactions: false
+  channel_prompts: {}
+  allowed_chats: ""
+mattermost:
+  require_mention: true
+  free_response_channels: ""
+  allowed_channels: ""
+  channel_prompts: {}
+matrix:
+  require_mention: true
+  free_response_rooms: ""
+  allowed_rooms: ""
+approvals:
+  mode: manual
+  timeout: 60
+  cron_mode: deny
+  mcp_reload_confirm: true
+  destructive_slash_confirm: true
+command_allowlist:
+  - script execution via heredoc
+  - recursive delete
+  - script execution via -e/-c flag
+quick_commands: {}
+hooks: {}
+hooks_auto_accept: false
+personalities: {}
+security:
+  allow_private_urls: false
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_path: tirith
+  tirith_timeout: 5
+  tirith_fail_open: true
+  website_blocklist:
+    enabled: false
+    domains: []
+    shared_files: []
+  acked_advisories: []
+  allow_lazy_installs: true
+cron:
+  wrap_response: true
+  max_parallel_jobs: null
+kanban:
+  dispatch_in_gateway: true
+  dispatch_interval_seconds: 60
+  failure_limit: 2
+code_execution:
+  mode: project
+logging:
+  level: INFO
+  max_size_mb: 5
+  backup_count: 3
+model_catalog:
+  enabled: true
+  url: https://hermes-agent.nousresearch.com/docs/api/model-catalog.json
+  ttl_hours: 24
+  providers: {}
+network:
+  force_ipv4: false
+sessions:
+  auto_prune: false
+  retention_days: 90
+  vacuum_after_prune: true
+  min_interval_hours: 24
+onboarding:
+  seen:
+    busy_input_prompt: true
+updates:
+  pre_update_backup: false
+  backup_keep: 5
+lsp:
+  enabled: true
+  wait_mode: document
+  wait_timeout: 5
+  install_strategy: auto
+  servers: {}
+x_search:
+  model: grok-4.20-reasoning
+  timeout_seconds: 180
+  retries: 2
+_config_version: 23
+MEMORY_BACKEND: sqlite
+MEMORY_DB_PATH: /Users/laomo/.hermes/profiles/side/memory.db
+DEFAULT_MODEL: deepseek-v4-flash
+HEAVY_MODEL: deepseek-v4-pro
+FAST_MODEL: deepseek-v4-flash
+MOLIN_OS_HOME: /Users/laomo/Molin-OS
+OBSIDIAN_WIKI_PATH: /Users/laomo/Library/Mobile Documents/iCloud~md~obsidian/Documents
+FEISHU_APP_ID: cli_a9513691d4f89bcf
+FEISHU_APP_SECRET: S9eVOrjLArN710E3S497Ph4hWCmECOu4
+platforms:
+  api_server:
+    extra:
+      port: 8647
+      host: 127.0.0.1
+    enabled: true
+    key: ""
+    cors_origins: "*"
+```
+
+## 环境变量
+```
+DEEPSEEK_API_KEY=sk-92b2e292714d4f97a5817749207...
+DASHSCOPE_API_KEY=sk-2d3ce929a91f433cac2d7acffc7...
+GATEWAY_ALLOW_ALL_USERS=true
+SOP_AUTOMATION_ENABLED=true
+```
+
+
+
+---
+date: 2026-05-19
+agent: system
+category: memory-map
+category_name: 记忆映射
+tags: [system, memory, auto-sync]
+source: 架构采集器
+---
+
+# 记忆映射 (2026-05-19)
+
+## 容器映射
+
+| Agent | 容器 tag | 用途 |
+|-------|---------|------|
+| 元瑶教育 (`edu`) | `edu` | 教育内容、课程设计、学习辅导 |
+| 梅凝出海 (`global`) | `molin-global` | 海外市场本地化运营、跨境营销 |
+| 银月传媒 (`media`) | `molin-media` | 全媒体内容创作、社交媒体运营、视频音频 |
+| 玄骨中枢 (`shared`) | `molin-shared` | CRM客户管理、运维部署、财务记账、数据分析 |
+| 宋玉创业 (`side`) | `molin-side` | 创业项目、副业探索、市场调研 |
+
+## Obsidian Vault 映射
+
+**Vault 路径**: `/Users/laomo/Library/Mobile Documents/iCloud~md~obsidian/Documents`
+
+| 路径 | 内容 |
+|------|------|
+| `决策/` | 不可逆选择（技术选型、架构定稿） |
+| `知识/` | 沉淀积累（研究、架构理解、思维模型） |
+| `流程/` | 可执行步骤（SOP、配置、操作手册） |
+| `成果/` | 可交付物（报告、产出物、数据） |
+| `配置/` | 系统架构元数据 |
+| `配置/agents/<agent>.md` | Agent 配置快照 |
+| `报告/` | 每日报告、定期产出 |
+
+## 基础设施
+
+| 服务 | 端口 | 用途 |
+|------|------|------|
+| CloakServe CDP 池 | `localhost:9222` | 共享 stealth 浏览器（5 种子池） |
+| Phoenix Live Dashboard | N/A | 监控集群 (如有) |
+
+## 修订日志 (Changelog)
+
+- **2026-05-19**: 从配置/系统｜记忆映射.md 迁移，整合 Agent 记忆配置
