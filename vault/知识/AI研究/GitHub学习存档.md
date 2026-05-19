@@ -5,6 +5,15 @@ last_updated: 2026-05-19
 agent_sync: true
 ---
 
+> **TL;DR**：GitHub 开源项目学习档案（5/15-5/19），多 Agent（global/edu/media/shared/银月）协同扫描产物。覆盖六大主题：
+> 1. 全媒体运营工具（mixpost/brightbean-studio/RedInk/lime）— 多平台分发适配器模式 + 批处理编排
+> 2. AI Agent 框架（superpowers 195K/PraisonAI/CrewAI 28K/Dify 60K/n8n 55K）— Skill 标准化 + DAG 编排 + Error Workflow 模式
+> 3. 端侧 AI（supertonic TTS/openhuman/agentmemory）— 本地推理 + 记忆系统 + MCP 协议
+> 4. 教育项目（feifei-companion/multi-agent-education/flight-school）— BKT+SM-2 + Copilot SDK + 费曼学习法
+> 5. 项目评估（Nuwa-Skill 思维蒸馏/MemPalace 记忆宫殿）— 方法论吸收 + 混合检索算法
+> 6. Trending 日报（20 项目/期）— 趋势线：Agent Skills 爆发 + 端侧推理 + 一人公司工具链成熟
+> 核心方法论收获：管道化分层架构、声明式配置驱动、级联降级容错、YAML 驱动工作流编排。已吸收的 20 个 Agency Agent 补强 9 个技能包。
+
 ## 系统 GitHub 每日学习
 
 ---
@@ -70,9 +79,9 @@ agent_sync: true
     59|深度分析多个 GitHub 项目，提取对全媒体运营的启发。
     60|
     61|### 核心内容
-    62|- **brightbeanxyz/brightbean-studio** (1,676⭐) — 社交媒体内容工作室
-    63|- **inovector/mixpost** (3,243⭐) — 多平台社交媒体调度
-    64|- **bleedline/aimoneyhunter** (17.1k⭐) — AI变现知识库，费曼学习法内容策略
+    62|- **brightbeanxyz/brightbean-studio** (1,676) — 社交媒体内容工作室
+    63|- **inovector/mixpost** (3,243) — 多平台社交媒体调度
+    64|- **bleedline/aimoneyhunter** (17.1k) — AI变现知识库，费曼学习法内容策略
     65|
     66|### 下一步
     67|- [ ] 将可复用模式写入技能库
@@ -105,7 +114,7 @@ agent_sync: true
     94|- **EasyDS** — 数据科学教育工具
     95|- **SimonsTang/feifei-companion** (v4.0.0) — AI学习伴侣
     96|- **jiangnanboy/education_knowledge_graph_app** — 教育知识图谱
-    97|- **chrisreddington/flight-school** (28⭐) — 互动学习平台
+    97|- **chrisreddington/flight-school** (28) — 互动学习平台
     98|- **AIDC-AI/Pixelle-Video** — AI视频生成框架（完整分析报告已写入 ~/pixelle_video_deep_analysis.md）
     99|
    100|### 下一步
@@ -140,19 +149,19 @@ agent_sync: true
      8|
      9|## 一、项目清单
     10|
-    11|### ❶ AIDC-AI/Pixelle-Video (⭐17,550)
+    11|### ❶ AIDC-AI/Pixelle-Video (17,550)
     12|AI全自动短视频引擎，采用四层架构（基础设施→服务→管线→应用），核心设计模式为模板方法模式。
     13|许可证：Apache 2.0
     14|链接：https://github.com/AIDC-AI/Pixelle-Video
     15|分析文件：~/pixelle_video_deep_analysis.md
     16|
-    17|### ❷ HisMax/RedInk (⭐5,200)
+    17|### ❷ HisMax/RedInk (5,200)
     18|小红书图文生成器，3-Step Pipeline（大纲→文案→批量图片），Flask+Vue3架构。
     19|许可证：CC BY-NC-SA 4.0
     20|链接：https://github.com/HisMax/RedInk
     21|分析文件：~/redink_analysis_report.md
     22|
-    23|### ❸ MervinPraison/PraisonAI (⭐7,781)
+    23|### ❸ MervinPraison/PraisonAI (7,781)
     24|24/7 AI Workforce自改进Agent框架，4层架构（Core SDK→CLI→Dashboard→Flow），支持5种编排模式。
     25|许可证：MIT（被Elon Musk推荐过）
     26|链接：https://github.com/MervinPraison/PraisonAI
@@ -317,7 +326,7 @@ agent_sync: true
      4|agent: edu
      5|status: 活跃
      6|confidence: 待验证
-     7|importance: ⭐⭐
+     7|importance: 
      8|source: 对话: session_20260515_222135_0c351a
      9|tags: [决策, edu]
     10|---
@@ -351,7 +360,7 @@ agent_sync: true
      4|agent: global
      5|status: 活跃
      6|confidence: 待验证
-     7|importance: ⭐⭐
+     7|importance: 
      8|source: 对话: session_20260515_111735_e25cc72d
      9|tags: [决策, global]
     10|---
@@ -420,7 +429,7 @@ agent_sync: true
      4|agent: media
      5|status: 活跃
      6|confidence: 待验证
-     7|importance: ⭐⭐
+     7|importance: 
      8|source: 对话: session_20260515_181225_51a232
      9|tags: [决策, media]
     10|---
@@ -454,7 +463,7 @@ agent_sync: true
      4|agent: shared
      5|status: 活跃
      6|confidence: 待验证
-     7|importance: ⭐⭐⭐
+     7|importance: 
      8|source:
      9|  - 对话: session_20260515_111415_38af63ee
     10|  - 对话: session_20260515_125711_928aee
@@ -550,7 +559,7 @@ agent_sync: true
 | 维度 | Nuwa-Skill | MemPalace |
 |------|-----------|-----------|
 | **全名** | `alchaincyf/nuwa-skill` | `MemPalace/mempalace` |
-| **Star** | ⭐ 19,722 | ⭐ 52,420 |
+| **Star** |  19,722 |  52,420 |
 | **定位** | 思维蒸馏框架 — 将人的思维模式提取为 Agent Skill 文件 | 本地优先 AI 记忆系统 — 逐字存储 + 语义检索 |
 | **核心输出** | `.SKILL.md` 文件（人物思维操作系统） | 结构化的可检索记忆库（wing/room/drawer 空间隐喻） |
 | **许可证** | 未检测到 | MIT |
@@ -578,7 +587,7 @@ agent_sync: true
 
 ### 2.2 SKILL.md 格式分析
 
-下游案例 `zwbao/duan-yongping-skill`（⭐30，段永平思维操作系统）：
+下游案例 `zwbao/duan-yongping-skill`（30，段永平思维操作系统）：
 
 ```yaml
 # YAML frontmatter
@@ -589,15 +598,15 @@ description: |
 ```
 
 **结构优势：**
-- ✅ 完全兼容 Hermes SKILL.md 格式（YAML frontmatter + markdown body）
-- ✅ 心智模型采用"一句话 + 证据链 + 应用 + 局限"四段式
-- ✅ 角色扮演规则清晰 — 第一人称、退出机制、一次性的免责声明
-- ✅ 可插拔 — 加载即用，卸载即止
+-  完全兼容 Hermes SKILL.md 格式（YAML frontmatter + markdown body）
+-  心智模型采用"一句话 + 证据链 + 应用 + 局限"四段式
+-  角色扮演规则清晰 — 第一人称、退出机制、一次性的免责声明
+-  可插拔 — 加载即用，卸载即止
 
 **结构弱点：**
-- ⚠️ 无 `triggers` 字段 — 依赖 description 的模糊匹配
-- ⚠️ 无版本管理 — 心智模型变化无法追踪
-- ⚠️ 下游案例少 — 仅 1 个公开的精品案例（段永平）
+- ⚠ 无 `triggers` 字段 — 依赖 description 的模糊匹配
+- ⚠ 无版本管理 — 心智模型变化无法追踪
+- ⚠ 下游案例少 — 仅 1 个公开的精品案例（段永平）
 
 ### 2.3 与 Molin-OS 的关系
 
@@ -684,12 +693,12 @@ description: |
 | 评估维度 | Nuwa-Skill | MemPalace | Molin-OS 当前 |
 |----------|-----------|-----------|---------------|
 | **核心价值** | 方法论文本（如何蒸馏思维） | 高质量开源记忆检索实现 | Agent 操作系统 + 完整 biz 管道 |
-| **技术成熟度** | ⭐⭐⭐ 方法成熟，代码量小 | ⭐⭐⭐⭐⭐ 基准验证，生产级 | ⭐⭐⭐⭐ 功能完整，持续迭代 |
-| **文档质量** | ⭐⭐ 依赖 README + 1 个案例 | ⭐⭐⭐⭐⭐ 完整 docs site + 基准复现指南 | ⭐⭐⭐ 关键脚本有注释，SKILL 文件分散 |
-| **社区活跃度** | ⭐⭐ 19.7k⭐ 但贡献者少 | ⭐⭐⭐⭐ 52k⭐ + Discord + 活跃 PR | N/A 私有项目 |
-| **集成难度** | ⭐⭐⭐⭐⭐ 只需学方法论 | ⭐⭐ 部分模块可复用，但需适配 | — |
-| **与 Molin-OS 互补性** | ⭐⭐⭐⭐⭐ 方法论补强垂直学习管道 | ⭐⭐⭐⭐ 语义检索补强记忆管道 | 吸收而非替代 |
-| **许可证风险** | ⚠️ 未声明许可证 = 不可用 | ✅ MIT | ✅ 私有 |
+| **技术成熟度** |  方法成熟，代码量小 |  基准验证，生产级 |  功能完整，持续迭代 |
+| **文档质量** |  依赖 README + 1 个案例 |  完整 docs site + 基准复现指南 |  关键脚本有注释，SKILL 文件分散 |
+| **社区活跃度** |  19.7k 但贡献者少 |  52k + Discord + 活跃 PR | N/A 私有项目 |
+| **集成难度** |  只需学方法论 |  部分模块可复用，但需适配 | — |
+| **与 Molin-OS 互补性** |  方法论补强垂直学习管道 |  语义检索补强记忆管道 | 吸收而非替代 |
+| **许可证风险** | ⚠ 未声明许可证 = 不可用 |  MIT |  私有 |
 
 ---
 
@@ -733,7 +742,7 @@ description: |
 
 - **Nuwa-Skill 如获得 MIT/Apache 许可证** → 可直接 fork 到 Molin-OS 作为子模块
 - **MemPalace 如加入 Obsidian exporter** → 可作为 Molin-OS 记忆管道的可选后端
-- **MemPalace 长期观察** → 52k⭐ 项目演进快，6 个月后再评估一次
+- **MemPalace 长期观察** → 52k 项目演进快，6 个月后再评估一次
 
 ---
 
@@ -771,9 +780,9 @@ description: |
 
 | 项目 | Stars | 核心价值 |
 |------|-------|----------|
-| joeseesun/qiaomu-anything-to-notebooklm | ⭐3,796 | 多源内容自动化处理管线（URL/播客/文件→NotebookLM→播客/PPT/思维导图） |
-| obra/superpowers | ⭐195,522 | Agent技能体系与方法论框架：SKILL.md标准化、HARD-GATE门控、子代理隔离 |
-| MervinPraison/PraisonAI | ⭐7,806 | 多Agent编排框架：5层架构、YAML声明式工作流、AgentFlow流水线 |
+| joeseesun/qiaomu-anything-to-notebooklm | 3,796 | 多源内容自动化处理管线（URL/播客/文件→NotebookLM→播客/PPT/思维导图） |
+| obra/superpowers | 195,522 | Agent技能体系与方法论框架：SKILL.md标准化、HARD-GATE门控、子代理隔离 |
+| MervinPraison/PraisonAI | 7,806 | 多Agent编排框架：5层架构、YAML声明式工作流、AgentFlow流水线 |
 
 ---
 
@@ -830,32 +839,32 @@ description: |
 
 ## 四、可直接复用的方法论（6项，按优先级排序）
 
-### 1️⃣ Agent技能标准化体系（来自superpowers）
+### 1⃣ Agent技能标准化体系（来自superpowers）
 **问题**：当前3个Worker（墨笔文创、墨图设计、墨播短视频）虽然各有SKILL.md，但没有统一的跨Worker技能标准
 **方案**：将superpowers的SKILL.md格式引入：YAML头(name+description触发条件) + Markdown正文(Checklist+流程图+铁律+反模式)
 **对我方价值**：让所有Worker有统一的技能定义规范，Agent能自动识别何时激活哪个技能
 
-### 2️⃣ 内容自动化处理管线（来自qiaomu）
+### 2⃣ 内容自动化处理管线（来自qiaomu）
 **问题**：目前内容获取依赖手动搜索或固定RSS源，缺乏自动化的多源内容抓取→统一化→转产管线
 **方案**：复刻qiaomu的6层级联抓取引擎 + 输入统一化模式（所有异构来源→纯文本→附带元数据头：来源/时间/标题/长度）
 **对我方价值**：情报层(intelligence)可以直接嵌入这套管线，自动从付费墙内容、播客、微信公众号获取素材
 
-### 3️⃣ 级联降级容错哲学（三个项目共有）
+### 3⃣ 级联降级容错哲学（三个项目共有）
 **问题**：当前Worker的错误处理多为单点重试，缺乏级联降级路径
 **方案**：在每个Worker的执行管线中加入"如果A失败→尝试B→尝试C→报告失败"的级联策略，每步有明确的失败检测
 **对我方价值**：内容飞轮更健壮，不会因为一个数据源失效就中断整条管线
 
-### 4️⃣ YAML驱动的工作流编排（来自PraisonAI）
+### 4⃣ YAML驱动的工作流编排（来自PraisonAI）
 **问题**：当前内容飞轮是代码级硬编码的"情报→内容→分发→数据回收"
 **方案**：用YAML声明式定义内容流水线：角色(编辑/写作/设计/发布) + 任务(研究→写作→审核→发布) + 控制流(并行/循环/条件)
 **对我方价值**：运营人员可调整YAML改变内容飞轮行为，无需修改核心编排代码
 
-### 5️⃣ 两阶段审核模式（来自superpowers）
+### 5⃣ 两阶段审核模式（来自superpowers）
 **问题**：当前内容审核只有一道质量门槛
 **方案**：拆为两阶段——先审核"是否符合规格"（运营规范/品牌调性），再审核"内容质量"（表达/结构/数据准确性）
 **对我方价值**：内容质量从单点检查升级为双保险，降低翻车概率
 
-### 6️⃣ 三轮递进分析框架（来自qiaomu）
+### 6⃣ 三轮递进分析框架（来自qiaomu）
 **问题**：当前深度分析只有一个层面的分析
 **方案**：复刻qiaomu的generate_questions_progressive()方法论——概览(4题,建立框架) → 深度(5题,按内容类型分叉) → 综合反刍(3题)
 **对我方价值**：每日学习分析的深度和质量将显著提升
@@ -892,17 +901,17 @@ description: |
 
 📖 每日GitHub学习 · 2026-05-18
 
-📊 概览
+ 概览
 - 扫描: 24个项目（Trending Weekly 9个 + Trending Python 15个）
 - 精选: 3个深度分析
 - 产出的笔记：银月·GitHub学习_2026-05-18
 
-📌 今日选中项目
-- obra/superpowers (⭐195,522) — Agent技能标准化体系，SKILL.md + HARD-GATE门控
-- MervinPraison/PraisonAI (⭐7,806) — 多Agent编排，AgentFlow流水线+YAML声明式
-- joeseesun/qiaomu-anything-to-notebooklm (⭐3,796) — 多源内容自动化管线+6层级联绕过
+ 今日选中项目
+- obra/superpowers (195,522) — Agent技能标准化体系，SKILL.md + HARD-GATE门控
+- MervinPraison/PraisonAI (7,806) — 多Agent编排，AgentFlow流水线+YAML声明式
+- joeseesun/qiaomu-anything-to-notebooklm (3,796) — 多源内容自动化管线+6层级联绕过
 
-🏗️ 核心方法论提炼
+🏗 核心方法论提炼
 1. Agent技能标准化（superpowers的SKILL.md格式）
 2. 内容自动化处理管线（qiaomu的6层级联引擎）
 3. 级联降级容错（三项目共有的容错哲学）
@@ -922,7 +931,7 @@ description: |
 
 ## 一、项目清单
 
-| 项目 | ⭐Stars | 核心价值 |
+| 项目 | Stars | 核心价值 |
 |------|--------|----------|
 | crewAIInc/crewAI | 28k+ | 角色驱动的多Agent编排框架，Agent/Task/Crew三元组 + Process策略 |
 | langgenius/dify | 60k+ | LLM应用开发平台，可视化Workflow Engine，支持条件分支/并行/知识检索 |
@@ -1032,7 +1041,7 @@ CacheHandler避免重复调用LLM获取相同输入+任务组合的结果。
 
 ## 六、项目详细分析
 
-### crewAIInc/crewAI (⭐28k+)
+### crewAIInc/crewAI (28k+)
 
 **核心架构**：Agent/Task/Crew三元组 + Process策略。Crew.kickoff() → Process.execute() → Task分配给Agent执行。
 
@@ -1048,7 +1057,7 @@ CacheHandler避免重复调用LLM获取相同输入+任务组合的结果。
 
 **错误处理**: 重试靠LLM调用层(max_iter=15)，超时需外部wrap，整体较脆弱。支持cache减少重复调用。
 
-### langgenius/dify (⭐60k+)
+### langgenius/dify (60k+)
 
 **核心架构**：Workflow Engine + nodes/目录 + 可视化编排(React Flow)。拓扑排序执行DAG。
 
@@ -1058,7 +1067,7 @@ CacheHandler避免重复调用LLM获取相同输入+任务组合的结果。
 
 **错误处理**: 节点捕获异常记录到WorkflowRun。HTTP节点支持重试(3次)。版本快照回滚。循环上限(max_iterations=10)、深度限制(3层)、超时(600s)
 
-### n8n-io/n8n (⭐55k+)
+### n8n-io/n8n (55k+)
 
 **核心架构**: Node-based Graph架构。Workflow类管理DAG执行，Trigger/Regular节点区分。300+集成。
 
@@ -1082,11 +1091,11 @@ CacheHandler避免重复调用LLM获取相同输入+任务组合的结果。
 ## 八、知识沉淀
 
 ### Obsidian
-- 路径: 知识/银月·GitHub学习_2026-05-19.md ✅ 已写入
+- 路径: 知识/银月·GitHub学习_2026-05-19.md  已写入
 
 ### Supermemory
 - 2026-05-19 GitHub学习摘要
-- 内容：分析了3个项目（CrewAI 28k⭐、Dify 60k⭐、n8n 55k⭐）
+- 内容：分析了3个项目（CrewAI 28k、Dify 60k、n8n 55k）
 - 核心收获：DAG编排 + Error Workflow + 条件分支
 
 ## GitHub Trending·0518
@@ -1095,7 +1104,7 @@ CacheHandler避免重复调用LLM获取相同输入+任务组合的结果。
 标签: github, trending, 深度日报, top20, 情报, 2026-05-15, agent-skills, edge-ai, fintech, dev-tools, content-marketing
 分类: intelligence
 
-📊 GitHub Trending 深度日报 | 2026-05-18
+ GitHub Trending 深度日报 | 2026-05-18
 
 本期共分析 20 个项目(日榜 15 + 周榜补充 5)，覆盖 Agent Skills、端侧 AI、金融模型、开发者方法论、内容营销六大领域。
 
@@ -1413,13 +1422,13 @@ Agent Skills 生态建设——提炼墨麟 34 个技能为可复用技能包。
 ## 五、下次学习方向
 
 - [ ] RedBox 重试（本次超时）
-- [ ] growchief/growchief（3,343⭐ 全栈SMM工具）
-- [ ] enescingoz/awesome-n8n-templates（22,211⭐ 工作流模板库）
+- [ ] growchief/growchief（3,343 全栈SMM工具）
+- [ ] enescingoz/awesome-n8n-templates（22,211 工作流模板库）
 
 ## aimoneyhunter 分析·0516
 
 > 从 side Agent（宋玉）跨线传递的分析任务
-> 项目：bleedline/aimoneyhunter（17,120⭐）
+> 项目：bleedline/aimoneyhunter（17,120）
 
 ## 核心发现
 
@@ -1439,4 +1448,4 @@ Agent Skills 生态建设——提炼墨麟 34 个技能为可复用技能包。
 
 ## 修订日志 (Changelog)
 
-- **2026-05-19**: 从 8 个 GitHub 学习文件合并
+- **2026-05-19**: 从 8 个 GitHub 学习文件合并，原因：Vault v3.0 将跨 Agent（global/edu/media/shared/银月）的 GitHub 学习记录统一归档，消除重复内容，形成可检索的知识资产库。

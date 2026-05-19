@@ -5,6 +5,8 @@ last_updated: 2026-05-19
 agent_sync: true
 ---
 
+> **TL;DR**：元瑶教育 Agent 项目 MVP，以飞书 open_id 为零成本身份锚点，复用 Supermemory + Obsidian 双通道架构，3 周完成"学员下次来系统记得上次"的最小闭环。后续演进方向为多 Agent 教育系统（诊断/教学/督学三 Agent 联动）。
+
 ## 学员记忆 MVP 方案
 
 ## 结论
@@ -66,13 +68,13 @@ agent_sync: true
 ## 2026-05-16
 
 ### 结论
-━━━━━━━━━━━━━━━━━━ 📋 SRS 复习时间表 · 任务完成 ━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━  SRS 复习时间表 · 任务完成 ━━━━━━━━━━━━━━━━━━
 
 ### 背景
 修改 student_memory.py 加入 SRS 复习时间表功能
 
 ### 核心内容
-- 补充结论：━━━━━━━━━━━━━━━━━━ 📋 修改 student_memory.py 加入游戏化连胜系统 ━━━━━━━━━━━━━━━━━━
+- 补充结论：━━━━━━━━━━━━━━━━━━  修改 student_memory.py 加入游戏化连胜系统 ━━━━━━━━━━━━━━━━━━
 - Let me verify edge cases with nonexistent students.
 - Now verify the file structure is correct.
 - The return statement and `_sync_to_sm` got lost. Let me fix this.
