@@ -95,6 +95,9 @@ def cmd_help(args: list[str]) -> dict:
         "help": "显示此帮助",
         "content write --topic T --platform P": "创作内容（墨笔文创）",
         "content publish --platform P --draft-id ID": "发布内容（墨笔文创）",
+        "xhs generate --topic T [--template TPL] [--provider P]": "小红书内容引擎（xhs_ai_publisher）",
+        "xhs publish --title T --body B [--tags TAGS]": "发布到小红书（需登录态）",
+        "xhs hot [--source weibo|baidu]": "获取热榜选题",
         "design image --prompt P --style S": "生成图片（墨图设计）",
         "design web --prompt P --action landing_page --ds apple": "全栈网页生成 (Open Design 149设计系统×134技能)",
         "design web --prompt P --action dashboard --ds stripe": "仪表盘/PPT/落地页/原型等14种页面类型",
@@ -161,6 +164,44 @@ def cmd_help(args: list[str]) -> dict:
         "bitable list <table> [--filter expr]": "查询飞书多维表格记录",
     }
     return {"commands": commands, "total": len(commands)}
+
+
+def cmd_xhs(args: list[str]) -> dict:
+    """小红书内容引擎 — generate / publish / hot / status / login"""
+    from molib.content.xiaohongshu import cli_generate, cli_publish, cli_hot, cli_status
+
+    if not args:
+        return {
+            "usage": "python -m molib xhs <子命令> [选项]",
+            "commands": {
+                "generate --topic T [--template TEMPLATE] [--provider PROVIDER]": "生成小红书内容",
+                "publish --title T --body B [--tags TAGS] [--schedule ISO]": "发布到小红书",
+                "hot [--source weibo|baidu|toutiao|bilibili]": "获取热榜数据",
+                "status": "查看登录态和系统状态",
+                "login": "引导登录流程",
+            }
+        }
+
+    subcmd = args[0]
+    rest = args[1:]
+
+    if subcmd == "generate":
+        result = cli_generate(rest)
+        return {"status": "ok", "data": result}
+    elif subcmd == "publish":
+        result = cli_publish(rest)
+        return {"status": "ok", "data": result}
+    elif subcmd == "hot":
+        result = cli_hot(rest)
+        return {"status": "ok", "data": result}
+    elif subcmd in ("status", "login"):
+        from molib.content.xiaohongshu import engine
+        if subcmd == "login":
+            login_data = engine.login()
+            return {"status": "ok", "data": login_data}
+        return {"status": "ok", "data": engine.session_status()}
+
+    return {"error": f"未知子命令: {subcmd}", "hint": "generate / publish / hot / status / login"}
 
 
 async def cmd_intel(args: list[str]) -> dict:
@@ -1231,6 +1272,7 @@ async def run(command: str, args: list[str]) -> dict:
         "analytics": cmd_analytics,
         "comfy": cmd_comfy,
         "flow": cmd_flow,
+        "xhs": cmd_xhs,  # 小红书内容引擎
     }
     # 异步命令映射（返回 coroutine）
     async_commands = {

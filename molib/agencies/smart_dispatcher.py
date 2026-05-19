@@ -78,6 +78,18 @@ class SmartDispatcher:
             return {"error": str(e), "fallback": True}
 
     async def _dispatch_chain(self, task, worker_ids, context):
+        """优先使用 Kanban 容错链，降级到原生 WorkerChain"""
+        # 尝试 Kanban 路由
+        try:
+            from molib.agencies.kanban_chain import smart_route
+            kanban_result = smart_route(worker_ids, task, context)
+            if kanban_result.get("status") in ("deployed", "success"):
+                return kanban_result
+        except (ImportError, Exception) as e:
+            import logging
+            logging.getLogger(__name__).debug("KanbanChain fallback: %s", e)
+
+        # 降级：原生 WorkerChain
         try:
             from molib.agencies.worker_chain import WorkerChain
             chain = WorkerChain(worker_ids, task, context)
@@ -88,9 +100,28 @@ class SmartDispatcher:
             return {"error": "WorkerChain不可用", "fallback": True}
 
     def _match_collab_rule(self, task) -> list:
-        desc = str(task.payload) if hasattr(task, 'payload') else str(task)
+        """语义匹配：先用 VectorSimulator cosine_sim 找最佳规则，降级到关键词包含"""
+        desc = str(task.payload) if hasattr(task, 'payload') else str(task).lower()
+
+        # 语义匹配 — TF-IDF 余弦相似度（使用 RAGEngine 内置的向量模拟器）
+        try:
+            from molib.shared.knowledge.rag_engine import _VectorSimulator
+            vs = _VectorSimulator()
+            scores = []
+            for kw, workers in self.COLLAB_RULES.items():
+                sim = vs.cosine_similarity(vs.embed(desc), vs.embed(kw))
+                scores.append((sim, kw, workers))
+            if scores:
+                scores.sort(reverse=True, key=lambda x: x[0])
+                best_sim, best_kw, best_workers = scores[0]
+                if best_sim >= 0.35:  # 经验阈值
+                    return best_workers
+        except (ImportError, Exception):
+            pass
+
+        # 兜底：关键词包含
         for kw, workers in self.COLLAB_RULES.items():
-            if kw in desc:
+            if kw.lower() in desc:
                 return workers
         return [task.task_type] if hasattr(task, 'task_type') else []
 
