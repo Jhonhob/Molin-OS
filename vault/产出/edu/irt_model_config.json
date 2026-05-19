@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "description": "IRT自适应出题题库配置 [吸收自lextures 2PL/3PL模型]",
+  "default_params": {
+    "a_min": 0.5,
+    "a_max": 2.5,
+    "b_min": -3.0,
+    "b_max": 3.0,
+    "c_default": 0.0,
+    "prior_mean": 0.0,
+    "prior_sd": 1.0
+  },
+  "items": [
+    {"id": "IRT_L1_01", "level": "L1", "kp_id": "L1_有序思维", "a": 1.0, "b": -1.5, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L1_02", "level": "L1", "kp_id": "L1_排除思维", "a": 1.2, "b": -1.2, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L1_03", "level": "L1", "kp_id": "L1_对应思维", "a": 0.8, "b": -1.0, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L1_04", "level": "L1", "kp_id": "L1_分步思维", "a": 1.1, "b": -0.8, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L1_05", "level": "L1", "kp_id": "L1_分类思维", "a": 0.9, "b": -0.6, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L2_01", "level": "L2", "kp_id": "L2_有序思维", "a": 1.2, "b": -0.5, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L2_02", "level": "L2", "kp_id": "L2_比较思维", "a": 1.0, "b": -0.3, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L2_03", "level": "L2", "kp_id": "L2_图形化思维", "a": 1.3, "b": 0.0, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L2_04", "level": "L2", "kp_id": "L2_对应思维", "a": 0.9, "b": 0.2, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L2_05", "level": "L2", "kp_id": "L2_分类思维", "a": 1.1, "b": 0.3, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L3_01", "level": "L3", "kp_id": "L3_归纳思维", "a": 1.0, "b": 0.0, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L3_02", "level": "L3", "kp_id": "L3_转化思维", "a": 1.4, "b": 0.3, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L3_03", "level": "L3", "kp_id": "L3_整体与分组", "a": 1.2, "b": 0.5, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L3_04", "level": "L3", "kp_id": "L3_模型化思维", "a": 1.5, "b": 0.8, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L3_05", "level": "L3", "kp_id": "L3_多角度思维", "a": 0.8, "b": 1.0, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L4_01", "level": "L4", "kp_id": "L4_假设思维", "a": 1.3, "b": 0.5, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L4_02", "level": "L4", "kp_id": "L4_逆向思维", "a": 1.5, "b": 0.8, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L4_03", "level": "L4", "kp_id": "L4_递推思维", "a": 1.6, "b": 1.0, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L4_04", "level": "L4", "kp_id": "L4_类比思维", "a": 1.2, "b": 1.2, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L4_05", "level": "L4", "kp_id": "L4_极端思维", "a": 1.0, "b": 1.5, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L5_01", "level": "L5", "kp_id": "L5_模型化思维", "a": 1.4, "b": 0.8, "c": 0.25, "model": "3pl"},
+    {"id": "IRT_L5_02", "level": "L5", "kp_id": "L5_归纳思维", "a": 1.6, "b": 1.0, "c": 0.25, "model": "3pl"},
+    {"id": "IRT_L5_03", "level": "L5", "kp_id": "L5_转化思维", "a": 1.5, "b": 1.2, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L5_04", "level": "L5", "kp_id": "L5_递推思维", "a": 1.7, "b": 1.5, "c": 0.0, "model": "2pl"},
+    {"id": "IRT_L5_05", "level": "L5", "kp_id": "L5_不变量思维", "a": 1.8, "b": 1.8, "c": 0.0, "model": "2pl"}
+  ]
+}
