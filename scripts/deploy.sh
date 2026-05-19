@@ -276,29 +276,72 @@ else
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 步骤 7: 配置 vault-git-mirror
+# 步骤 7: 配置 vault-git-mirror → Molin-OS vault 分支
 # ═══════════════════════════════════════════════════════════════════════════
 echo ""
-log_info "步骤 7/7: 配置 vault-git-mirror..."
+log_info "步骤 7/7: 配置 vault-git-mirror（Obsidian 知识库镜像）..."
+log_info "注意: MolinOS-Ultra 已于 2026-05-19 废弃并 archive。所有内容已整合至 Molin-OS。"
+log_info "       Obsidian 知识库现在在 Molin-OS 仓库的 vault 分支。"
+echo ""
 
 VAULT_MIRROR_DIR="$REPO_DIR/.vault-git-mirror"
-if [ -d "$VAULT_MIRROR_DIR" ]; then
-    log_success "vault-git-mirror 目录已存在: $VAULT_MIRROR_DIR"
-    
-    # 检查是否已有 git 仓库
-    if [ -d "$VAULT_MIRROR_DIR/.git" ]; then
-        log_success "vault-git-mirror 已初始化为 git 仓库"
+GITHUB_USER="moye-tech"
+GITHUB_REPO="Molin-OS"
+REMOTE_URL="https://github.com/$GITHUB_USER/$GITHUB_REPO.git"
+
+if [ -d "$VAULT_MIRROR_DIR/.git" ]; then
+    # 检查现有 remote 是否指向 Molin-OS
+    CURRENT_REMOTE=$(cd "$VAULT_MIRROR_DIR" && git remote get-url origin 2>/dev/null || echo "")
+    if echo "$CURRENT_REMOTE" | grep -q "Molin-OS"; then
+        log_success "vault-git-mirror 已配置: 指向 Molin-OS vault 分支"
     else
-        log_warn "vault-git-mirror 未初始化为 git 仓库"
-        log_info "手动初始化: cd $VAULT_MIRROR_DIR && git init && git remote add origin <你的仓库>"
+        log_warn "vault-git-mirror remote 需要更新"
+        run_cmd cd "$VAULT_MIRROR_DIR" && git remote set-url origin "$REMOTE_URL"
+        log_success "remote 已更新为 $REMOTE_URL (vault 分支)"
+    fi
+    
+    # 同步 vault 分支
+    log_info "正在拉取 vault 分支最新内容..."
+    if [ "$DRY_RUN" = false ]; then
+        cd "$VAULT_MIRROR_DIR"
+        git config http.https://github.com.version HTTP/1.1 2>/dev/null
+        if ! git fetch origin vault --depth 1 2>/dev/null; then
+            log_warn "无法连接到 GitHub (已知 TLS 问题)，跳过 fetch"
+            log_info "稍后手动运行: cd $VAULT_MIRROR_DIR && git fetch origin vault --depth 1 && git checkout vault"
+        else
+            git checkout vault 2>/dev/null || git checkout -b vault origin/vault 2>/dev/null
+            log_success "vault 分支已同步"
+        fi
+    fi
+elif [ -d "$VAULT_MIRROR_DIR" ]; then
+    log_warn "vault-git-mirror 目录存在但未初始化 git"
+    if [ "$DRY_RUN" = false ]; then
+        log_info "初始化 vault-git-mirror: 浅克隆 vault 分支..."
+        run_cmd git clone --depth 1 --branch vault "$REMOTE_URL" "$VAULT_MIRROR_DIR.tmp" 2>/dev/null || {
+            log_warn "克隆失败（已知 TLS 问题），创建空仓库"
+            run_cmd cd "$VAULT_MIRROR_DIR" && git init
+            run_cmd cd "$VAULT_MIRROR_DIR" && git remote add origin "$REMOTE_URL"
+        }
+        if [ -d "$VAULT_MIRROR_DIR.tmp" ]; then
+            rm -rf "$VAULT_MIRROR_DIR"
+            mv "$VAULT_MIRROR_DIR.tmp" "$VAULT_MIRROR_DIR"
+        fi
     fi
 else
-    log_info "vault-git-mirror 目录不存在，创建中..."
+    log_info "创建 vault-git-mirror 目录..."
     run_cmd mkdir -p "$VAULT_MIRROR_DIR"
-    log_warn "请手动配置 vault-git-mirror:
-    cd $VAULT_MIRROR_DIR
-    git init
-    git remote add origin <你的 Obsidian 镜像仓库 URL>"
+    if [ "$DRY_RUN" = false ]; then
+        log_info "浅克隆 vault 分支..."
+        run_cmd git clone --depth 1 --branch vault "$REMOTE_URL" "$VAULT_MIRROR_DIR.tmp" 2>/dev/null || {
+            log_warn "克隆失败（已知 TLS 问题），创建空仓库"
+            run_cmd cd "$VAULT_MIRROR_DIR" && git init
+            run_cmd cd "$VAULT_MIRROR_DIR" && git remote add origin "$REMOTE_URL"
+        }
+        if [ -d "$VAULT_MIRROR_DIR.tmp" ]; then
+            rm -rf "$VAULT_MIRROR_DIR"
+            mv "$VAULT_MIRROR_DIR.tmp" "$VAULT_MIRROR_DIR"
+        fi
+    fi
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -320,7 +363,7 @@ echo "  │ ✗ ~/.hermes/.env 需要手动创建                       │"
 fi
 echo "  │ ✓ Profiles 目录结构已就绪                           │"
 echo "  │ ✓ Cron 作业清单已部署 (共 19 个)                    │"
-echo "  │ ✓ vault-git-mirror 已检查                          │"
+echo "  │ ✓ vault-git-mirror → Molin-OS vault 分支            │"
 echo "  └─────────────────────────────────────────────────────┘"
 echo ""
 echo "  后续步骤:"
