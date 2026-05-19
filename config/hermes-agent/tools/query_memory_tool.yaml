@@ -1,4 +1,0 @@
-query_memory_tool:
-  description: 查询分层记忆系统（SQLite/Qdrant/Redis/Supermemory）
-  enabled: true
-  name: 记忆查询工具

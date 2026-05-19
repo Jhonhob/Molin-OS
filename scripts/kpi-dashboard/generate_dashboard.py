@@ -301,7 +301,7 @@ def main():
         week_start = (today_dt - timedelta(days=today_dt.weekday())).strftime("%Y-%m-%d")
         week_end = today
         content = generate_weekly_dashboard(data, week_start, week_end)
-        write_obsidian(f"{week_start}_{week_end}_周看板.md", content)
+        write_obsidian(f"周看板·{week_start}_{week_end}.md", content)
 
     elif mode == "overview":
         data = load_kpi_data()

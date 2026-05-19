@@ -1,4 +1,0 @@
-cli_execute_command:
-  description: 执行命令行工具和系统命令
-  enabled: true
-  name: CLI命令执行工具
