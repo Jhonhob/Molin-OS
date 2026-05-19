@@ -2,8 +2,8 @@
   <img src="https://img.shields.io/badge/python-3.11+-00b894?style=flat-square&logo=python" alt="Python 3.11+">
   <img src="https://img.shields.io/badge/license-MIT-00b894?style=flat-square" alt="License MIT">
   <img src="https://img.shields.io/badge/brain-Hermes_Agent-8e44ad?style=flat-square" alt="Hermes Agent">
-  <img src="https://img.shields.io/badge/skills-362-success?style=flat-square" alt="362 Skills">
-  <img src="https://img.shields.io/badge/cron_jobs-7-blue?style=flat-square" alt="7 Cron Jobs">
+  <img src="https://img.shields.io/badge/skills-389-success?style=flat-square" alt="389 Skills">
+  <img src="https://img.shields.io/badge/cron_jobs-19-blue?style=flat-square" alt="19 Cron Jobs">
   <img src="https://img.shields.io/badge/lines-44K_Python-ff6b6b?style=flat-square" alt="44K Lines">
   <img src="https://img.shields.io/badge/revenue-¥52K/month-ff6b6b?style=flat-square" alt="Revenue">
   <img src="https://img.shields.io/badge/version-v5.0-blueviolet?style=flat-square" alt="v5.0">
@@ -13,6 +13,10 @@
 
 一个人，一台 MacBook，一个 AI 集团。
 One person, one MacBook, one AI conglomerate.
+
+> **⚠️ MolinOS-Ultra 已于 2026-05-19 废弃并 archive。所有内容已整合至此仓库。**
+> 引擎代码在 main 分支，Obsidian 知识库在 vault 分支。详见 [sys-design.md](./docs/sys-design.md)。
+
 
 ---
 
@@ -53,18 +57,28 @@ One person, one MacBook, one AI conglomerate.
 
 ## 快速开始 / Quick Start
 
-三行命令完成部署。
+完整系统包含引擎代码（main 分支）和 Obsidian 知识库（vault 分支）。
+
+### 方式 A：完整部署
 
 ```bash
 git clone https://github.com/moye-tech/Molin-OS.git
 cd Molin-OS
-git submodule update --init --recursive  # 克隆外部依赖
+# 克隆 vault 分支（Obsidian 知识库镜像）
+git clone --branch vault https://github.com/moye-tech/Molin-OS.git .vault-git-mirror
+# 运行部署脚本
+bash scripts/deploy.sh
+```
+
+### 方式 B：仅引擎部署
+
+```bash
+git clone https://github.com/moye-tech/Molin-OS.git
+cd Molin-OS
 bash setup.sh
 ```
 
-setup.sh 会自动完成：环境检测 → Python 虚拟环境 → 依赖安装 → 配置初始化 → CLI 安装 → 健康验证。
-
-首次运行后编辑 `~/.molin/.env` 填入 API Keys：
+部署后编辑 `~/.hermes/.env` 填入 API Keys：
 
 ```bash
 DEEPSEEK_API_KEY=sk-xxx
@@ -72,12 +86,12 @@ DASHSCOPE_API_KEY=sk-xxx
 OPENROUTER_API_KEY=sk-xxx
 ```
 
-验证安装：
+### 知识库恢复（可选）
+
+如果已有 Obsidian vault，运行 vault_git_sync.py 同步到当前 vault：
 
 ```bash
-source ~/.bashrc
-molin health
-molin '帮我写一篇小红书文案'
+python3 scripts/vault_git_sync.py --pull
 ```
 
 ---
@@ -318,15 +332,35 @@ moneymaker assess --idea "..."     变现评估
 
 ```
 Molin-OS/
-├── setup.sh                    # 一键部署脚本
-├── requirements.txt            # Python 依赖
-├── Makefile                    # 构建命令
-├── LICENSE                     # MIT License
-├── SOUL.md                     # CEO 认知框架（灵魂文件）
-├── AGENTS.md                   # 公司上下文（系统提示注入）
-├── ENVIRONMENT.md              # 环境清单
-│
+├── setup.sh                    # 一键部署脚本（旧版）
+├── scripts/                    # 辅助脚本
+│   ├── deploy.sh               # 新版一键部署脚本（Hermes 集成）
+│   ├── vault_git_sync.py       # Obsidian 知识库同步镜像
+│   ├── cross_request_worker.py # 跨线请求轮询
+│   ├── molin-sync-all.sh       # 全量记忆/缓存同步
+│   ├── publish_to_xiaohongshu.py
+│   ├── git-backup.sh
+│   └── kpi-dashboard/          # KPI 看板生成脚本
+├── skills/                     # 389 项技能
+│   ├── 27 SOP pack skills/     # 内容/财务/安全/法务/客服/数据等标准化 SOP
+│   └── ...                     # 通过 external_dirs 指向 ~/.hermes/skills/
 ├── config/
+│   ├── hermes-agent/           # Hermes Agent 集成配置
+│   │   ├── config.yaml.template  # 匿名化配置模板（含 external_dirs）
+│   │   ├── .env.example          # 全部 9 个环境变量占位符
+│   │   ├── cron_jobs.md          # 19 个 cron 作业完整文档
+│   │   └── profiles/             # 5 个 profile (edu/global/media/shared/side)
+│   │       └── .env.example      # 每个 profile 独立环境模板
+│   ├── company.toml            # 20 家子公司映射（唯一配置源）
+│   ├── governance.yaml         # 治理规则（L0-L4 + 预算）
+│   ├── subsidiaries.toml       # 子公司详细配置
+│   ├── models.toml             # AI 模型路由
+│   ├── routing.toml            # Handoff 路由规则
+│   ├── channels.yaml           # 多通道配置
+│   ├── memory.toml             # 记忆系统配置
+│   └── memory_acl.toml         # 记忆访问控制
+├── .vault-git-mirror/          # Obsidian 知识库镜像（vault 分支）
+│                               # git clone --branch vault ...├── config/
 │   ├── company.toml            # 20 家子公司映射（唯一配置源）
 │   ├── governance.yaml         # 治理规则（L0-L4 + 预算）
 │   ├── subsidiaries.toml       # 子公司详细配置
