@@ -26,7 +26,7 @@ VAULT_PATH = Path(os.path.expanduser(
     "~/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 ))
 MIRROR_PATH = Path(os.path.expanduser("~/Molin-OS/.vault-git-mirror"))
-GIT_REMOTE = "https://github.com/moye-tech/Molin-OS.git"
+GIT_REMOTE = "git@github.com:moye-tech/Molin-OS.git"
 GIT_BRANCH = "vault"
 
 # rsync 同步的文件类型

@@ -259,7 +259,7 @@ if [ "$SETUP_VAULT" = true ]; then
     log_info "步骤 6/7: 配置 Obsidian vault 镜像..."
 
     VAULT_MIRROR_DIR="$REPO_DIR/.vault-git-mirror"
-    VAULT_REMOTE="https://github.com/moye-tech/Molin-OS.git"
+    VAULT_REMOTE="git@github.com:moye-tech/Molin-OS.git"
 
     if [ ! -d "$VAULT_MIRROR_DIR/.git" ]; then
         log_info "正在克隆 vault 分支到 .vault-git-mirror/..."
