@@ -37,6 +37,7 @@ Hermes（大脑）通过 terminal（神经）调用本 CLI。
     python -m molib avatar create --text "你好" --image pic.jpg  # 数字人视频(Tier 1: ffmpeg+say)
     python -m molib avatar list-voices     # 列出可用语音
     python -m molib avatar check           # 检测 Tier 1/2 引擎状态
+    python -m molib notebooklm <subcmd>    # Qiaomu Anything → NotebookLM 内容处理器
 """
 
 import sys
@@ -202,6 +203,12 @@ def cmd_xhs(args: list[str]) -> dict:
         return {"status": "ok", "data": engine.session_status()}
 
     return {"error": f"未知子命令: {subcmd}", "hint": "generate / publish / hot / status / login"}
+
+
+def cmd_notebooklm(args: list[str]) -> dict:
+    """Qiaomu Anything → NotebookLM 内容处理器"""
+    from molib.integrations.notebooklm import cmd_notebooklm as _dispatch
+    return _dispatch(args)
 
 
 async def cmd_intel(args: list[str]) -> dict:
@@ -1273,6 +1280,7 @@ async def run(command: str, args: list[str]) -> dict:
         "comfy": cmd_comfy,
         "flow": cmd_flow,
         "xhs": cmd_xhs,  # 小红书内容引擎
+        "notebooklm": cmd_notebooklm,  # Qiaomu Anything → NotebookLM 内容处理器
     }
     # 异步命令映射（返回 coroutine）
     async_commands = {

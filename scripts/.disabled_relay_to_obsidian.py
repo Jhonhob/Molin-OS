@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 """
-墨麟OS · Relay输出同步到Obsidian + Supermemory
-将 no_agent cron jobs的 relay/ 输出结果同步到Obsidian
-
-扫描目录:
-  ~/Molin-OS/relay/shared/results/   — arxiv 论文扫描等
-  ~/Molin-OS/relay/side/results/     — 副业价格监控等
+墨麟OS · Relay输出同步到Obsidian
+将 no_agent cron jobs的 relay/ 输出结果同步到Obsidian v3.0 flat vault
 
 写入目标:
-  Obsidian Vault: 知识/每日·{topic}.md
-  Supermemory:    按内容分类存储
+  Obsidian Vault: 知识/玄骨｜每日·{topic}.md
 
 用法:
   python3 ~/Molin-OS/scripts/relay_to_obsidian.py
@@ -173,7 +168,7 @@ tags: [arxiv, 论文, 每日]
 """
 
     if not DRY_RUN:
-        obsidian_path.parent.mkdir(parents=True, exist_ok=True)
+        obsidian_path.parent.mkdir(parents=False, exist_ok=True)
         obsidian_path.write_text(new_content, encoding="utf-8")
 
     print(f"  ✅ 已同步 arxiv → 知识/玄骨｜每日·Arxiv论文.md ({len(papers)}篇)")
@@ -268,10 +263,10 @@ tags: [副业, 价格, 每日]
 """
 
     if not DRY_RUN:
-        obsidian_path.parent.mkdir(parents=True, exist_ok=True)
+        obsidian_path.parent.mkdir(parents=False, exist_ok=True)
         obsidian_path.write_text(new_content, encoding="utf-8")
 
-    print(f"  ✅ 已同步 price → 知识/每日·副业价格监控.md")
+    print(f"  ✅ 已同步 price → 知识/玄骨｜每日·副业价格监控.md")
     tracker[key] = fingerprint
     return True
 
