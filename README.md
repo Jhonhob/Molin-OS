@@ -8,20 +8,20 @@
   <img src="https://img.shields.io/badge/version-v5.0-blueviolet?style=flat-square" alt="v5.0">
 </p>
 
-# 墨麟 OS · Molin-OS
+# 墨麟 OS · Molin OS
 
 一个人，一台 MacBook，一个 AI 集团。
 One person, one MacBook, one AI conglomerate.
 
 > **MolinOS-Ultra 已于 2026-05-19 废弃并 archive。全部内容已整合至此仓库。**
-> 引擎代码 + 技能在 main 分支，Obsidian 知识库在 vault 分支。
+> 引擎代码 + 技能 + Obsidian 知识库均在 main 分支。
 > 这是完整的自包含系统 — `bash setup.sh` 即可从零部署。
 
 ---
 
 ## 快速开始 / Quick Start
 
-完整系统包含引擎代码（main 分支）和 Obsidian 知识库（vault 分支）。
+完整系统包含引擎代码、技能库、配置模板和 Obsidian 知识库，全部在 main 分支。
 
 ### 方式 A：完整部署（推荐）
 
@@ -51,16 +51,15 @@ DASHSCOPE_API_KEY=sk-xxx
 OPENROUTER_API_KEY=sk-xxx
 ```
 
-### 知识库恢复
+### 知识库同步
 
-如果已有 Obsidian vault，运行 vault_git_sync.py 同步到当前 vault：
+如果已有本地 Obsidian vault，运行 vault_git_sync.py 同步到仓库 vault/ 目录：
 
 ```bash
-python3 scripts/vault_git_sync.py --pull
+python3 scripts/vault_git_sync.py
 ```
 
-> **注意**: 从本 Mac 推送至 GitHub 时，HTTPS 因 TLS 握手超时会失败。请使用 SSH 方式：
-> `git remote set-url origin git@github.com:moye-tech/Molin-OS.git`
+> **注意**: 从本 Mac 推送至 GitHub 请使用 SSH 方式（HTTPS 因 TLS 握手超时会失败）。
 
 ---
 
@@ -69,7 +68,8 @@ python3 scripts/vault_git_sync.py --pull
 - AI 原生操作系统 — 不是工具集，不是 Agent 框架，是完整的 AI 一人公司运营系统
 - 20 家垂直子公司 — 覆盖营销、运营、技术、财务、战略五大 VP + 共享服务
 - Hermes Agent 引擎 — 自包含在仓库中（hermes/），完整 AI 推理大脑（v0.14.0, commit 43e566f）
-- 389 项技能 — 从 SEO 优化到量化交易，从像素艺术到红队安全测试
+- 389 项技能 —— 从 SEO 优化到量化交易，从像素艺术到红队安全测试
+- Obsidian 知识库 —— vault/ 目录，8 类知识管理（决策/知识/流程/成果/报告/配置/产出/学习档案）
 - 强制委托协议 — CEO 只做决策和路由，产出由子公司执行，杜绝 AI 包办
 - DARE v3.0 推理框架 — Decompose · Analyze · Route · Elevate，四步完成从理解到超预期
 - 每日自动化飞轮 — 08:00 情报采集 → 09:20 内容工厂 → 10:45 增长引擎，全自动接力
@@ -110,7 +110,7 @@ Molin-OS/
 ├── scripts/                     # 运行时脚本（19 个活跃）
 │   ├── deploy.sh                # 配置部署脚本
 │   ├── vault_git_sync.py        # Obsidian 知识库同步
-│   ├── relog_to_obsidian.py      # Relay → Obsidian 管道
+│   ├── relay_to_obsidian.py      # Relay → Obsidian 管道
 │   ├── cross_request_worker.py  # 跨线请求轮询
 │   ├── molin-sync-all.sh        # 全量记忆/缓存同步
 │   ├── git-backup.sh            # Git 备份
@@ -126,7 +126,8 @@ Molin-OS/
 │       └── profiles/            # 5 个 profile 配置（edu/global/media/shared/side）
 │           └── .env.example     # 每个 profile 独立环境模板
 │
-├── docs/                        # 系统文档
+├── vault/                        # Obsidian 知识库（8 类管理，159 篇笔记）
+├── docs/                         # 系统文档
 ├── tests/                       # 测试
 │
 ├── setup.sh                     # 一键部署脚本（7 步完成从零到系统）
@@ -139,9 +140,7 @@ Molin-OS/
 ├── SYSTEM.md                    # 主脑 SOP 文档
 ├── SOUL.md                      # CEO 认知框架（灵魂文件）
 ├── ENVIRONMENT.md               # 环境要求说明
-└── 产出写入规范.md              # Agent 输出规范
-
-├── .vault-git-mirror/           # Obsidian vault 镜像（git clone --branch vault）
+├── 产出写入规范.md              # Agent 输出规范
 ├── .github/                     # GitHub Actions / 社区文件
 ├── MiroFish/                    # git submodule: 趋势预测引擎
 └── last30days-skill/            # git submodule: 情报扫描

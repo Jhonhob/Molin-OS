@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════════
-# 墨麟 OS (Molin-OS) — 一键完整安装脚本
+# 墨麟 OS (Molin OS) — 一键完整安装脚本
 # 从零搭建完整的 Hermes Agent 系统
 #
 # 用法:
@@ -252,38 +252,16 @@ else
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 步骤 6: 配置 Obsidian vault 镜像
+# 步骤 6: 配置 Obsidian vault 本地同步
 # ═══════════════════════════════════════════════════════════════════════════
 if [ "$SETUP_VAULT" = true ]; then
     echo ""
-    log_info "步骤 6/7: 配置 Obsidian vault 镜像..."
+    log_info "步骤 6/7: 配置 Obsidian vault 本地同步..."
 
-    VAULT_MIRROR_DIR="$REPO_DIR/.vault-git-mirror"
-    VAULT_REMOTE="git@github.com:moye-tech/Molin-OS.git"
-
-    if [ ! -d "$VAULT_MIRROR_DIR/.git" ]; then
-        log_info "正在克隆 vault 分支到 .vault-git-mirror/..."
-        mkdir -p "$VAULT_MIRROR_DIR"
-        if git clone --depth 1 --branch vault "$VAULT_REMOTE" "${VAULT_MIRROR_DIR}.tmp" 2>/dev/null; then
-            rm -rf "$VAULT_MIRROR_DIR"
-            mv "${VAULT_MIRROR_DIR}.tmp" "$VAULT_MIRROR_DIR"
-            log_success "Vault 镜像已就绪"
-        else
-            rm -rf "${VAULT_MIRROR_DIR}.tmp" 2>/dev/null || true
-            cd "$VAULT_MIRROR_DIR" && git init && git remote add origin "$VAULT_REMOTE"
-            log_warn "克隆失败（网络问题），空仓库已创建"
-            log_info "稍后手动运行: cd $VAULT_MIRROR_DIR && git fetch origin vault && git checkout -b vault origin/vault"
-        fi
-    else
-        log_success "Vault 镜像已存在: $VAULT_MIRROR_DIR"
-        # 检查 remote 是否正确
-        CURRENT_REMOTE=$(cd "$VAULT_MIRROR_DIR" && git remote get-url origin 2>/dev/null || echo "")
-        if echo "$CURRENT_REMOTE" | grep -qv "Molin-OS"; then
-            log_warn "Vault mirror remote 需要更新"
-            cd "$VAULT_MIRROR_DIR" && git remote set-url origin "$VAULT_REMOTE"
-            log_success "Remote 已更新"
-        fi
-    fi
+    # vault 目录已是主仓库的一部分，复制配置模板即可
+    mkdir -p "$REPO_DIR/vault"
+    log_success "Vault 目录就绪: $REPO_DIR/vault/（随主仓库管理）"
+    log_info "如需从本地 Obsidian 同步，运行: python3 $REPO_DIR/scripts/vault_git_sync.py"
 else
     log_info "步骤 6/7: 跳过 Obsidian vault 配置（--no-vault）"
 fi
@@ -344,9 +322,7 @@ echo "  │ ✓ Hermes Agent (源码安装)                                   �
 echo "  │ ✓ molib 引擎                                                 │"
 echo "  │ ✓ Hermes 配置模板 (.env + config.yaml)                       │"
 echo "  │ ✓ ${COMPONENTS}/${TOTAL} 核心目录结构                          │"
-if [ -d "$VAULT_MIRROR_DIR/.git" ] 2>/dev/null; then
-echo "  │ ✓ Obsidian Vault 镜像 (vault 分支)                           │"
-fi
+echo "  │ ✓ Obsidian Vault (vault/ 跟随主仓库)                           │"
 echo "  └─────────────────────────────────────────────────────────────┘"
 echo ""
 

@@ -82,8 +82,11 @@ restore_*.log
 .molin/
 .cron.db
 
-# ─── Vault Mirror (local sync, not tracked) ───
-.vault-git-mirror/
+# .vault-git-mirror（已废弃，vault 内容在 vault/ 目录中管理）
+#.vault-git-mirror/
+
+# ─── Runtime data (not tracked) ───
+relay/
 
 # ─── Node.js (not a JS project) ───
 node_modules/
