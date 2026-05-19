@@ -82,6 +82,9 @@ restore_*.log
 .molin/
 .cron.db
 
+# ─── Vault Mirror (local sync, not tracked) ───
+.vault-git-mirror/
+
 # ─── Node.js (not a JS project) ───
 node_modules/
 package-lock.json
