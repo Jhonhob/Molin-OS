@@ -130,6 +130,7 @@ Molin-OS/
 ├── docs/                         # 系统文档
 ├── tests/                       # 测试
 │
+├── engine/                       # 运行时引擎（MiroFish 预测引擎等）
 ├── setup.sh                     # 一键部署脚本（7 步完成从零到系统）
 ├── setup.py                     # Python 包安装入口
 ├── requirements.txt             # Python 依赖
@@ -142,8 +143,6 @@ Molin-OS/
 ├── ENVIRONMENT.md               # 环境要求说明
 ├── 产出写入规范.md              # Agent 输出规范
 ├── .github/                     # GitHub Actions / 社区文件
-├── MiroFish/                    # git submodule: 趋势预测引擎
-└── last30days-skill/            # git submodule: 情报扫描
 ```
 
 ---

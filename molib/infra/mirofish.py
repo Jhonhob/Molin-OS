@@ -11,7 +11,7 @@ from pathlib import Path
 BEIJING_TZ = timezone(timedelta(hours=8))
 
 # MiroFish 根目录
-MIROFISH_ROOT = Path(os.path.expanduser("~/Molin-OS/MiroFish"))
+MIROFISH_ROOT = Path(os.path.expanduser("~/Molin-OS/engine/mirofish"))
 
 
 def analyze_trend(topic: str, context: str = "", model: str = "deepseek-v4-flash") -> str:

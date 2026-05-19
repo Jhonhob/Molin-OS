@@ -63,7 +63,7 @@ make health
 | `agents/<name>/` | `~/.hermes/profiles/<name>/` |
 | `skills/` | `~/.hermes/skills/` |
 | `molib/` | `~/Molin-OS/` |
-| `tools/MiroFish/` | `~/Molin-OS/MiroFish/` |
+| `engine/mirofish/` | `~/Molin-OS/engine/mirofish/` |
 
 ## 日常维护
 

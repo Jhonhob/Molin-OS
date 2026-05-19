@@ -109,21 +109,17 @@ else
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 步骤 2: 初始化 git 子模块
+# 步骤 2: 检查引擎目录
 # ═══════════════════════════════════════════════════════════════════════════
-log_info "步骤 2/7: 初始化 git 子模块..."
+log_info "步骤 2/7: 检查运行时引擎..."
 
 cd "$REPO_DIR"
 
-if [ -f ".gitmodules" ]; then
-    if git submodule status 2>/dev/null | grep -q '^-'; then
-        git submodule update --init --recursive 2>/dev/null || \
-            log_warn "子模块初始化失败（网络问题），可稍后手动执行: git submodule update --init --recursive"
-    fi
-    # 显示子模块状态
-    git submodule status 2>/dev/null | while read -r line; do
-        log_success "子模块: $line"
-    done
+# MiroFish 预测引擎
+if [ -d "engine/mirofish/backend" ]; then
+    log_success "MiroFish 引擎: engine/mirofish/ ($(find engine/mirofish -type f | wc -l) 个文件)"
+else
+    log_warn "MiroFish 引擎目录不存在: engine/mirofish/"
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -317,7 +313,7 @@ echo ""
 echo "  安装摘要:"
 echo "  ┌─────────────────────────────────────────────────────────────┐"
 echo "  │ ✓ Python 环境 ($($PYTHON --version))                         │"
-echo "  │ ✓ Git 子模块 (MiroFish, last30days-skill)                   │"
+echo "  │ ✓ MiroFish 引擎 (engine/mirofish/)                              │"
 echo "  │ ✓ Hermes Agent (源码安装)                                   │"
 echo "  │ ✓ molib 引擎                                                 │"
 echo "  │ ✓ Hermes 配置模板 (.env + config.yaml)                       │"
