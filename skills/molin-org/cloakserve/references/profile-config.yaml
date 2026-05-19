@@ -1,0 +1,38 @@
+# CloakServe configuration for Molin-OS
+# Loaded by cloakserve as default params
+
+port: 9222
+headless: true
+data_dir: /Users/laomo/.cloakbrowser/cloakserve
+
+# Per-seed profile configuration
+profiles:
+  media-yinyue:
+    description: 银月传媒 — 社媒自动化、竞品监控
+    default_proxy: ~
+    default_timezone: Asia/Shanghai
+    default_locale: zh-CN
+
+  global-meining:
+    description: 梅凝出海 — 跨境电商采集、价格监控
+    default_proxy: ~
+    default_timezone: ~
+    default_locale: en-US
+
+  edu-yuanyao:
+    description: 元瑶教育 — 教育数据采集
+    default_proxy: ~
+    default_timezone: Asia/Shanghai
+    default_locale: zh-CN
+
+  side-songyu:
+    description: 宋玉创业 — 市场调研、竞品分析
+    default_proxy: ~
+    default_timezone: Asia/Shanghai
+    default_locale: zh-CN
+
+  core-xuangu:
+    description: 玄骨中枢 — 共享服务、CDP 回收
+    default_proxy: ~
+    default_timezone: UTC
+    default_locale: en-US
