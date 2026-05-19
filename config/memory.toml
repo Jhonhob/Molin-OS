@@ -16,14 +16,6 @@ enabled = true
 priority = 2
 config_keys = { host = "QDRANT_HOST", port = "QDRANT_PORT", collection_users = "QDRANT_COLLECTION_USERS", collection_content = "QDRANT_COLLECTION_CONTENT", collection_decisions = "QDRANT_COLLECTION_DECISIONS" }
 
-[providers.supermemory]
-type = "semantic"
-description = "Supermemory长期语义记忆"
-enabled = false  # 默认禁用，需要API密钥
-priority = 3
-config_keys = { api_key = "SUPERMEMORY_API_KEY", container_tag = "SUPERMEMORY_CONTAINER_TAG" }
-optional = true
-
 [providers.redis]
 type = "cache"
 description = "Redis缓存，用于高频临时数据"
@@ -47,7 +39,7 @@ indexing_strategy = "auto"
 
 [scenarios.long_term_memory]
 description = "长期记忆：用户画像、历史模式、跨会话上下文"
-providers = ["supermemory", "sqlite"]  # 优先Supermemory，回退SQLite
+providers = ["sqlite"]  # SQLite长期持久化
 ttl = "1y"  # 1年
 compression = true
 encryption = true
@@ -72,13 +64,3 @@ backup_schedule = "0 2 * * *"  # 每天凌晨2点
 backup_retention_days = 7
 health_check_interval = 300  # 5分钟
 cleanup_cron = "0 3 * * *"   # 每天凌晨3点清理过期数据
-
-# Supermemory特定配置（如果启用）
-[supermemory_config]
-container_image = "supermemory/supermemory:v1.2.0"
-embedding_model = "bge-large-zh-v1.5"
-max_chunk_size = 1000
-overlap_size = 200
-retrieval_top_k = 5
-similarity_threshold = 0.7
-local_storage_fallback = true

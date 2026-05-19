@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Molin-OS Agent Output Writer
-强制结构化模板 + 自动双写 Obsidian + Supermemory
+强制结构化模板 + 自动写入 Obsidian
 
 所有 Agent 必须通过此模块写入输出。
 不再允许直接写文件（绕过 = 知识丢失）。
@@ -82,7 +82,6 @@ def write_agent_output(
     related_tasks: str = "-",
     relations: str = "-",
     relay_path: str = "",
-    write_supermemory: bool = True,
 ) -> dict:
     """
     写入 Agent 结构化输出。
@@ -90,8 +89,7 @@ def write_agent_output(
     自动完成：
     1. 生成标准模板 markdown
     2. 写入 Obsidian v3.0 flat vault: 产出/{业务线}｜{date}.md（零子目录）
-    3. 写入 Supermemory（语义块）
-    4. 返回结果元数据
+    3. 返回结果元数据
     """
     now = datetime.now()
     date_str = now.strftime("%Y-%m-%d")
@@ -159,21 +157,10 @@ def write_agent_output(
     output_path.write_text(content, encoding="utf-8")
     obsidian_rel = str(output_path.relative_to(VAULT))
 
-    # 3. 写入 Supermemory（语义块）
-    sm_result = {}
-    if write_supermemory:
-        sm_result = _write_supermemory(agent_id, date_str, {
-            "summary": summary,
-            "insights": learnings,
-            "actions": actions,
-            "risks": risks,
-        })
-
     result = {
         "agent": agent_id,
         "date": date_str,
         "obsidian_path": obsidian_rel,
-        "supermemory": sm_result,
         "content_length": len(content),
     }
 
@@ -185,37 +172,6 @@ def _ensure_newlines(text: str) -> str:
     """确保文本以换行结尾"""
     text = text.strip()
     return text + "\n" if text else "- 无\n"
-
-
-def _write_supermemory(agent_id: str, date_str: str, blocks: dict) -> dict:
-    """
-    将关键区块以语义块形式写入 Supermemory。
-    """
-    results = {}
-    try:
-        from supermemory import add_memory
-
-        block_labels = {
-            "summary": f"{agent_id} 执行摘要 {date_str}",
-            "insights": f"{agent_id} 洞察 {date_str}",
-            "actions": f"{agent_id} 执行动作 {date_str}",
-            "risks": f"{agent_id} 风险 {date_str}",
-        }
-
-        for key, text in blocks.items():
-            text = text.strip()
-            if text and text != "- 无":
-                label = block_labels.get(key, f"{agent_id} {key} {date_str}")
-                # truncate
-                text_short = text[:800]
-                result = True  # add_memory(label, text_short)
-                results[key] = {"written": True, "chars": len(text_short)}
-
-    except ImportError:
-        print("  ⚠️  supermemory module not available")
-        pass
-
-    return results
 
 
 def test():

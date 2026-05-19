@@ -70,7 +70,6 @@ jobs:
     skills:
       - self-learning-loop            # 精读编排
       - obsidian                      # 深度笔记写入
-      - supermemory                   # L2记忆同步
       - github                        # 项目详情抓取
       - memory-bridge                 # 统一记忆写入接口
     prompt: |
@@ -118,19 +117,18 @@ jobs:
     id: "learn_a3_memory_distill_quality"
     schedule: "0 21 * * 0"           # 每周日 21:00
     skills:
-      - supermemory                   # L2记忆查询
       - memory-bridge                 # 蒸馏写入
       - obsidian                      # L3语义记忆写入
       - self-learning-loop            # EvolutionEngine评分
     prompt: |
       [学习飞轮-第三棒] 本周记忆蒸馏 + 新SKILL质量门控。
 
-      任务A — 记忆蒸馏（L2→L3）：
-      1. 查询 Supermemory 中所有超过30天未被检索的 L2 条目
+      任务A — 记忆蒸馏（定期清理）：
+      1. 检查 Obsidian vault 中所有超过30天未被更新的旧条目
       2. 对待蒸馏条目按语义相似度聚类，相似条目合并
       3. 提炼更高抽象层次的方法论洞察（字符数 ≥ 300）
       4. 写入 Obsidian：知识/{{业务线}}｜方法论·{topic}·{date}.md  # v3.0 flat
-      5. 在 Supermemory 中将原始 L2 条目标记为 archived
+      5. 将原始条目标记为 archived
 
       任务B — 质量门控：
       1. 检查 relay/evolution/ 中本周合并的 SKILL 文件
@@ -145,7 +143,7 @@ jobs:
     sop: auto_dream
     relay_in: "relay/evolution/"
     timeout_minutes: 60
-    description: "学习飞轮第三棒：Supermemory L2→L3蒸馏 + 新SKILL质量门控评分"
+    description: "学习飞轮第三棒：记忆蒸馏 + 新SKILL质量门控评分"
     next_run: "2026-05-24T21:00:00+08:00"
 
   # ════════════════════════════════════════════════════════

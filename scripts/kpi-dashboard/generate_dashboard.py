@@ -20,8 +20,8 @@ RELAY_DIR = os.path.expanduser("~/Molin-OS/relay/kpi")
 OBSIDIAN_DIR = os.path.expanduser(
     "~/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 )
-OUTPUT_DIR = os.path.join(OBSIDIAN_DIR, "报告/KPI看板")
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+OUTPUT_DIR = os.path.join(OBSIDIAN_DIR, "报告")  # v3.0 flat vault — 零子目录，KPI｜{type}·{date}.md
+os.makedirs(OUTPUT_DIR, exist_ok=True)  # 产出/ 是 8 个根目录之一
 
 
 def load_kpi_data(date_str=None):
@@ -270,9 +270,8 @@ def generate_overview_dashboard(all_data):
 
 
 def write_obsidian(path, content):
-    """Write content to Obsidian vault."""
-    full_path = os.path.join(OUTPUT_DIR, path)
-    os.makedirs(os.path.dirname(full_path), exist_ok=True)
+    """Write content to Obsidian v3.0 flat vault — 报告/KPI｜{type}.md"""
+    full_path = os.path.join(OUTPUT_DIR, f"KPI｜{path}")
     with open(full_path, "w") as f:
         f.write(content)
     print(f"✅ 已写入: {full_path}")
@@ -293,7 +292,7 @@ def main():
             print(f"⚠️ 今日 ({today}) 无 KPI 数据。使用所有可用数据。")
             data = load_kpi_data()
         content = generate_daily_dashboard(data, today)
-        write_obsidian(f"{today}/日看板.md", content)
+        write_obsidian(f"日看板·{today}.md", content)
 
     elif mode == "weekly":
         data = load_kpi_data()

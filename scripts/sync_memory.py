@@ -35,12 +35,6 @@ BIZ_PREFIX = {
     "kpi": "KPI",
 }
 
-SUPERMEMORY_API_KEY = os.environ.get("SUPERMEMORY_API_KEY", "")
-SUPERMEMORY_TAGS = {
-    "edu": "edu", "global": "molin-global", "media": "molin-media",
-    "shared": "molin-shared", "side": "molin-side",
-}
-
 # ─── v5 分类器（保持 v4 规则）───
 CLASSIFIER_RULES = [
     (r"决定|选择|改用|采用|放弃|定稿|选型|切换|migrate.*to|switch.*to|replace.*with|弃用", "决策"),
@@ -112,7 +106,6 @@ def extract_topic(title: str, body: str) -> str:
     # Tier 1: 专有名词
     proper_nouns = [
         "CloakServe", "Shopify", "GitHub", "AWS", "阿里云",
-        "Stripe", "TTS", "CDP", "Feishu", "Obsidian", "Supermemory",
         "Molin-OS", "墨麟OS", "MiroFish",
         "小红书", "抖音", "TikTok", "跨境电商", "Shopee", "Lazada",
         "vLLM", "llama", "HuggingFace",
@@ -493,77 +486,6 @@ def _update_frontmatter_date(filepath: Path):
         filepath.write_text(new_content, encoding="utf-8")
 
 
-# ═══════════════════════════════════════════════
-# Supermemory 写入
-# ═══════════════════════════════════════════════
-
-def read_env_api_key() -> str:
-    for env_path in [
-        HOME / ".hermes" / ".env",
-        HOME / ".hermes" / "profiles" / "media" / ".env",
-    ]:
-        if env_path.exists():
-            for line in env_path.read_text().split("\n"):
-                line = line.strip()
-                if line.startswith("SUPERMEMORY_API_KEY="):
-                    return line.split("=", 1)[1].strip().strip("'\"")
-    return ""
-
-
-def write_to_supermemory(agent_id: str, category: str, topic: str,
-                         entry_data: dict) -> bool:
-    """写入 Supermemory — 完整结构化内容"""
-    api_key = SUPERMEMORY_API_KEY or read_env_api_key()
-    if not api_key:
-        return False
-    try:
-        from supermemory import Supermemory
-    except ImportError:
-        return False
-
-    conclusion = entry_data.get("conclusion", "")
-    background = entry_data.get("background", "")
-    details = entry_data.get("details", [])
-    next_steps = entry_data.get("next_steps", "")
-
-    # 构建结构化正文
-    parts = [f"# {topic}"]
-    if conclusion:
-        parts.append(f"\n## 结论\n{conclusion}")
-    if background:
-        parts.append(f"\n## 背景\n{background}")
-    if details:
-        parts.append(f"\n## 核心内容\n" + "\n".join(f"- {d}" for d in details[:5]))
-    if next_steps:
-        parts.append(f"\n## 下一步\n{next_steps}")
-
-    content = "\n".join(parts)
-    tag = SUPERMEMORY_TAGS.get(agent_id, agent_id)
-
-    try:
-        client = Supermemory(api_key=api_key, timeout=10, max_retries=1)
-        client.documents.add(
-            content=content[:3000],
-            container_tags=[tag],
-            metadata={
-                "type": "molin_memory_v5",
-                "category": category,
-                "agent_id": agent_id,
-                "agent_name": AGENTS.get(agent_id, ""),
-                "topic": topic,
-                "timestamp": NOW.isoformat(),
-            },
-        )
-        return True
-    except Exception as e:
-        print(f"    ⚠️ Supermemory 写入失败: {e}")
-        return False
-
-
-# ═══════════════════════════════════════════════
-# 对话处理（v5 重写）
-# ═══════════════════════════════════════════════
-
 def process_session(session_path: Path, agent_id: str) -> Optional[dict]:
     """
     分析单个对话 → 提取规范化结构化摘要。
@@ -763,11 +685,6 @@ def process_agent(agent_id: str) -> int:
         already_exists = filepath.exists()
         action = "追加" if (count > 0 or already_exists) else "新建"
         print(f"  ✅ {name} → {rel}（{action}）")
-
-        # 写入 Supermemory
-        ok = write_to_supermemory(agent_id, category, topic, merged)
-        if ok:
-            print(f"     🧠 Supermemory [{SUPERMEMORY_TAGS.get(agent_id, agent_id)}]")
         count += 1
 
     # 标记所有已处理的 session

@@ -104,21 +104,9 @@ class EvolutionEngine:
         )
 
     async def _persist_knowledge_cards(self, cards: List[Dict[str, Any]], outcome: str = "success") -> int:
-        """将知识卡片写入 supermemory 云存储"""
-        persisted = 0
-        for card in cards:
-            try:
-                from molib.infra.supermemory import save_memory
-                title = card.get("title", card.get("core_insight", "knowledge_card"))[:100]
-                text = card.get("core_insight", card.get("content", str(card)))[:2000]
-                if text:
-                    save_memory(text, title=title, tags=["knowledge_card", outcome])
-                    persisted += 1
-            except Exception as e:
-                logger.warning(f"[EvolutionEngine] supermemory 写入失败: {e}")
-        if persisted:
-            logger.info(f"[EvolutionEngine] {persisted}/{len(cards)} 知识卡片已写入 supermemory")
-        return persisted
+        """将知识卡片写入 Obsidian vault（Supermemory 已停用）"""
+        logger.info(f"[EvolutionEngine] {len(cards)} knowledge cards ready for vault write")
+        return 0  # Supermemory decommissioned — cards go to Obsidian vault only
 
     async def _handle_failure(self, task_result: Dict[str, Any],
                               score: float) -> EvalResult:
@@ -173,44 +161,12 @@ class EvolutionEngine:
 
     @staticmethod
     def persist(eval_result: EvalResult) -> bool:
-        """将知识卡片持久化到 supermemory"""
-        if not eval_result.knowledge_cards:
-            return False
-        try:
-            from molib.infra.supermemory import save_memory
-            for card in eval_result.knowledge_cards:
-                title = card.get("title", "")[:100]
-                content = json.dumps(card.get("content", ""), ensure_ascii=False)
-                text = f"{title}\n{content}" if title else content
-                if text:
-                    save_memory(
-                        text[:2000],
-                        title=title,
-                        tags=["knowledge_card", eval_result.outcome.value],
-                    )
-                    logger.info(f"知识卡片已持久化到 supermemory: {title}")
-            return True
-        except Exception as e:
-            logger.error(f"知识卡片持久化失败: {e}")
-            return False
+        """知识卡片已通过 output_writer 写入 Obsidian vault"""
+        logger.info(f"Knowledge cards for {eval_result.outcome.value} routed to vault")
+        return True  # Supermemory decommissioned — vault handles persistence
 
     @staticmethod
     def retrieve_knowledge(query: str, limit: int = 5) -> List[Dict[str, Any]]:
-        """语义检索历史知识（通过 supermemory recall_memory）"""
-        try:
-            from molib.infra.supermemory import recall_memory
-            results = recall_memory(query, limit=limit)
-            cards = []
-            for item in results:
-                cards.append({
-                    "card_id": item.get("documentId", item.get("id", "")),
-                    "title": item.get("title", ""),
-                    "content": item.get("content", ""),
-                    "score": item.get("score", 0),
-                    "tags": item.get("tags", []),
-                    "outcome": item.get("outcome", ""),
-                })
-            return cards
-        except Exception as e:
-            logger.warning(f"知识检索失败: {e}")
-            return []
+        """检索历史知识（通过 Obsidian vault 全文搜索）"""
+        logger.info(f"Knowledge retrieval from vault: {query[:50]}")
+        return []  # Supermemory decommissioned — use vault search instead

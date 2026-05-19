@@ -21,8 +21,6 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from molib.infra.supermemory import save_memory
-
 
 def archive_task_result(
     title: str,
@@ -53,8 +51,10 @@ def archive_task_result(
     content = "\n".join(content_parts)
     all_tags = (tags or []) + ["归档"]
 
-    doc_id = save_memory(content, title=title, tags=all_tags, source="auto_archive")
-    return doc_id
+    # Supermemory 已停用，仅打印日志
+    print(f"[auto_archive] 归档任务: {title} (tags: {all_tags})")
+    print(f"[auto_archive] Supermemory 已停用，跳过云存储写入")
+    return None
 
 
 if __name__ == "__main__":

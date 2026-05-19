@@ -101,7 +101,7 @@ def generate_prediction_report(agent_id: str, agent_name: str, topic: str) -> di
     """
     生成结构化预测报告
     
-    返回格式化的预测报告，包含元数据供 Obsidian 和 Supermemory 使用
+    返回格式化的预测报告，包含元数据供 Obsidian 使用
     """
     now = datetime.now(BEIJING_TZ)
     return {

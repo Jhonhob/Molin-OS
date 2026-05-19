@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""墨麟OS 系统架构采集器 — 将系统架构信息同步到 Obsidian + Supermemory"""
+"""墨麟OS 系统架构采集器 — 将系统架构信息同步到 Obsidian"""
 
 from __future__ import annotations
 import json
@@ -107,14 +107,6 @@ def collect_agent_configs() -> dict[str, dict]:
         # config.yaml
         config_text = read_file_safe(profile_dir / "config.yaml")
 
-        # supermemory.json
-        sm_text = read_file_safe(profile_dir / "supermemory.json")
-        sm_config = {}
-        if sm_text:
-            try:
-                sm_config = json.loads(sm_text)
-            except json.JSONDecodeError:
-                pass
 
         # .env
         env_text = read_file_safe(profile_dir / ".env")
@@ -129,11 +121,10 @@ def collect_agent_configs() -> dict[str, dict]:
             "name": info["name"],
             "desc": info["desc"],
             "config_yaml": config_text,
-            "supermemory": sm_config,
             "env_vars": env_vars,
             "workers": info["workers"],
             "feishu_app_id": info["feishu_app_id"],
-            "supertag": sm_config.get("container_tag", info["supertag"]),
+            "supertag": info["supertag"],
             "entity_context": sm_config.get("entity_context", "")[:200],
         }
     return result
@@ -158,7 +149,6 @@ def collect_system_info() -> dict:
         "agents_md": agents_md,
         "soul_md": soul_md,
         "hermes_config": read_file_safe(HERMES_HOME / "config.yaml"),
-        "main_supermemory": read_file_safe(HERMES_HOME / "supermemory.json"),
     }
 
 
@@ -206,7 +196,7 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
     lines += [
         "## Agent 总览",
         "",
-        "| Agent | 名称 | Supermemory 容器 | 飞书 App | 关联 Workers |",
+        "| Agent | 名称 | 容器 | 飞书 App | 关联 Workers |",
         "|-------|------|-----------------|----------|-------------|",
     ]
     for agent_id, ad in agents_data.items():
@@ -221,7 +211,7 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
             f"## {ad['name']} (`{agent_id}`)",
             "",
             f"- **描述**: {ad['desc']}",
-            f"- **Supermemory 容器**: `{ad['supertag']}`",
+            f"- **容器**: `{ad['supertag']}`",
             f"- **飞书 App ID**: `{ad['feishu_app_id']}`",
             f"- **关联 Workers**: {', '.join(ad['workers']) or '无'}",
         ]
@@ -248,8 +238,8 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
         "## 记忆系统架构",
         "",
         "```",
-        "每个 Agent 拥有独立 Supermemory 容器（container_tag）",
-        "记忆自动写入 → Supermemory 云服务（语义检索）",
+        "每个 Agent 拥有独立 容器（container_tag）",
+        "记忆自动写入 → Obsidian vault（Markdown 全文检索）",
         "定时同步 → Obsidian iCloud Vault（人工阅读 + 结构化）",
         "",
         "Obsidian Vault 结构:",
@@ -289,11 +279,6 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
 
         if ad["entity_context"]:
             lines += [
-                "## Supermemory 上下文",
-                "",
-                ad["entity_context"],
-                "",
-            ]
 
         lines += [
             "## 配置 (config.yaml)",
@@ -309,10 +294,6 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
         lines += [
             "```",
             "",
-            "## Supermemory 配置",
-            "```json",
-            json.dumps(ad["supermemory"], indent=2, ensure_ascii=False),
-            "```",
             "",
         ]
 
@@ -330,7 +311,7 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
         "",
         f"# 记忆映射 ({NOW.strftime('%Y-%m-%d')})",
         "",
-        "## Supermemory 容器映射",
+        "## 容器映射",
         "",
         "| Agent | 容器 tag | 用途 |",
         "|-------|---------|------|",
@@ -372,126 +353,7 @@ def write_obsidian_architecture(agents_data: dict, sys_info: dict, vault_state: 
 
 
 # ═══════════════════════════════════════════════
-# Supermemory 输出
 # ═══════════════════════════════════════════════
-
-
-def write_supermemory_architecture(agents_data: dict):
-    """向每个 Agent 的 Supermemory 容器写入架构记忆"""
-    api_key = os.environ.get("SUPERMEMORY_API_KEY", "")
-    if not api_key:
-        # 从 .env 读取
-        for env_path in [
-            HERMES_HOME / ".env",
-            HERMES_HOME / "profiles" / "media" / ".env",
-        ]:
-            if env_path.exists():
-                for line in env_path.read_text().split("\n"):
-                    line = line.strip()
-                    if line.startswith("SUPERMEMORY_API_KEY="):
-                        api_key = line.split("=", 1)[1].strip().strip("\"'")
-                        break
-                if api_key:
-                    break
-
-    if not api_key:
-        print("  ⚠️  SUPERMEMORY_API_KEY 未设置，跳过 Supermemory 同步")
-        return
-
-    try:
-        from supermemory import Supermemory
-    except ImportError:
-        print("  ⚠️  supermemory Python 包未安装，跳过")
-        return
-
-    # Connectivity check
-    try:
-        import urllib.request
-        test_req = urllib.request.Request(
-            "https://api.supermemory.ai",
-            method="HEAD",
-        )
-        urllib.request.urlopen(test_req, timeout=5)
-    except Exception as conn_err:
-        print(f"  ⚠️  Supermemory API 不可达 ({conn_err})，跳过")
-        return
-
-    timestamp = NOW.strftime("%Y-%m-%d %H:%M")
-
-    for agent_id, ad in agents_data.items():
-        tag = ad["supertag"]
-        try:
-            client = Supermemory(api_key=api_key, timeout=10, max_retries=1)
-
-            # 1. 写入 Agent 身份定义（自定义 ID 防止重复）
-            identity_text = (
-                f"【系统架构 · Agent 身份】\n"
-                f"Agent: {ad['name']}（ID: {agent_id}）\n"
-                f"描述: {ad['desc']}\n"
-                f"Supermemory 容器: {tag}\n"
-                f"飞书 App ID: {ad['feishu_app_id']}\n"
-                f"更新于: {timestamp}"
-            )
-            client.documents.add(
-                content=identity_text,
-                container_tags=[tag],
-                metadata={
-                    "type": "system_architecture",
-                    "subtype": "agent_identity",
-                    "agent_id": agent_id,
-                    "agent_name": ad["name"],
-                    "updated_at": timestamp,
-                },
-            )
-            print(f"  ✅ Supermemory [{tag}] agent_identity")
-
-            # 2. 写入 Agent 能力描述
-            workers_text = ", ".join(ad["workers"]) if ad["workers"] else "无专用 Worker"
-            commands_text = "\n".join(f"  - {c}" for c in ad.get("common_commands", []))
-            capability_text = (
-                f"【系统架构 · Agent 能力】\n"
-                f"Agent: {ad['name']}（{agent_id}）\n"
-                f"能力描述: {ad['desc']}\n"
-                f"关联 Workers: {workers_text}\n"
-                f"常用命令:\n{commands_text}\n"
-                f"更新于: {timestamp}"
-            )
-            client.documents.add(
-                content=capability_text,
-                container_tags=[tag],
-                metadata={
-                    "type": "system_architecture",
-                    "subtype": "capability",
-                    "agent_id": agent_id,
-                    "workers": ad["workers"],
-                    "updated_at": timestamp,
-                },
-            )
-            print(f"  ✅ Supermemory [{tag}] capability")
-
-            # 3. 写入记忆系统拓扑
-            memory_map_text = (
-                f"【系统架构 · 记忆系统】\n"
-                f"记忆引擎: Supermemory（语义检索）\n"
-                f"离线归档: Obsidian iCloud Vault\n"
-                f"Vault 路径: {VAULT}\n"
-                f"容器组织: Agents/<agent>/<category>/\n"
-                f"每日报告: Daily/<agent>/\n"
-                f"更新于: {timestamp}"
-            )
-            client.documents.add(
-                content=memory_map_text,
-                container_tags=[tag],
-                metadata={
-                    "type": "system_architecture",
-                    "subtype": "memory_topology",
-                    "updated_at": timestamp,
-                },
-            )
-            print(f"  ✅ Supermemory [{tag}] memory_topology")
-
-        except Exception as e:
-            print(f"  ⚠️  Supermemory [{tag}] 写入失败: {e}")
 
 
 # ═══════════════════════════════════════════════
@@ -516,9 +378,6 @@ def main():
     print(f"📝 写入 Obsidian...")
     write_obsidian_architecture(agents_data, sys_info, vault_state)
 
-    # 写入 Supermemory
-    print(f"🧠 写入 Supermemory...")
-    write_supermemory_architecture(agents_data)
 
     print(f"\n✅ 架构同步完成")
 

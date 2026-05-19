@@ -39,13 +39,6 @@ memory_providers:
     enabled: true
     priority: 1
     type: transactional
-  supermemory:
-    config:
-      api_key: SUPERMEMORY_API_KEY
-      container_tag: SUPERMEMORY_CONTAINER_TAG
-    enabled: false
-    priority: 3
-    type: semantic
 model_preferences:
   ceo_decision:
     budget_constraint: high

@@ -3,7 +3,7 @@
 Molin-OS Memory Retriever — 统一记忆检索入口
 
 Agent 通过此模块检索历史知识做决策。
-同时检索 Obsidian（结构化知识） + Supermemory（语义记忆）。
+同时检索 Obsidian（结构化知识）。
 
 用法:
     from molib.memory.retriever import retrieve_context
@@ -42,7 +42,7 @@ def retrieve_context(
         {
             "query": str,
             "results": [{
-                "source": "obsidian" | "supermemory",
+                "source": "obsidian",
                 "agent": str,
                 "date": str,
                 "title": str,

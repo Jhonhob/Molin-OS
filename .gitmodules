@@ -4,3 +4,6 @@
 [submodule "last30days-skill"]
 	path = last30days-skill
 	url = https://github.com/mvanhorn/last30days-skill.git
+[submodule ".vault-git-mirror"]
+	path = .vault-git-mirror
+	url = https://github.com/moye-tech/Molin-OS.git

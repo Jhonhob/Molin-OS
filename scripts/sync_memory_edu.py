@@ -1,10 +1,8 @@
 #!/opt/homebrew/bin/python3.11
 """
-元瑶 · 教育Agent记忆双通道同步脚本
+元瑶 · 教育Agent记忆同步脚本
 - 从 MEMORY.md / USER.md 读取最新记忆
-- 同步到 Supermemory（API）
 - 同步到 Obsidian 知识库（v3.0 flat vault: 产出/元瑶｜*.md）
-- container_tag=edu 实现Agent隔离
 """
 
 import os
@@ -24,8 +22,6 @@ SYNC_STATE_FILE = EDU_HOME / "sync_state.json"
 
 OBSIDIAN_VAULT = Path(_ACTUAL_HOME) / "Library" / "Mobile Documents" / "iCloud~md~obsidian" / "Documents"
 OBSIDIAN_MEMORY_DIR = OBSIDIAN_VAULT / "产出" / "edu"
-
-CONTAINER_TAG = "edu"
 
 # === 工具函数 ===
 
@@ -100,57 +96,6 @@ def save_to_obsidian(entries: list[dict], source: str, synced_hashes: set) -> in
     return count
 
 
-def get_supermemory_api_key() -> str:
-    """获取 Supermemory API key：优先环境变量，其次从.zprofile读取"""
-    key = os.environ.get("SUPERMEMORY_API_KEY", "")
-    # 环境变量中的key如果太短（<50字符）可能是被$HOME重定向污染的，走fallback
-    if key and len(key) >= 50:
-        return key
-    # Fallback: 直接从本机真实.zprofile读取
-    zprofile = Path("/Users/laomo/.zprofile")
-    if zprofile.exists():
-        for line in zprofile.read_text(encoding="utf-8").splitlines():
-            if line.startswith("export SUPERMEMORY_API_KEY="):
-                parts = line.split("=", 1)
-                if len(parts) == 2:
-                    raw = parts[1].strip().strip("\"'")
-                    if raw and len(raw) >= 50:
-                        return raw
-    return ""
-
-
-def sync_to_supermemory(entries: list[dict], source: str, synced_hashes: set) -> int:
-    """将新条目同步到 Supermemory，返回同步数量"""
-    api_key = get_supermemory_api_key()
-    if not api_key:
-        print(f"[supermemory] SKIP: SUPERMEMORY_API_KEY not set")
-        return 0
-
-    try:
-        from supermemory import Supermemory
-        client = Supermemory(api_key=api_key, timeout=5.0, max_retries=0)
-    except ImportError:
-        print(f"[supermemory] SKIP: supermemory SDK not available")
-        return 0
-
-    count = 0
-    for entry in entries:
-        if entry["hash"] in synced_hashes:
-            continue
-        try:
-            metadata = {"source": source, "agent": "edu", "hash": entry["hash"]}
-            client.documents.add(
-                content=entry["content"],
-                container_tags=[CONTAINER_TAG],
-                metadata=metadata,
-            )
-            count += 1
-        except Exception as e:
-            print(f"[supermemory] FAIL sync entry [{entry['hash']}]: {e}")
-
-    return count
-
-
 def build_index_key(source: str, entry: dict) -> str:
     """生成同步状态索引键"""
     return f"{source}:{entry['hash']}"
@@ -174,12 +119,6 @@ def main():
     state = load_sync_state()
     synced_hashes = set(state.get("synced_hashes", []))
 
-    # === 同步到 Supermemory ===
-    su_count = 0
-    su_count += sync_to_supermemory(memory_entries, "memory", synced_hashes)
-    su_count += sync_to_supermemory(user_entries, "user", synced_hashes)
-    print(f"[supermemory] 新增同步 {su_count} 条（container: {CONTAINER_TAG}）")
-
     # === 同步到 Obsidian ===
     obs_count = 0
     obs_count += save_to_obsidian(memory_entries, "memory", synced_hashes)
@@ -192,7 +131,7 @@ def main():
     for entry in all_entries:
         if entry["hash"] in synced_hashes:
             continue
-        # 该条是新条目，已成功写入Obsidian和Supermemory
+        # 该条是新条目，已成功写入Obsidian
         new_hashes.append(entry["hash"])
 
     synced_hashes.update(new_hashes)
@@ -200,12 +139,10 @@ def main():
     state["synced_hashes"] = sorted(synced_hashes)
     state["last_sync"] = datetime.now(timezone.utc).isoformat()
     state["total_entries"] = len(all_entries)
-    state["supermemory_synced"] = su_count
     state["obsidian_synced"] = obs_count
     save_sync_state(state)
 
     print(f"\n[完成] 总计 {len(all_entries)} 条记忆已管理")
-    print(f"  - 已同步到 Supermemory: {su_count} 条新条目")
     print(f"  - 已写入 Obsidian: {obs_count} 条新笔记")
     print("=" * 50)
 

@@ -1,6 +1,6 @@
 """
 墨麟AI智能系统 记忆管理器
-整合 SQLite（事务）、Qdrant（向量）、Supermemory（长期语义）和 Redis（缓存）
+整合 SQLite（事务）、Qdrant（向量）、Redis（缓存）
 提供统一的记忆管理接口，根据场景自动选择最佳后端
 """
 
@@ -31,16 +31,8 @@ except ImportError:
     REDIS_AVAILABLE = False
     logger.warning("redis库未安装，缓存功能将不可用")
 
-# 尝试导入Supermemory，可选
+# Supermemory decommissioned — all memory operations go through Obsidian vault
 SUPERMEMORY_AVAILABLE = False
-try:
-    # 这里假设Supermemory客户端接口
-    # 实际实现需要根据外部源文件调整
-    SUPERMEMORY_AVAILABLE = os.getenv('SUPERMEMORY_API_KEY') is not None
-    if SUPERMEMORY_AVAILABLE:
-        logger.info("Supermemory API密钥检测到，Supermemory可用")
-except ImportError:
-    logger.warning("Supermemory客户端不可用，将使用回退方案")
 
 
 class MemoryScenario(Enum):
@@ -63,7 +55,7 @@ class MemoryManager:
         self.sqlite = SQLiteClient()
         self.qdrant = MolinMemory()
         self.redis_client = None
-        self.supermemory_client = None
+        # self.supermemory_client = None  # decommissioned
 
         self._init_clients()
 
@@ -73,13 +65,12 @@ class MemoryManager:
             "providers": {
                 "sqlite": {"enabled": True, "priority": 1},
                 "qdrant": {"enabled": True, "priority": 2},
-                "supermemory": {"enabled": False, "priority": 3, "optional": True},
                 "redis": {"enabled": False, "priority": 0}
             },
             "scenarios": {
                 "transactional": {"providers": ["sqlite"], "ttl": "permanent"},
                 "semantic_search": {"providers": ["qdrant"], "ttl": "30d"},
-                "long_term_memory": {"providers": ["supermemory", "sqlite"], "ttl": "1y"},
+                "long_term_memory": {"providers": ["sqlite"], "ttl": "1y"},
                 "cache": {"providers": ["redis"], "ttl": "1h"},
                 "realtime_analytics": {"providers": ["redis", "sqlite"], "ttl": {"redis": "24h", "sqlite": "7d"}}
             }
@@ -168,15 +159,8 @@ class MemoryManager:
                 logger.error(f"Failed to initialize Redis client: {e}")
 
         # 初始化Supermemory（如果启用且可用）
-        supermemory_enabled = self.config['providers'].get('supermemory', {}).get('enabled', False)
-        if supermemory_enabled and SUPERMEMORY_AVAILABLE:
-            try:
-                # 这里需要根据外部源文件实现Supermemory客户端初始化
-                # 暂时使用占位符
-                self.supermemory_client = SupermemoryPlaceholder()
-                logger.info("Supermemory client initialized (placeholder)")
             except Exception as e:
-                logger.error(f"Failed to initialize Supermemory client: {e}")
+                logger.error(f"Failed to initialize memory client: {e}")
 
     def _get_providers_for_scenario(self, scenario: Union[str, MemoryScenario]) -> List[str]:
         """获取场景对应的记忆提供者列表（按优先级排序）"""
@@ -241,8 +225,6 @@ class MemoryManager:
                 elif provider_name == 'redis' and self.redis_client:
                     await self._store_redis(key, data, metadata, scenario_str)
                     success = True
-                elif provider_name == 'supermemory' and self.supermemory_client:
-                    await self._store_supermemory(key, data, metadata, scenario_str)
                     success = True
                 else:
                     logger.warning(f"Provider {provider_name} not available or not implemented")
@@ -280,8 +262,6 @@ class MemoryManager:
                 elif provider_name == 'redis' and self.redis_client:
                     provider_results = await self._retrieve_redis(key, query, limit, scenario_str)
                     results.extend(provider_results)
-                elif provider_name == 'supermemory' and self.supermemory_client:
-                    provider_results = await self._retrieve_supermemory(key, query, limit, scenario_str)
                     results.extend(provider_results)
             except Exception as e:
                 logger.error(f"Failed to retrieve from {provider_name}: {e}")
@@ -362,11 +342,6 @@ class MemoryManager:
 
         logger.debug(f"Stored to Redis: {key} ({scenario}), TTL: {ttl}")
 
-    async def _store_supermemory(self, key: str, data: Any, metadata: Dict[str, Any], scenario: str):
-        """存储到Supermemory（占位符实现）"""
-        logger.info(f"[Supermemory Placeholder] Would store: {key} ({scenario})")
-        # 实际实现需要根据外部源文件
-
     async def _retrieve_sqlite(self, key: str, query: Optional[str], limit: int, scenario: str, namespace: str = "global") -> List[Any]:
         """从SQLite检索（带 namespace 隔离 + 重要性衰减）"""
         results = await self.sqlite.retrieve_memory(key, scenario, namespace, limit)
@@ -407,11 +382,6 @@ class MemoryManager:
 
         return []
 
-    async def _retrieve_supermemory(self, key: str, query: Optional[str], limit: int, scenario: str) -> List[Any]:
-        """从Supermemory检索（占位符实现）"""
-        logger.info(f"[Supermemory Placeholder] Would retrieve: {key} ({scenario})")
-        return []
-
     def _parse_ttl(self, ttl_str: str) -> int:
         """解析TTL时间字符串"""
         if not ttl_str:
@@ -433,19 +403,6 @@ class MemoryManager:
                 return int(ttl_str)
             except ValueError:
                 return 3600  # 默认1小时
-
-
-class SupermemoryPlaceholder:
-    """Supermemory客户端占位符"""
-    def __init__(self):
-        self.enabled = SUPERMEMORY_AVAILABLE
-
-    async def store(self, key: str, data: Any):
-        logger.info(f"[Supermemory Placeholder] Store: {key}")
-
-    async def retrieve(self, query: str, limit: int = 10):
-        logger.info(f"[Supermemory Placeholder] Retrieve: {query}")
-        return []
 
 
 # 全局记忆管理器实例
