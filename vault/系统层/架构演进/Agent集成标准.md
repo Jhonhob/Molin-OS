@@ -25,13 +25,13 @@ frameworks_applied:
 
 ## 一、Agent总览
 
-| Agent | 名称 | 容器tag | 飞书AppID | 关联Worker |
-|-------|------|---------|-----------|------------|
-| edu | 元瑶教育 | edu | cli_a956c83187395cd4 | education.py |
-| global | 梅凝出海 | molin-global | cli_aa881c316d789bb5 | global_marketing.py |
-| media | 银月传媒 | molin-media | cli_a966ede1d9789bd2 | content_writer/designer/short_video/voice_actor |
-| shared | 玄骨中枢 | molin-shared | cli_aa884b4a88bc9bb4 | crm/customer_service/ops/finance/data_analyst/ecommerce |
-| side | 宋玉创业 | molin-side | cli_a9513691d4f89bcf | — |
+| Agent | 名称 | 容器tag | 通道接入 | 飞书AppID | 关联Worker |
+|-------|------|---------|---------|-----------|------------|
+| edu | 元瑶教育 | edu | 飞书对话 + CLI | cli_a956c83187395cd4 | education.py |
+| global | 梅凝出海 | molin-global | 飞书对话 + CLI | cli_aa881c316d789bb5 | global_marketing.py |
+| media | 银月传媒 | molin-media | 飞书对话 + CLI | cli_a966ede1d9789bd2 | content_writer/designer/short_video/voice_actor |
+| shared | 玄骨中枢 | molin-shared | 飞书主Bot + CLI | cli_aa884b4a88bc9bb4 | crm/customer_service/ops/finance/data_analyst/ecommerce |
+| side | 宋玉创业 | molin-side | 飞书对话 + CLI | cli_a9513691d4f89bcf | — |
 
 **会话量统计（周均）：**
 
