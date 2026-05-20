@@ -186,6 +186,6 @@ trigger: 每日情报采集完成后（06:30-07:30），在选题会前加载此
 ## 六、参考
 
 - 数据源具体配置：各对应 skill
-- 品牌关键词池：`supermemory_search("墨麟品牌关键词")`
-- 排期检查：`supermemory_search("已发布内容")`
+- 品牌关键词池：参考品牌关键词文档
+- 排期检查：参考发布排期
 - 本 SOP 模板：`skill_view('agent-sop-template')`

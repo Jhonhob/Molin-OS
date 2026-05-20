@@ -80,7 +80,7 @@ hermes-web-ui@0.5.16
 | OPENROUTER_API_KEY | ✅ |
 | GITHUB_TOKEN | ✅ |
 | FEISHU_APP_ID/SECRET | ✅ |
-| SUPERMEMORY_API_KEY | ✅ |
+| SUPERMEMORY_API_KEY | ❌ 已停用 |
 | FIRECRAWL_API_KEY | ❌ 待配置 |
 
 ## Xianyu 闲鱼

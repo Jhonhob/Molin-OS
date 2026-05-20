@@ -57,7 +57,7 @@ result = write_agent_output(
     related_tasks="关联任务",
     relations="[[关联知识]]",
     relay_path="relay/finance/daily.json",
-    write_supermemory=True    # dual-write to Supermemory
+    write_supermemory=False    # Supermemory已废弃
 )
 ```
 

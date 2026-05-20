@@ -251,7 +251,7 @@ Cron 失败必须自动记入 Escalation SOP。
 
 **代码入口**: `~/Molin-OS/molib/memory/retriever.py`
 
-双源检索：Obsidian（结构化知识 `产出/业务线｜type·date.md`，v3.0 flat vault，零子目录）+ Supermemory（语义块）。
+双源检索：Obsidian（结构化知识 `产出/业务线｜type·date.md`，v3.0 flat vault，零子目录）。
 
 ```python
 from molib.memory.retriever import retrieve_context
@@ -273,7 +273,7 @@ agent_prompt = f"{task}\\n\\n## 历史参考\\n{context['summary']}"
 
 ```
 🔴 L1 工作记忆     → 飞书对话上下文（24h 清理）
-🟡 L2 情节记忆     → Supermemory（30天未调用→蒸馏到 L3）
+🟡 L2 情节记忆     → （已废弃）
 🟢 L3 语义记忆     → Obsidian `产出/业务线｜type·date.md`（v3.0 flat vault，永久）
 🔵 L4 程序记忆     → skill 文件（版本化管理）
 ```
@@ -300,7 +300,7 @@ L1→L2→L3→L4 的蒸馏条件和写入规则详见 `references/memory-taxono
 
 **双写机制**：
 - **Obsidian**: `产出/业务线｜{type}·{date}.md`（v3.0 flat vault，零子目录）
-- **Supermemory**: 拆分为语义块（Summary / Insight / Action 分别写，便于后续检索时只命中精华）
+- ~~Supermemory: 已废弃~~
 
 ```python
 from molib.memory.output_writer import write_agent_output
@@ -314,7 +314,7 @@ result = write_agent_output(
     actions="- 已记录日成本\\n- 预算预警",
     learnings="- 内容Agent是最大成本来源",
 )
-# result = {agent, date, obsidian_path, supermemory}
+# result = {agent, date, obsidian_path}
 ```
 
 ### iCloud 幽灵目录处理
@@ -415,6 +415,6 @@ skill_manage(action='create', name='{id}-sop-pack', content='...')
 | 文件 | 内容 |
 |------|------|
 | `references/memory-augmented-decision-making.md` | 记忆检索层接入方式 + 代码示例 |
-| `references/agent-output-template.md` | Agent 输出标准模板 + Supermemory 语义块划分规则 |
+| `references/agent-output-template.md` | Agent 输出标准模板 |
 | `references/dual-format-sop-pattern.md` | YAML + Markdown 双格式 SOP 说明 |
 | `references/vault-hardening-methodology.md` | 全量排查→根因封堵→防复发 五阶段方法论（v3.0 硬化实战） |

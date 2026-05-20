@@ -129,5 +129,5 @@ components:
 
 - 运维基座：`skill_view('molin-ops')`
 - 系统关键文件：AGENTS.md "系统关键文件位置"
-- 历史故障记录：`supermemory_search("系统故障记录")`
+- 历史故障记录：参考故障存档
 - Cron 作业：`cronjob(action='list')`

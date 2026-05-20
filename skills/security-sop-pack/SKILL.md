@@ -61,7 +61,6 @@ deepseek_api: 每90天轮转
 openrouter_key: 每90天轮转
 dashscope_api: 每90天轮转
 feishu_app_secret: 每90天轮转
-supermemory_api: 每90天轮转
 feishu_webhook: 按需（泄露时即时轮转）
 本地存储: 密钥仅存于 ~/.hermes/.env + ~/.hermes/profiles/*/.env（不上 Git）
 ```
@@ -339,7 +338,7 @@ jobs:
 
 - API 密钥配置：`~/.hermes/config.yaml`
 - 安全审计实际命令速查：`references/audit-command-cookbook.md`
-- 密钥轮转记录：`supermemory_search("API密钥轮转记录")`
-- 已知 CVE：`supermemory_search("依赖安全漏洞")`
-- 安全异常历史：`supermemory_search("安全事件记录")`
+- 密钥轮转记录：参考密钥管理文档
+- 已知 CVE：参考安全公告
+- 安全异常历史：参考安全事件存档
 - 结构化报告工具：`molib.memory.output_writer.write_agent_output()`

@@ -11,6 +11,8 @@ from flask import request, jsonify
 from . import graph_bp
 from ..config import Config
 from ..services.ontology_generator import OntologyGenerator
+# ZepCloud已禁用 — 使用 local_graph_store 替代
+from ..services.local_graph_store import LocalGraphStore
 from ..services.graph_builder import GraphBuilderService
 from ..services.text_processor import TextProcessor
 from ..utils.file_parser import FileParser

@@ -31,7 +31,7 @@ except ImportError:
     REDIS_AVAILABLE = False
     logger.warning("redis库未安装，缓存功能将不可用")
 
-# Supermemory decommissioned — all memory operations go through Obsidian vault
+# Supermemory decommissioned — all memory operations go through Obsidian vault（已停用）
 SUPERMEMORY_AVAILABLE = False
 
 

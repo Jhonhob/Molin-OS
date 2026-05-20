@@ -132,6 +132,6 @@ service-sop-pack 售后 SOP
 ## 七、参考
 
 - 平台 API：闲鱼 API 文档
-- 商品 SKU 表：`supermemory_search("商品列表")`
-- 售后政策：`supermemory_search("退货政策")`
+- 商品 SKU 表：参考商品目录
+- 售后政策：参考售后文档
 - Agent 模板：`skill_view('agent-sop-template')`

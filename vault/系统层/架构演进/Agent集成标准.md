@@ -11,15 +11,15 @@ frameworks_applied:
 
 ## SCQA — 为什么是多Agent架构？
 
-**Situation（情境）：** 墨麟OS承载教育、出海、内容、增长、系统运维五大业务域，每个域有独立的Worker集群、飞书AppID、知识库（Supermemory）和配置体系。
+**Situation（情境）：** 墨麟OS承载教育、出海、内容、增长、系统运维五大业务域，每个域有独立的Worker集群、飞书AppID和配置体系。
 
 **Complication（冲突）：** 单一Agent架构下，所有业务共享同一个上下文窗口和推理引擎。随着Worker数量增长（当前15+ Worker），单一Agent的上下文碎片化严重，指令优先级冲突频发，且任一业务的配置变更都需要全局重启。
 
 **Question（问题）：** 如何在不牺牲业务间协作能力的前提下，实现隔离自治、独立迭代、按需扩展的多Agent体系？
 
-**Answer（答案）：** 采用多Agent + 消息总线架构。每个Agent拥有独立进程、独立Supermemory容器、独立飞书App入口，通过事件驱动总线进行跨Agent通信。Worker层作为可插拔的执行单元，按Agent域归属。
+**Answer（答案）：** 采用多Agent + 消息总线架构。每个Agent拥有独立进程、独立飞书App入口，通过事件驱动总线进行跨Agent通信。Worker层作为可插拔的执行单元，按Agent域归属。
 
-本文档定义所有Agent的集成配置快照、Supermemory容器映射、Agent画像定义、通信协议、安全边界及飞书集成规范，作为系统层多Agent集成与通信的唯一参考标准。
+本文档定义所有Agent的集成配置快照、Agent画像定义、通信协议、安全边界及飞书集成规范，作为系统层多Agent集成与通信的唯一参考标准。（原Supermemory容器映射已停用）
 
 ---
 
@@ -59,9 +59,9 @@ frameworks_applied:
 
 ---
 
-## 三、Supermemory容器映射
+## 三、Supermemory容器映射（已停用 — 仅供参考）
 
-每个Agent拥有独立的Supermemory容器（独立知识库空间），支持长期记忆与跨会话上下文检索。
+每个Agent曾拥有独立的Supermemory容器（独立知识库空间），现已停用。
 
 | Agent | 容器ID | Vault路径 | 存储内容 |
 |-------|--------|----------|---------|
@@ -71,7 +71,7 @@ frameworks_applied:
 | shared | sm-cnt-shared-01 | `/vaults/shared/` | 共享知识库、审计日志、系统配置快照、合规标准 |
 | side | sm-cnt-side-01 | `/vaults/side/` | 增长实验记录、数据看板、商业模型库 |
 
-**容器访问规则：**
+**容器访问规则（已停用）：**
 - 每个Agent默认只读写自己的容器。
 - 跨容器读取需通过共享Agent（玄骨中枢）的授权访问接口，不可直接跨容器操作。
 - 所有跨容器访问在共享Agent审计日志中记录。
@@ -90,7 +90,7 @@ Agent在飞书的回复必须使用飞书友好格式——纯文字分段、适
 
 ## 五、环境变量与配置
 
-所有Agent共享以下环境变量体系：`DEEPSEEK_API_KEY`、`SUPERMEMORY_API_KEY`、`GITHUB_TOKEN`。各Agent通过profile级 `.env` 文件配置独立变量。`GATEWAY_ALLOW_ALL_USERS` 必须在每个profile的 `.env` 中独立设置。
+所有Agent共享以下环境变量体系：`DEEPSEEK_API_KEY`、`GITHUB_TOKEN`。各Agent通过profile级 `.env` 文件配置独立变量。`GATEWAY_ALLOW_ALL_USERS` 必须在每个profile的 `.env` 中独立设置。（`SUPERMEMORY_API_KEY` 已停用）
 
 ---
 
@@ -118,7 +118,7 @@ Agent在飞书的回复必须使用飞书友好格式——纯文字分段、适
                                   └─ 外部API调用（限频+白名单）
 ```
 
-- Agent之间不允许直接访问对方的Supermemory容器。
+- Agent之间不允许直接访问对方的Supermemory容器（已停用）。
 - Agent之间的消息传递必须经过事件总线，并携带调用链ID（trace_id）。
 - 敏感操作（删除、修改系统配置）需要shared Agent二次确认。
 
@@ -177,7 +177,7 @@ Agent启动时向事件总线注册自身元信息：
 ```
 1. media Agent 构建查询 → 发送 agent.query 事件到消息总线
 2. 总线根据 target=edu 路由消息
-3. edu Agent 接收事件 → 查询本地 Supermemory 容器 /vaults/edu/
+3. edu Agent 接收事件 → 查询本地知识库（原Supermemory容器 /vaults/edu/，已停用）
 4. edu 返回结果（脱敏处理的学员画像摘要）
 5. media 将画像数据注入 content_writer Worker 的 Prompt
 6. content_writer 生成文案 → designer 制作素材 → short_video 合成视频
@@ -290,7 +290,7 @@ Agent间通信的断路器按目标Agent独立维护：
          ┌──────────────┼────────────────────────────────┐
          │              ▼                                 │
          │   ┌─────────────────────┐   ┌──────────────┐  │
-         │   │  Supermemory Layer  │   │  CLI 入口     │  │
+         │   │  Supermemory Layer（已停用）  │   │  CLI 入口     │  │
          │   │  5个独立容器/Vault   │   │  (终端工具链)  │  │
          │   └─────────────────────┘   └──────────────┘  │
          └────────────────────────────────────────────────┘
@@ -300,7 +300,7 @@ Agent间通信的断路器按目标Agent独立维护：
 - **飞书入口 → Agent Gateway**: 用户消息经飞书Webhook路由到对应Agent
 - **Agent → 事件总线**: 内部Agent间通信不经过飞书，直接通过总线
 - **Agent → Worker**: 每个Agent调用其域下的Worker集群（RPC调用）
-- **Agent → Supermemory**: 各Agent独占各自的Supermemory容器，跨容器需授权
+| **Agent → Supermemory（已停用）**: 各Agent独占各自的Supermemory容器，跨容器需授权
 - **CLI入口**: 直接连接事件总线，供技术操作用户绕过飞书发送命令
 
 ---
@@ -311,10 +311,10 @@ Agent间通信的断路器按目标Agent独立维护：
 |------|------|------|---------|---------|
 | 某Agent Gateway宕机 | 低 | 高 | 进程崩溃 / OOM | 重启 + 队列重路由 |
 | 飞书API限流429 | 中 | 中 | 消息峰值超过50次/秒 | 指数退避 + 消息降级 |
-| Supermemory写入失败 | 低 | 中 | 存储配额满 / 网络分区 | 本地缓存 + 异步重试 |
+| Supermemory日志写入失败（已停用） | 低 | 中 | 存储配额满 / 网络分区 | 本地缓存 + 异步重试 |
 | 事件总线（Redis）故障 | 极低 | 极高 | Redis宕机 | 降级为直连模式，告警 |
 | 跨Agent权限泄露 | 中 | 高 | 配置错误 / token泄漏 | shared Agent审计拦截 |
-| Agent上下文溢出（LLM） | 中 | 低 | 会话过长 | 自动截断 + Supermemory RAG |
+| Agent上下文溢出（LLM） | 中 | 低 | 会话过长 | 自动截断 + RAG |
 
 ---
 
@@ -323,8 +323,8 @@ Agent间通信的断路器按目标Agent独立维护：
 ```bash
 # edu/.env
 DEEPSEEK_API_KEY=sk-xxx
-SUPERMEMORY_API_KEY=sm-xxx
-SUPERMEMORY_VAULT=/vaults/edu/
+# SUPERMEMORY_API_KEY=sm-xxx     # 已停用
+# SUPERMEMORY_VAULT=/vaults/edu/ # 已停用
 GATEWAY_ALLOW_ALL_USERS=true
 AGENT_HEARTBEAT_INTERVAL=30
 CIRCUIT_BREAKER_THRESHOLD=5
@@ -334,8 +334,8 @@ CIRCUIT_BREAKER_TIMEOUT=30
 ```bash
 # shared/.env
 DEEPSEEK_API_KEY=sk-xxx
-SUPERMEMORY_API_KEY=sm-xxx
-SUPERMEMORY_VAULT=/vaults/shared/
+# SUPERMEMORY_API_KEY=sm-xxx     # 已停用
+# SUPERMEMORY_VAULT=/vaults/shared/ # 已停用
 GATEWAY_ALLOW_ALL_USERS=false  # 内部治理Agent不开放公共入口
 AGENT_HEARTBEAT_INTERVAL=30
 HEALTH_CHECK_INTERVAL=30

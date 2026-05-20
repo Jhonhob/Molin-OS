@@ -187,7 +187,7 @@ Prompt 工程规则：
 
 ## 七、参考
 
-- 品牌色卡：`supermemory_search("墨麟品牌色彩体系")`
+- 品牌色卡：参考品牌指南
 - 设计模板：各对应 skill
 - 输出存档：Obsidian `Agents/墨图设计/`
 - Agent 模板：`skill_view('agent-sop-template')`

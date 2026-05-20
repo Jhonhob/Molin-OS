@@ -181,7 +181,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
 |---------|------------|---------|---------|
 | 墨律法务 | legal.py | 合同审查、合规、风险评估 | molin-legal |
-| 墨脑知识 | knowledge.py | 知识管理、RAG、长期记忆 | molin-memory, supermemory, gitnexus |
+| 墨脑知识 | knowledge.py | 知识管理、RAG、长期记忆 | molin-memory, gitnexus |
 | 墨测数据 | data_analyst.py | 数据分析、测试、质量 | molin-data-analytics, molin-vizro |
 
 ### 专项预置（2家 — 非标准20家，专用领域）
@@ -248,12 +248,12 @@ python -m molib plan decompose --plan-id xxx
 ## 记忆系统
 
 统一通过 `molib/memory/retriever.py` 检索。
-双源检索：Obsidian（结构化知识 `产出/`）+ Supermemory（语义块）。
+单一源检索：Obsidian（结构化知识 `产出/`）。原 Supermemory 语义块已停用。
 
 四层架构：
 ```
 🔴 L1 工作记忆     → 飞书对话上下文（24h清理）
-🟡 L2 情节记忆     → Supermemory（30天未调用→蒸馏）
+🟡 L2 情节记忆     → Obsidian（原 Supermemory 已停用）
 🟢 L3 语义记忆     → Obsidian `产出/`（永久）
 🔵 L4 程序记忆     → SKILL.md 技能文件（版本化管理）
 ```

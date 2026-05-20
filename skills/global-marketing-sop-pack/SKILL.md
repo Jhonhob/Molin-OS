@@ -61,7 +61,7 @@ trigger: 所有出海相关任务（繁体转换/本地化/多语言分发/海�
 大陆内容 → L1 文字转换 → L2 用词本地化 → L3 表达调优 → 台湾正式内容
 ```
 
-需要 L4 时：调用 supermemory 获取台湾本地案例/文化参考。
+需要 L4 时：参考台湾本地案例/文化参考。
 
 ### Step 2: 平台适配
 
@@ -157,9 +157,9 @@ Gatekeeper 本地化合规检查
 
 ## 七、参考
 
-- 用词映射表：`supermemory_search("台湾用语对照")`
-- 品牌本地化名称：`supermemory_search("墨麟品牌海外名称")`
-- 本地合规规则：`supermemory_search("台湾内容合规")`
+- 用词映射表：参考台湾用语对照文档
+- 品牌本地化名称：参考品牌名称文档
+- 本地合规规则：参考台湾内容合规文档
 - 分发平台：对应平台 skill
 - Agent 模板：`skill_view('agent-sop-template')`
 - 内容联动：`skill_view('content-sop-pack')`

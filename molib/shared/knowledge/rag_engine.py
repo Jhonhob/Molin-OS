@@ -1,6 +1,6 @@
 """
 墨麟AIOS — RAGEngine (检索增强生成引擎)
-参考 supermemory (22K⭐) RAG检索架构 + cocoindex (7.8K⭐) 增量计算思路。
+RAG检索架构（Supermemory 已停用） + cocoindex (7.8K⭐) 增量计算思路。
 支持文本索引、语义搜索、文档管理、统计。
 """
 
@@ -79,7 +79,7 @@ class RAGEngine:
     """
     检索增强生成引擎 — 知识库索引与语义搜索。
 
-    参考 supermemory RAG检索架构，支持：
+    （Supermemory 已停用）RAG检索架构，支持：
     - 文本索引 (index_text) → 分块→向量化→存储
     - 语义搜索 (search) → 向量相似度→重排序
     - 文档管理 (delete/stats)

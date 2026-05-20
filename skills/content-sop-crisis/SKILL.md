@@ -163,7 +163,7 @@ exception_handler: 调用 content-sop-crisis 的对应降级策略
 
 - 治理级别：`config/governance.yaml`
 - 模型路由配置：`cost_router.py`
-- 历史故障记录：`supermemory_search("system failures")`
+- 历史故障记录：参考故障存档
 - 备用账号信息：从超级记忆获取
 
 ## 七、预演计划

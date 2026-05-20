@@ -107,9 +107,9 @@ Create a living status document in Obsidian `配置/Cron·Jobs运行状态.md`:
 ## 分类总表
 | 分类 | Job | 输出目标 |
 |------|-----|---------|
-| 流程 | backup, sync, poll | Obsidian `流程/` + Supermemory |
-| 知识 | arxiv, price, learning | Obsidian `知识/` + Supermemory |
-| 配置 | compliance, audit | Obsidian `配置/` + Supermemory |
+| 流程 | backup, sync, poll | Obsidian `流程/` |
+| 知识 | arxiv, price, learning | Obsidian `知识/` |
+| 配置 | compliance, audit | Obsidian `配置/` |
 ```
 
 ### 2c️⃣ Common Cron Fixes
@@ -226,9 +226,7 @@ bash ~/Molin-OS/scripts/sync_all.sh
 ```
 
 If the pipeline fails at step 3 (collect_architecture.py timeout):
-1. Check if `supermemory` package is installed (`pip3 show supermemory`)
-2. If installed, the API may be unreachable from China — skip step 3 or wait
-3. The script has a built-in connectivity pre-check that skips Supermemory writes if API is unreachable
+> ⚠️ Supermemory has been decommissioned. The connectivity pre-check note below is kept for historical awareness.
 
 ### 5️⃣ Profile Skills Sync
 
@@ -335,16 +333,9 @@ Categorize findings into: In-Sync, Out-of-Sync, Missing from Repo, External (ind
 
 **Symptoms**: `sync_all.sh` or `molin-sync-all.sh` hangs at "🏗️ [3/3] 采集系统架构..."
 
-**Root cause**: The `supermemory` Python package (v3.42.0) tries to connect to `api.supermemory.ai` which may be unreachable from behind the GFW.
+**Root cause**: Supermemory API connectivity issue (service has been decommissioned).
 
-**Fixes**:
-1. ✅ **Connectivity pre-check added** (2026-05-15): The script now does a 5s HEAD request to `api.supermemory.ai` before attempting any writes. If unreachable, it prints a warning and skips Supermemory writes — Obsidian writes still succeed.
-2. As a workaround, run the script with a 60s timeout:
-   ```bash
-   cd ~/Molin-OS/scripts && timeout 60 python3 collect_architecture.py
-   ```
-3. The script takes ~30s when the API is reachable (15 documents × 5 agents). This is normal.
-4. After the fix, the script outputs `⚠️ Supermemory API 不可达 (...), 跳过` if unreachable, and still writes `System/*.md` to Obsidian successfully.
+**Fixes**: Supermemory has been decommissioned. The historical fixes are no longer relevant.
 
 ### CloakServe binary download slow
 
@@ -403,8 +394,6 @@ python3 ~/Molin-OS/scripts/vault_health_check.py
 # List existing CronJobs (check for conflicts)
 hermes cron list 2>&1 | grep "Name:"
 
-# Check existing supermemory for old-path entries
-# (use supermemory_search tool, not terminal)
 ```
 
 ### Phase 2: Path Compatibility Analysis
@@ -478,10 +467,8 @@ hermes cron list 2>&1 | grep "Name:" | wc -l
 grep -rn 'MolinOS-Wiki\|agent-outputs\|02_Agent_Outputs' \
   "/path/to/vault/" --include="*.md" | grep -v '.git/'
 
-# Supermemory cleanup (if needed)
-# Use supermemory_search to find old-path entries
-# Use supermemory_forget to remove them
-# Use supermemory_store to record corrected v3.0 paths
+# Supermemory has been decommissioned — cleanup steps below are no longer applicable
+
 ```
 
 ### Common Pitfalls

@@ -110,7 +110,7 @@ Arxiv论文简报、技术调研、财务日报。
 
 ```
 🔴 L1 工作记忆     → 飞书对话上下文（24h清理）
-🟡 L2 情节记忆     → Supermemory（30天未调用→蒸馏）
+🟡 L2 情节记忆     → Obsidian（原 Supermemory 已停用）
 🟢 L3 语义记忆     → Obsidian 产出/（永久）
 🔵 L4 程序记忆     → SKILL.md 技能文件（版本化管理）
 ```

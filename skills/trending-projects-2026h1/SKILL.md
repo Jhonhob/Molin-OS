@@ -13,7 +13,7 @@
 | 1 | **claude-mem** | thedotmack/claude-mem | 71K | 墨脑(知识) | 自动捕捉Claude交互→知识图谱→墨麟自学习回路增强 |
 | 2 | **MiroFish** | 666ghj/MiroFish | 59K | 墨思(研究) | 群体智能预测引擎→趋势分析/市场预测增强 |
 | 3 | **ruflo** | ruvnet/ruflo | 38K | 墨脑(知识) | Agent编排+自学习→墨麟蜂群引擎+自学习回路升级 |
-| 4 | **supermemory** | supermemoryai/supermemory | 22K | 墨脑(知识) | 跨会话持久记忆引擎→Hermes记忆系统增强 |
+| 4 | **supermemory** | supermemoryai/supermemory | 22K | ~~已废弃~~ |
 | 5 | **last30days-skill** | mvanhorn/last30days-skill | 25K | 墨思(研究) | 跨平台趋势研究技能→情报局日报/周报自动生成 |
 | 6 | **worldmonitor** | koala73/worldmonitor | 53K | 墨思(研究) | 实时全球情报面板→情报局核心引擎 |
 | 7 | **agent-skills** | addyosmani/agent-skills | 27K | 墨智(AI研发) | 27380★生产级工程技能→直接导入墨麟技能库 |
@@ -112,7 +112,7 @@ P0 🔥 立即集成
 
 P1 ⚡ 本周
 6. agent-skills (27K★) → 墨智 — 27K技能批量导入
-7. supermemory (22K★) → 墨脑 — 记忆引擎增强
+7. supermemory (22K★) → ~~已废弃~~
 8. TradingAgents-CN (25K★) → 墨投 — 量化交易
 9. seomachine (7K★) → 墨迹 — SEO内容增强
 10. Pixelle-Video (10K★) → 墨迹 — 视频管线

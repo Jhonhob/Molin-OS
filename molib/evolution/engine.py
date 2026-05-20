@@ -10,7 +10,7 @@
 
 Source: core/evolution/engine.py (from molin-os-ultra)
 Adapted for Hermes OS: loguru→logging, removed sqlite_client/qdrant_client imports,
-replaced with supermemory storage (save_memory/recall_memory).
+replaced with Obsidian vault storage (Supermemory 已停用).
 """
 
 from __future__ import annotations
@@ -87,13 +87,13 @@ class EvolutionEngine:
 
     async def _handle_success(self, task_result: Dict[str, Any],
                               score: float) -> EvalResult:
-        """处理成功任务：提取知识并持久化到 supermemory"""
+        """处理成功任务：提取知识并持久化到 Obsidian vault（Supermemory 已停用）"""
         logger.info(f"Success task (score={score}), extracting knowledge...")
 
         cards = await self._extractor.extract(task_result)
         self._stats["knowledge_extracted"] += len(cards)
 
-        # 持久化知识卡片到 supermemory
+        # 持久化知识卡片到 Obsidian vault（Supermemory 已停用）
         if cards:
             await self._persist_knowledge_cards(cards, outcome=EvalOutcome.SUCCESS.value)
 
@@ -130,7 +130,7 @@ class EvolutionEngine:
 
         cards = await self._extractor.extract_partial(task_result)
 
-        # 持久化待验证知识到 supermemory
+        # 持久化待验证知识到 Obsidian vault（Supermemory 已停用）
         if cards:
             await self._persist_knowledge_cards(cards, outcome=EvalOutcome.PARTIAL.value)
 

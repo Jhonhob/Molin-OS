@@ -347,7 +347,7 @@
 ## 🟢 墨脑（知识管理）
 
 - **obsidian** (`note-taking/obsidian`) — Read, search, and create notes in the Obsidian vault.
-- **supermemory** (`supermemory`) — 超级记忆引擎 — 基于 supermemoryai/supermemory (22K⭐) 的超快速语义记忆检索API。作为 Hermes mempalace 的
+- **supermemory** (`supermemory`) — ⚠️ 已停用 — 超级记忆引擎 — 基于 supermemoryai/supermemory (22K⭐) 的超快速语义记忆检索API。服务已关闭，不再使用。
 - **ai-taste-quality** (`ai-taste-quality`) — AI输出质量控制 — 整合Leonxlnx/taste-skill (14K⭐) + alchaincyf/nuwa-skill (17K⭐)。给AI"好品味"
 - **claude-mem** (`claude-mem`) — 自动交互记忆捕捉系统 — 基于 thedotmack/claude-mem (71K⭐) 的自动记忆管线。每次任务后自动提取关键信息→写入Hermes记忆系统→
 - **mempalace** (`intelligence/memory/mempalace`) — Enhanced semantic memory backend using MemPalace — verbatim storage, semantic se

@@ -1,7 +1,9 @@
 ---
 name: molin-memory-pipeline
 version: "5.12.0"
-description: "Molin-OS memory sync pipeline v5.12 — 8 flat root directories (决策/知识/流程/成果/报告/配置/产出/学习档案), ZERO subdirectories, 业务线｜具体内容 naming, 5-layer write-source audit, YAML frontmatter validation, iCloud git mirror bridge, 5 scripts with validated path targets, vault hardening methodology."
+description: "Molin-OS memory sync pipeline v5.12 — 8 flat root directories (决策/知识/流程/成果/报告/配置/产出/学习档案), ZERO subdirectories, 业务线｜具体内容 naming, 5-layer write-source audit, YAML frontmatter validation, iCloud git mirror bridge, 5 scripts with validated path targets, vault hardening methodology. ⚠️ Supermemory has been decommissioned — all memory writes go to Obsidian only."
+
+> ⚠️ **Supermemory 已停用**：以下所有提到 Supermemory 的引用均为历史记录。记忆仅写入 Obsidian vault。
 allowed-tools: Terminal, Read, Write, ExecuteCode
 trigger-keywords:
   - memory sync
@@ -15,7 +17,7 @@ trigger-keywords:
   - cron obsidian
   - 定时任务 vault
   - pipeline
-  - Supermemory
+  - Obsidian
   - 同步脚本
   - Obsidian Git
   - git插件

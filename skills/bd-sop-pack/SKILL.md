@@ -103,6 +103,6 @@ trigger: 所有商务拓展任务（竞品分析/合作机会扫描/市场情报
 
 ## 六、参考
 
-- 竞品列表：`supermemory_search("主要竞品")`
+- ~~竞品列表：supermemory_search("主要竞品") — 已废弃~~
 - 合作模板：对应 BD skill
 - Agent 模板：`skill_view('agent-sop-template')`

@@ -219,7 +219,7 @@ frameworks_applied:
 | 层级 | 名称 | 存储介质 | 保留期 | 命中率(2026.05) | 成本 |
 |------|------|---------|--------|---------------|------|
 | L1 | 工作记忆 | 飞书对话上下文 | 24h清理 | 98%（场景内上下文） | 0元 |
-| L2 | 情节记忆 | Supermemory语义块 | 30天未调用蒸馏 | 42%（跨场景检索） | API调用¥0.03/次 |
+| L2 | 情节记忆 | Obsidian笔记（原Supermemory语义块已停用） | 永久保留 | 42%（跨场景检索） | 0元（本地） |
 | L3 | 语义记忆 | Obsidian笔记 | 永久 | 31%（知识库检索） | 0元（本地） |
 | L4 | 程序记忆 | SKILL.md技能文件 | 版本化管理 | 85%（工具调用前） | 0元 |
 
@@ -231,8 +231,8 @@ frameworks_applied:
 
 ### 异常边界
 - **ChromaDB损坏**：自动退化全文搜索（SQLite FTS5），性能从<50ms降至<500ms
-- **Obsidian文件被手动删除**：24h后发现缺失，从Supermemory反向恢复（如果30天内）
-- **Supermemory API限流**：仅用Obsidian源，命中率降至31%——此状态下决策质量下降约15%，但仍可用
+- **Obsidian文件被手动删除**：24h后发现缺失，从备份恢复
+- **Supermemory API限流（已停用）**：不再适用——服务已关闭
 
 ---
 
@@ -274,7 +274,7 @@ frameworks_applied:
 | 推理框架 | DARE（自研） | ReAct/Plan-and-Solve | 4步闭环更适合一人公司场景的确定性需求 |
 | 执行引擎 | Python 3.11+/Click/Rich | FastAPI（仅在server模式启用） | CLI优先，API为辅，降低HTTP开销 |
 | 配置管理 | TOML/YAML/dotenv | 单一大JSON | 分层配置更灵活（系统级/用户级/环境级） |
-| 记忆系统 | ChromaDB+SQLite+Supermemory | Pinecone/Weaviate | 零成本本地化存储，Supermemory为云备份 |
+| 记忆系统 | ChromaDB+SQLite+Obsidian | Pinecone/Weaviate | 零成本本地化存储，Obsidian为知识库 |
 | 通信通道 | 飞书Bot+CLI+FastAPI(:5050) | Telegram/Slack/Discord | 飞书在国内生态中的审批卡片+群聊+Bot三者整合最优 |
 | 视觉设计 | FLUX.2/Open Design/FFmpeg | Adobe Firefly（付费）Midjourney（API贵） | 开源+自部署=零边际成本 |
 | 版本控制 | Git/GitHub | — | 行业标准，无替代必要— |

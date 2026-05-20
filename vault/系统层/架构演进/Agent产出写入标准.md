@@ -161,7 +161,7 @@ Step 5 ─ 写入文件
 
 Step 6 ─ 确认写入
         写入路径记录到Agent会话记忆
-        记忆同步流水线下一轮自动同步到Supermemory
+        记忆同步流水线下一轮自动同步到Obsidian（原Supermemory已停用）
 ```
 
 ---

@@ -155,9 +155,9 @@ legal-sop-pack 合同审查
 
 ## 七、参考
 
-- 合同模板库：`supermemory_search("合同模板")`
-- 常用条款库：`supermemory_search("标准条款")`
-- 合规规则：`supermemory_search("合规要求")`
+- 合同模板库：参考合同模板文档
+- 常用条款库：参考标准条款文档
+- 合规规则：参考合规要求文档
 
 ---
 

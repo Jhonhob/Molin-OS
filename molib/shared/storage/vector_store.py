@@ -1,6 +1,6 @@
 """
 墨麟AIOS — VectorStore (向量存储)
-参考 supermemory (22K⭐) 向量数据库持久化方案。
+向量数据库持久化方案（Supermemory 已停用）。
 基于JSON文件持久化模拟向量存储，支持余弦相似度搜索。
 """
 
@@ -18,7 +18,7 @@ class VectorStore:
     """
     向量存储 — 使用JSON文件持久化模拟向量存储与搜索。
 
-    参考 supermemory 的持久化向量存储架构：
+    （Supermemory 已停用）持久化向量存储架构：
     - index(embeddings, metadata) → doc_id
     - search(query_vector, top_k) → list[dict] 余弦相似度搜索
     - delete(doc_id) → bool

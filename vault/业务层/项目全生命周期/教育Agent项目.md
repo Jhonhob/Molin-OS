@@ -21,13 +21,13 @@ frameworks_applied:
 
 **Question（问题）**：如何在**零开发成本、零额外登录**的前提下，让系统在下一次会话中自动认出学员、恢复上下文、实现"老师记得我"的体验？
 
-**Answer（答案）**：以飞书 **open_id** 为零成本身份锚点，复用已有 **Supermemory + Obsidian** 双通道记忆架构，完成最小闭环。后续演进为多Agent教育系统（诊断/教学/督学三Agent联动）。
+**Answer（答案）**：以飞书 **open_id** 为零成本身份锚点，复用已有 **Obsidian** 记忆架构（原Supermemory已停用），完成最小闭环。后续演进为多Agent教育系统（诊断/教学/督学三Agent联动）。
 
 ---
 
 ## 1. 学员记忆MVP方案
 
-复用已有Supermemory+Obsidian双通道架构，以飞书open_id为零成本身份锚点。Supermemory容器tag=edu已就绪能存能搜，飞书是现有触点学员身份直接用open_id无需额外登录，FastAPI+Python与现有同步脚本同栈。
+复用已有Obsidian单通道架构（原Supermemory已停用），以飞书open_id为零成本身份锚点。飞书是现有触点学员身份直接用open_id无需额外登录，FastAPI+Python与现有同步脚本同栈。
 
 ---
 
@@ -43,11 +43,11 @@ frameworks_applied:
 
 **决定**：飞书 open_id 在 MVP 阶段是唯一合理选择。后续如需打通多端（Web/微信），可在学员画像中建立 open_id ↔ 其他ID 的映射表。
 
-### ADR-002：记忆存储选 Supermemory（主存）+ Obsidian（副本）而非自建 DB
+### ADR-002：记忆存储选 Obsidian（原Supermemory已停用）而非自建 DB
 
 | 选项 | 优点 | 缺点 | 结论 |
 |------|------|------|------|
-| **Supermemory + Obsidian** ✅ | 零维护、天然RAG接口、Obsidian可人工审核 | Supermemory写延迟~200ms、无ACID | 适合MVP |
+| **Obsidian** ✅ | 零维护、可人工审核 | 无向量检索 | 适合MVP（原Supermemory已停用） |
 | 自建 PostgreSQL | 强一致性、灵活查询 | 需部署+维护+迁移现有数据 | 太重，否决 |
 | Redis | 极低延迟 | 无持久化保证、不适合JSON文档 | 仅可做缓存 |
 
@@ -58,7 +58,7 @@ frameworks_applied:
 ## 3. 架构与序列流程
 
 ```
-学员                   飞书Bot          记忆中间件          Supermemory             Obsidian
+学员                   飞书Bot          记忆中间件          Obsidian（原Supermemory已停用）
  │                       │                  │                  │                    │
  │  ① 发消息(是什么)      │                  │                  │                    │
  │──────────────────────>│                  │                  │                    │
@@ -102,14 +102,14 @@ frameworks_applied:
 ### 关键时序说明
 
 - **步骤③查询**：必须在 LLM 推理前完成，否则注入延迟会造成学员等待
-- **步骤④缓存**：Supermemory 返回的 profile 应缓存在中间件内存中（10分钟TTL），避免同学员短时间多次查询
+- **步骤④缓存**：Supermemory（已停用）返回的 profile 应缓存在中间件内存中（10分钟TTL），避免同学员短时间多次查询
 - **步骤⑨保存**：每次会话结束时异步保存；长会话（>10轮）可在中途做一次阶段性保存防丢
 
 ---
 
 ## 4. 学员画像结构（含示例数据）
 
-每个学员在Supermemory存一份JSON（open_id为key）：
+每个学员在Supermemory（已停用）存一份JSON（open_id为key）：
 
 ```json
 {
@@ -201,7 +201,7 @@ frameworks_applied:
 元瑶：今天我们学了二次函数顶点式，你配方法还有点生疏。下次我给你准备5道配方法练习题，我们接着学～
 ```
 
-**系统动作**：创建新 session，Supermemory 无历史记录 → 教学后首次保存。
+**系统动作**：创建新 session，Supermemory（已停用）无历史记录 → 教学后首次保存。
 
 ---
 
@@ -216,7 +216,7 @@ frameworks_applied:
 ```
 
 **系统动作**：
-1. Supermemory 查到 open_id → 返回 `last_session_summary`
+1. Supermemory（已停用）查到 open_id → 返回 `last_session_summary`
 2. System Prompt 注入："学员小雨，上次2026-04-10学二次函数顶点式（session_001），困难点是配方法转化为顶点式。上次结束时留了5道配方法练习题。今天重点：先检查作业再做新内容。"
 3. 学员感受到"被记住" → 建立信任
 4. 会话结束时追加 session_002
@@ -232,7 +232,7 @@ frameworks_applied:
 ```
 
 **系统动作**：
-1. Supermemory 查到连续两次 session 的 `pain_points` 交集
+1. Supermemory（已停用）查到连续两次 session 的 `pain_points` 交集
 2. 自动发现：学员对代数运算推导类内容持续薄弱
 3. System Prompt 额外注入：**"该学员连续3次会话均在代数推导环节遇到困难（配方法→对称轴→求根公式），建议今天优先强化代数推导基本功，降低概念讲解比例。"**
 4. 教学策略动态调整：从"讲新概念"切换到"练基本功"
@@ -264,11 +264,11 @@ frameworks_applied:
 | 风险 | 概率 | 影响 | 缓解措施 |
 |------|------|------|----------|
 | **open_id 冲突**（极少，但飞书不同租户可能生成相同open_id？飞书设计上open_id租户内唯一，跨租户无冲突场景。除非我们自己混用多个飞书应用。） | 低 | 高 | 在中间件层叠加 `tenant_key + open_id` 复合主键 |
-| **Supermemory 写入延迟 > 500ms**导致会话结束前的save卡住 | 中 | 中 | 写操作用异步任务（Celery / asyncio.create_task），不阻塞主对话流程 |
-| **Supermemory 查询失败/超时**导致注入失败 | 中 | 高 | 降级策略：查询失败时以空上下文继续教学，不阻断对话；同时告警 |
+| **Supermemory写入延迟 > 500ms（已停用）**导致会话结束前的save卡住 | 中 | 中 | 写操作用异步任务（Celery / asyncio.create_task），不阻塞主对话流程 |
+| **Supermemory查询失败/超时（已停用）**导致注入失败 | 中 | 高 | 降级策略：查询失败时以空上下文继续教学，不阻断对话；同时告警 |
 | **飞书 API 频率限制**（消息发送+消息卡片回调） | 中 | 中 | 加入令牌桶限流，日志监控接近限值预警 |
-| **长会话中途掉线**导致未保存session丢失 | 中 | 中 | 每10轮对话或每5分钟自动执行一次阶段性保存（upsert到Supermemory） |
-| **学员隐私合规**：Supermemory 存储位置未知，可能违反个保法 | 低 | 高 | Obsidian 副本存本地；确认 Supermemory 数据驻留区域；学员可请求删除 |
+| **长会话中途掉线**导致未保存session丢失 | 中 | 中 | 每10轮对话或每5分钟自动执行一次阶段性保存（upsert到Supermemory（已停用）) |
+| **学员隐私合规**：Supermemory存储位置未知（已停用），可能违反个保法 | 低 | 高 | Obsidian 副本存本地；确认 Supermemory（已停用）数据驻留区域；学员可请求删除 |
 
 ---
 
@@ -279,7 +279,7 @@ frameworks_applied:
 ```
                       ┌─────────────────────────────────────┐
                       │           记忆中台 (Memory)           │
-                      │  Supermemory + Obsidian 作为共享记忆   │
+                      │  Obsidian 作为共享记忆（原Supermemory已停用）   │
                       └──────┬──────────┬──────────┬────────┘
                              │          │          │
               ┌──────────────┼──────────┼──────────┼──────────────┐
@@ -332,7 +332,7 @@ Day 10+: T切换教学重心到几何，但每3天穿插一道代数综合题（
 
 | 阶段 | 周次 | 重点 |
 |------|------|------|
-| 核心回路 | 第1周 | 记忆中间件注入+查询、飞书触点打通、Supermemory存/读 |
+| 核心回路 | 第1周 | 记忆中间件注入+查询、飞书触点打通、Supermemory（已停用）存/读 |
 | 记忆体验 | 第2周 | "被记住"问候语设计、画像可视化（可选飞书卡片）、学员反馈采集 |
 | 教学联动 | 第3周 | 薄弱点关联推荐、助教简报/诊断摘要输出 |
 
@@ -342,15 +342,15 @@ Day 10+: T切换教学重心到几何，但每3天穿插一道代数综合题（
 
 ```
 FastAPI (记忆中间件)
-├── /api/query_memory  — Supermemory 查询 + 降级逻辑
-├── /api/save_memory   — 异步 upsert 到 Supermemory + 触发 Obsidian 同步
+├── /api/query_memory  — Supermemory（已停用）查询 + 降级逻辑
+├── /api/save_memory   — 异步 upsert 到 Supermemory（已停用）+ 触发 Obsidian 同步
 ├── /api/diagnose      — (P1) session 分析 → 掌握矩阵
 └── /api/remind        — (P3) 督学提醒任务
 
 飞书自定义机器人
 └── 消息事件 → webhook → 记忆中间件 → LLM → 回复
 
-Supermemory
+Supermemory（已停用）
 └── tag=edu, 每个 open_id 一条 JSON 文档
 
 Obsidian (可选同步)

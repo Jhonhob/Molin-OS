@@ -150,9 +150,9 @@ trigger: 所有客服相关任务（消息检测/回复生成/工单处理）必
 
 ## 六、参考
 
-- 回复模板库：`supermemory_search("客服话术模板")`
-- 商品信息：`supermemory_search("闲鱼商品信息")`
-- 售后政策：`supermemory_search("退货退款政策")`
+- 回复模板库：参考客服话术文档
+- 商品信息：参考商品目录
+- 售后政策：参考售后政策文档
 - Agent 模板：`skill_view('agent-sop-template')`
 
 ---

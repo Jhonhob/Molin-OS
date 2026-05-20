@@ -21,7 +21,7 @@ Class-level skill for discovering and evaluating open-source alternatives to a g
 ### 1. Locate the target project on GitHub
 - Navigate to `github.com/search?q=<project-name>&type=repositories&s=stars&o=desc`
 - Identify the canonical repo (highest stars, most active)
-- Note if the project has moved orgs (e.g. dhravya/supermemory → supermemoryai/supermemory)
+- Note if the project has moved orgs (e.g. dhravya/supermemory → supermemoryai/supermemory — now decommissioned)
 
 ### 2. Discover alternatives
 - Search GitHub with relevant keywords: `[category] alternative`, `[tool-name] alternative`, `open source [category]`
@@ -50,7 +50,9 @@ Some projects claim "free & open-source" but depend on a paid cloud API to funct
 - Look for terms like "API key required" in .env.example or setup docs
 - Distinguish: "self-hosted" (no external dependency) vs "MCP/plugin wrapping a cloud API" (still dependent on cloud provider)
 - When the README says "completely free", verify by checking the parent company's /pricing page — the free tier may have hard usage caps
-- Example pattern: supermemory-mcp is itself free and open-source, but requires a Supermemory API key whose free tier ($5/mo built-in) is capped and can return 402 Payment Required
+- Example pattern: ~~supermemory-mcp (Supermemory has been decommissioned)~~
+
+> ⚠️ Note: Supermemory has been decommissioned. This example is kept for historical reference.
 
 ### 4. Synthesize comparison
 - Structure by user interest (feature comparison, pricing, platform support)

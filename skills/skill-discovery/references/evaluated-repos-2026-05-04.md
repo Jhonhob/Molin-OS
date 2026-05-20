@@ -36,7 +36,7 @@ User: 尹建业 | Channel: Feishu DM | Skills final: 219
 | 20 subsidiaries.toml | (reference only, trigger-based routing) |
 
 ## Skipped/Evaluated-Only (13 projects)
-openclaw/openclaw, claw-code, ClawTeam, paperclip (404), supermemory, claude-mem ×2, lightpanda, xiaohongshu-cli, OpenCLI, Deep-Live-Cam, claude-code-best, Agent-Reach
+openclaw/openclaw, claw-code, ClawTeam, paperclip (404), supermemory (decommissioned), claude-mem ×2, lightpanda, xiaohongshu-cli, OpenCLI, Deep-Live-Cam, claude-code-best, Agent-Reach
 
 ## Key Techniques Learned
 1. Large repo clone: git clone --depth 1 --filter=blob:none --sparse → sparse-checkout → GitHub API tree → raw fetch

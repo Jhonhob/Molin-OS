@@ -54,7 +54,7 @@
 | 推理后端 | DeepSeek V4 (主) · DashScope (视觉/TTS) · OpenRouter (免费路由) |
 | 执行引擎 | `python -m molib` — 纯 Python stdlib 优先 |
 | 设计工程 | Open Design v0.6.0 (Node.js daemon :55888) — 149 设计系统 × 134 技能 |
-| 记忆系统 | Hermes Memory + ChromaDB 向量库 + SuperMemory 云端 |
+| 记忆系统 | Hermes Memory + ChromaDB 向量库 |
 | 知识管理 | Obsidian (iCloud 同步) — 7 目录结构 |
 | 部署 | macOS M2 (8GB) · Python 3.11 · Node 24 · Git(Hub) |
 
@@ -329,7 +329,7 @@ python -m molib avatar check
 
 ## 八、记忆 & 知识管理
 
-### 三层记忆
+### 三层记忆（原SuperMemory已停用）
 
 ```
 L1: Hermes Memory (SQLite FTS5)
@@ -338,11 +338,11 @@ L1: Hermes Memory (SQLite FTS5)
 L2: ChromaDB 向量库
     └── ~/.hermes/memory/chroma_db/ · 语义检索
 
-L3: SuperMemory 云端
-    └── app.supermemory.ai · GitHub 雷达日报同步
+L3: [已停用 — SuperMemory 云端]
+    └── [服务已关闭]
 ```
 
-### Obsidian 知识库
+### Obsidian 知识库（原SuperMemory已停用）
 
 ```
 Vault: ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/
@@ -358,15 +358,13 @@ Vault: ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/
   99-Templates/  — 模板
 ```
 
-### 同步管道
+### 同步管道（原SuperMemory同步已停用）
 
 ```bash
 # 报告 → Obsidian
 python3 ~/Molin-OS/scripts/obsidian_sync.py
-
-# 报告 → SuperMemory
-python3 ~/.hermes/scripts/supermemory_sync.py
 ```
+
 
 ---
 

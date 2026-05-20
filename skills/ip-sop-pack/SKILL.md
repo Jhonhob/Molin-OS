@@ -153,7 +153,7 @@ gatekeeper-sop 终检
 
 ## 七、参考
 
-- 品牌色卡：`supermemory_search("墨麟品牌色彩体系")`
-- Logo 文件：`supermemory_search("品牌资产文件路径")`
-- 商标信息：`supermemory_search("已注册商标")`
-- 海外品牌名：`supermemory_search("墨麟海外品牌名")`
+- 品牌色卡：参考品牌指南
+- Logo 文件：参考品牌资产
+- 商标信息：参考商标注册文件
+- 海外品牌名：参考品牌本地化文档

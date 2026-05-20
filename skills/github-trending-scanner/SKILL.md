@@ -116,15 +116,15 @@ Use Feishu CEO specification (no Markdown):
 - Cron: `0 8 * * *` (每日 08:00)
 - 交付: 飞书自动化控制台群 (oc_94c87f141e118b68c2da9852bf2f3bda) + 当前对话
 - 归档: `~/.hermes/daily_reports/github_radar_{date}.md`
-- 云端: SuperMemory (app.supermemory.ai) — 通过 supermemory_sync.py 自动推送
+- ~~云端: SuperMemory (app.supermemory.ai) — 已废弃~~
 
 ## Archive & Sync Pipeline
 
 每次扫描完成后自动执行：
 1. `write_file` → `~/.hermes/daily_reports/github_radar_{YYYY-MM-DD}.md`
-2. `terminal` → `python3 ~/.hermes/scripts/supermemory_sync.py ~/.hermes/daily_reports/github_radar_{date}.md`
+2. ~~`terminal` → `python3 ~/.hermes/scripts/supermemory_sync.py` — 已废弃~~
 3. 报告尾部显示存档状态（本地路径 + 云端同步状态）
 
 存档查看：
 - 本地: `ls ~/.hermes/daily_reports/github_radar_*.md`
-- 云端: https://app.supermemory.ai/?view=list
+- ~~云端: https://app.supermemory.ai/?view=list — 已废弃~~

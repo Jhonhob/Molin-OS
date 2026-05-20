@@ -85,8 +85,8 @@ class QualityGate:
         质量审查 — 降级为纯规则评分。
         原实现使用 ModelRouter 调用 LLM 审查，现已替换为规则评分。
 
-        TODO: 如需要 LLM 审查，可取消注释下方代码并使用 requests 调用
-              https://api.supermemory.ai 或其他 LLM API 端点。
+        TODO: 如需要 LLM 审查，可取消注释下方代码并使用 requests 调用 LLM API。
+              （原 supermemory.ai 端点已停用）
         """
         try:
             # 原 LLM 审查实现（已禁用）：

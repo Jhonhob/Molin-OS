@@ -31,11 +31,11 @@ trigger: 所有内容生产任务（文案/脚本/SEO/分发前）必须加载�
 ```
 
 ### Step 1: 选题确认
-输入：Lead SOP 输出的选题池（`relay/` 或 supermemory）
+输入：Lead SOP 输出的选题池（`relay/`）
 检查项：
 - 热度评分 ≥ 70/100
 - 与品牌/产品相关度 ≥ 60/100
-- 未被本周已发布内容覆盖（检查 Obsidian `报告/内容Agent·发布排期.md`，或 `supermemory_search("已发布内容")`）
+- 未被本周已发布内容覆盖（检查 Obsidian `报告/内容Agent·发布排期.md`）
 - 有差异化角度（非简单复制竞品）
 
 ### Step 2: 3秒钩子
@@ -59,7 +59,7 @@ trigger: 所有内容生产任务（文案/脚本/SEO/分发前）必须加载�
 | SEO | 10% | 20% | 50% | 5% | 15% |
 
 ### Step 4: 正文撰写
-- 遵循墨麟品牌调性（参考品牌指南，调用 supermemory 获取）
+- 遵循墨麟品牌调性（参考品牌指南）
 - 每段不超过 3 行（手机阅读优化）
 - 关键数据必须标注来源
 - 避免绝对化用语（"最"、"第一"、"绝对"、"100%有效"）
@@ -374,8 +374,8 @@ QA评分：{分数}
 ## 七、引用
 
 - 22:00 复盘详细执行步骤：`skill_view('content-sop-pack', 'references/daily-review-execution.md')`
-- 品牌调性：`supermemory_search("墨麟品牌调性")` 获取
-- 历史内容：`session_search(topic)` 或 `supermemory_search("已发布内容")`
+- 品牌调性：参考品牌指南
+- 历史内容：`session_search(topic)`
 - 平台规范：调用对应平台的 skill 获取最新规则
 - 小红书/抖音详细流程：详见本 SOP 第 5-6 节
 - Bilibili/微信公众号/知乎/通用策略：详见本 SOP 第 8-11 节

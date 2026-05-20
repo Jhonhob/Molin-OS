@@ -12,7 +12,7 @@ frameworks_applied:
 
 > **TL;DR — 核心结论**
 >
-> Obsidian vault + Supermemory 双通道架构是墨麟OS记忆管线的核心写入路径。Agent产出通过4个同步脚本（sync_memory.py / obsidian_sync.py / collect_architecture.py / relay_to_obsidian.py）自动推送到Vault对应目录和Supermemory语义索引。每小时整点由Cron Job `210cba244f36` 触发管道执行，确保Agent记忆在任意时刻可在双通道中检索。
+> Obsidian vault 是墨麟OS记忆管线的核心写入路径。Agent产出通过4个同步脚本（sync_memory.py / obsidian_sync.py / collect_architecture.py / relay_to_obsidian.py）自动推送到Vault对应目录。每小时整点由Cron Job `210cba244f36` 触发管道执行，确保Agent记忆在任意时刻可在Obsidian中检索。原Supermemory语义索引通道已停用。
 
 ---
 
@@ -20,9 +20,7 @@ frameworks_applied:
 
 ### S 情境
 
-墨麟OS已接入5个Agent（玄骨中枢、元瑶教育、银月传媒、梅凝出海、宋玉创业），每天自动产生数十份文档。这些文档需要同时满足两种检索需求：
-- **精确检索**：Agent需要全文搜索已写入的产出、配置、规范——用 Obsidian 的文件系统和全文搜索实现
-- **语义检索**：Agent需要按语义相似度召回相关记忆，不依赖文件名和关键词——用 Supermemory 向量数据库实现
+墨麟OS已接入5个Agent（玄骨中枢、元瑶教育、银月传媒、梅凝出海、宋玉创业），每天自动产生数十份文档。这些文档需要通过Obsidian的文件系统和全文搜索实现精确检索。（原Supermemory语义检索通道已停用）
 
 ### C 冲突
 
@@ -31,36 +29,36 @@ frameworks_applied:
 | # | 尝试方案 | 失败原因 | 后果 |
 |---|---------|---------|------|
 | 1 | 仅用 Obsidian vault | 文件系统无向量能力，Agent无法按语义召回旧记忆 | RAG召回率<50%，Agent重复询问相同问题 |
-| 2 | 仅用 Supermemory | API调用和网络延迟导致文档写入不可靠；无本地离线访问 | 网络中断时Agent完全失忆 |
+| 2 | 仅用 Obsidian（原Supermemory已停用） | — | — |
 | 3 | 纯 Git 版本控制 | 写入->commit->push 延迟高，文件系统无结构化索引 | 非开发人员无法使用，检索体验差 |
 | 4 | 双通道但无自动同步 | Agent需手动写入两个通道，经常遗漏一个通道 | 数据不一致，一个通道的更新另一个通道没有 |
 
 ### Q 疑问
 
-如何在Agent生态持续扩张的情况下，确保每一次产出**同时、自动、可靠**地写入语义检索（Supermemory）和文件系统（Obsidian vault）两个通道，且在任意一个通道出现故障时不影响另一个？
+如何在Agent生态持续扩张的情况下，确保每一次产出可靠地写入Obsidian vault文件系统？（原Supermemory语义检索通道已停用）
 
 ### A 解答
 
-**每整点 Cron 触发的四步同步管道** + **每个脚本同时写入两个通道** + **定稿级别的幂等设计和冲突处理**。下文详细说明。
+**每整点 Cron 触发的同步管道** + **幂等设计和冲突处理**。下文详细说明。原Supermemory通道已停用。
 
 ---
 
-## 决策记录：为什么 Supermemory + Obsidian 双通道？
+## 决策记录：为什么 Obsidian 单通道？
 
 | 维度 | 选定方案：双通道 | 被拒绝方案 1：Notion | 被拒绝方案 2：单向量库 | 被拒绝方案 3：Git-only |
 |------|-----------------|---------------------|----------------------|----------------------|
-| **检索方式** | 全文搜索 + 语义搜索 | 仅全文搜索（API受限） | 仅语义搜索 | 仅grep全文搜索 |
-| **离线访问** | ✅ Obsidian本地文件 | ❌ 需要网络 | ❌ 需要网络 | ✅ 本地仓库 |
-| **API可靠性** | ✅ 双通道互为备份 | ❌ 单点故障 | ❌ 单点故障 | ✅ 本地操作 |
-| **写入延迟** | 秒级（本地文件） | 秒级但有API限流 | 秒级但有API限流 | 分钟级（commit+push） |
-| **非技术用户** | ✅ Obsidian GUI | ✅ Notion GUI | ❌ 无GUI | ❌ 需Git知识 |
-| **向量检索** | ✅ Supermemory | ❌ 需额外插件 | ✅ 本身即有 | ❌ 无法实现 |
-| **成本** | 免费（本地）+ API | 订阅制 | API调用费用 | 免费 |
-| **Agent写入便利性** | ✅ 本地文件直接写 | ❌ API调用限制 | ✅ API直接写 | ❌ Git封装复杂 |
-| **跨设备同步** | ✅ iCloud + Supermemory API | ✅ 云服务 | ✅ API | ❌ 需手动push |
-| **长期归档** | ✅ 永久本地存储 | ❌ 导出麻烦 | ❌ 依赖服务存续 | ✅ Git历史 |
+| **检索方式** | 全文搜索 | 仅全文搜索（API受限） | 仅语义搜索 | 仅grep全文搜索 |
+|| **离线访问** | ✅ Obsidian本地文件 | ❌ 需要网络 | ❌ 需要网络 | ✅ 本地仓库 |
+|| **API可靠性** | ✅ 本地操作 | ❌ 单点故障 | ❌ 单点故障 | ✅ 本地操作 |
+|| **写入延迟** | 秒级（本地文件） | 秒级但有API限流 | 秒级但有API限流 | 分钟级（commit+push） |
+|| **非技术用户** | ✅ Obsidian GUI | ✅ Notion GUI | ❌ 无GUI | ❌ 需Git知识 |
+|| **向量检索** | ❌ Obsidian全文搜索 | ❌ 需额外插件 | ✅ 本身即有 | ❌ 无法实现 |
+|| **成本** | 免费（本地） | 订阅制 | API调用费用 | 免费 |
+|| **Agent写入便利性** | ✅ 本地文件直接写 | ❌ API调用限制 | ✅ API直接写 | ❌ Git封装复杂 |
+|| **跨设备同步** | ✅ iCloud | ✅ 云服务 | ✅ API | ❌ 需手动push |
+|| **长期归档** | ✅ 永久本地存储 | ❌ 导出麻烦 | ❌ 依赖服务存续 | ✅ Git历史 |
 
-**核心原则**：双通道互为冗余且不共享故障域。Obsidian 通道是"权威副本"（source of truth），Supermemory 通道是"检索加速层"。两者通过 `agent_sync=true` 标志关联。
+**核心原则**：Obsidian 通道是唯一记忆存储层。原Supermemory检索加速层已停用。
 
 ---
 
@@ -92,7 +90,7 @@ frameworks_applied:
 写入目标
   Obsidian：产出/{agent}｜{source}_{hash}.md
     - 文件名示例：产出/元瑶｜memory_a1b2c3d4.md
-  Supermemory：按 container_tag 分类，metadata 包含 source/hash
+  # Supermemory：按 container_tag 分类，metadata 包含 source/hash（已停用）
 
 同步策略
   hash-based 增量同步：每条记忆内容取 SHA256[:16] 作为唯一ID
@@ -100,8 +98,8 @@ frameworks_applied:
 
 前置依赖
   - ~/.hermes/profiles/{agent}/memories/MEMORY.md 存在
-  - SUPERMEMORY_API_KEY 环境变量或 ~/.zprofile 中配置
-  - supermemory 第三方 SDK 可用（pip install supermemory）
+  - # SUPERMEMORY_API_KEY 环境变量（已停用）
+  - # supermemory 第三方 SDK（已停用）
 
 输出写入目录表
   Obsidian Vault 路径                                读取源
@@ -135,7 +133,7 @@ frameworks_applied:
 写入目标
   （设计目标）
   Obsidian：向 vault 中 Agent 生成的报告文档推送到对应目录
-  Supermemory：同步到语义索引
+  # Supermemory：同步到语义索引（已停用）
 
 前置依赖
   - Agent 报告产出目录存在
@@ -152,18 +150,18 @@ frameworks_applied:
 
 调用方式
   由 molin-sync-all.sh 调用
-  > export SUPERMEMORY_API_KEY && /opt/homebrew/bin/python3.11 "$SCRIPTS_DIR/collect_architecture.py"
+  > # export SUPERMEMORY_API_KEY（已停用）
 
 参数
   无（当前不支持 --dry-run）
 
 写入目标
   Obsidian vault：系统层/ 和 业务层/ 下的架构决策文档
-  Supermemory：架构知识的语义索引
+  # Supermemory：架构知识的语义索引（已停用）
 
 前置依赖
   - Agent 架构记忆文件存在
-  - SUPERMEMORY_API_KEY 有效
+  - # SUPERMEMORY_API_KEY（已停用）
 ```
 
 ### 4. relay_to_obsidian.py — Relay产出写入
@@ -190,7 +188,7 @@ frameworks_applied:
 写入目标
   Obsidian：知识/玄骨｜每日·Arxiv论文.md
             知识/玄骨｜每日·副业价格监控.md
-  Supermemory：按内容分类存储
+  # Supermemory：按内容分类存储（已停用）
 
 同步策略
   fingerprint-based 增量同步：(mtime_ns, size) 作为指纹
@@ -199,7 +197,7 @@ frameworks_applied:
 
 前置依赖
   - relay 目录存在且有新文件
-  - SUPERMEMORY_API_KEY（超级记忆同步时）
+  - # SUPERMEMORY_API_KEY（超级记忆同步时，已停用）
 ```
 
 ---
@@ -245,12 +243,12 @@ molin-sync-all.sh 入口
 
 ## 目录映射表：哪个脚本写哪个Vault目录
 
-| 脚本 | 写入的Obsidian目录 | 写入的Supermemory容器 | iCloud同步 |
+| 脚本 | 写入的Obsidian目录 | iCloud同步 |
 |------|-------------------|----------------------|-----------|
-| `sync_memory.py` | `产出/{agent}｜{source}_{hash}.md` | `container_tag={agent}` | ✅ 在vault路径下，iCloud自动同步 |
-| `obsidian_sync.py` ⏸️ | 待定（升级后确定） | 待定 | ✅ 同 |
-| `collect_architecture.py` | `系统层/`、`业务层/` 下的架构文档 | `architecture` | ✅ 同 |
-| `relay_to_obsidian.py` | `知识/玄骨｜每日·Arxiv论文.md`、`知识/玄骨｜每日·副业价格监控.md` | 按内容分类 | ✅ 同 |
+| `sync_memory.py` | `产出/{agent}｜{source}_{hash}.md` | ✅ 在vault路径下，iCloud自动同步 |
+| `obsidian_sync.py` ⏸️ | 待定（升级后确定） | ✅ 同 |
+| `collect_architecture.py` | `系统层/`、`业务层/` 下的架构文档 | ✅ 同 |
+| `relay_to_obsidian.py` | `知识/玄骨｜每日·Arxiv论文.md`、`知识/玄骨｜每日·副业价格监控.md` | ✅ 同 |
 
 > 所有写入的 Obsidian 路径均在 `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/` 下，
 > 因此所有文件自动通过 iCloud 同步到所有设备。
@@ -284,7 +282,7 @@ T+0s  ─ [Step 1] sync_memory.py 运行
           │     │ ## 记忆内容                          │
           │     │ 用户咨询关于课程排期调整...          │
           │     └─────────────────────────────────────┘
-          ├── 写入 Supermemory：client.documents.add(content=..., container_tags=["edu"])
+          ├── 写入 Supermemory（已停用）：client.documents.add(...)
           ├── 更新 sync_state.json：添加 hash a1b2c3d4
           └── 输出: "[完成] 总计 N 条记忆已管理"
 
@@ -310,8 +308,8 @@ T+10s ─ iCloud 自动同步
 T+30s ─ Obsidian 索引更新
           └── 新文件出现在 Obsidian 文件列表中，全文索引立即可搜索
 
-T+5min ─ 其他 Agent（如墨码开发）通过 Supermemory API 查询相关记忆
-          └── Supermemory 语义检索返回该条记忆（命中）
+T+5min ─ 其他 Agent（如墨码开发）通过 Obsidian 全文搜索查询相关记忆
+          └── Obsidian 全文检索返回该条记忆（原Supermemory语义检索已停用）
 ```
 
 ---
@@ -322,9 +320,9 @@ T+5min ─ 其他 Agent（如墨码开发）通过 Supermemory API 查询相关�
 
 | 脚本 | 故障模式 | 影响 | 自动恢复 | 人工介入 |
 |------|---------|------|---------|---------|
-| `sync_memory.py` | Supermemory API 超时 | Obsidian写入成功，Supermemory缺同步 | 下次整点重试时自动补同步 | 如果连续3次失败，飞书告警 |
+| `sync_memory.py` | Supermemory API 超时（已停用） | Obsidian写入成功，Supermemory已不再使用 | 不适用 | 不适用 |
 | `sync_memory.py` | 记忆文件不存在 | 跳过该Agent，不影响其他Agent | 下次整点自动再试 | — |
-| `sync_memory.py` | Obsidian写入失败（磁盘满/权限） | Supermemory写入成功，本地缺文件 | 下次整点重试 | 紧急：检查磁盘+权限 |
+| `sync_memory.py` | Obsidian写入失败（磁盘满/权限） | 本地缺文件（Supermemory已停用） | 下次整点重试 | 紧急：检查磁盘+权限 |
 | `relay_to_obsidian.py` | relay 目录不存在 | 跳过，输出"无新内容" | 下次自动 | — |
 | `relay_to_obsidian.py` | tracker.json 损坏（JSON解析失败） | 从空tracker重新开始，可能导致重复写入 | 自动重建空tracker | — |
 | `collect_architecture.py` | 架构记忆文件损坏 | 跳过该次采集 | 下次自动 | 检查架构记忆文件 |
@@ -344,7 +342,7 @@ T+5min ─ 其他 Agent（如墨码开发）通过 Supermemory API 查询相关�
 |------|---------|------|---------|
 | Cron Job 连续1次失败 | T4（通知） | 飞书消息 | last_status = error |
 | Cron Job 连续3次失败 | T3（告警） | 飞书告警 | 3次连续的 error |
-| Supermemory API 不可用 | T4（通知） | 脚本输出日志 | sync_to_supermemory 返回 0 |
+| Supermemory API 不可用（已停用） | — | — | — | 不适用—服务已关闭 |
 | 磁盘空间 < 500MB | T2（紧急） | 飞书 + 系统通知 | 系统diskutil检测 |
 | iCloud 同步冲突 | T4（通知） | 脚本日志 | 文件名被追加冲突后缀 |
 
@@ -370,7 +368,7 @@ T+5min ─ 其他 Agent（如墨码开发）通过 Supermemory API 查询相关�
 |------|------|------|------|------|
 | 2026-05-18 | 同步脚本未执行 | Job paused | 系统迁移时手动暂停 | 等待恢复 |
 | 2026-05-16 | 重复同步 | 文件多份 | sync_state.json 未正确持久化 | 修复 JSON 写入 |
-| 2026-05-15 | Supermemory API key 缺失 | Supermemory通道无同步 | $HOME 重定向污染环境变量 | 增加 .zprofile fallback |
+| 2026-05-15 | Supermemory API key 缺失（历史问题，已停用） | Supermemory通道已关闭 | $HOME 重定向污染环境变量 | 环境已清理 |
 | 2026-05-15 | 输出路径到 02_Agent_Outputs/ | 文件不可检索 | 脚本硬编码废弃路径 | 更新为四层目录体系 |
 
 ---
@@ -381,7 +379,7 @@ T+5min ─ 其他 Agent（如墨码开发）通过 Supermemory API 查询相关�
 |------|------|------|------|---------|---------|
 | **Vault磁盘满** | 低 → 中 | 所有Obsidian写入失败 | **P1** | 系统diskutil告警（<1GB时触发） | 自动清理~/.hermes/cache和~/.hermes/logs；紧急：移至外部磁盘 |
 | **iCloud同步冲突** | 中 | 同一文件在多设备同时修改，产生冲突副本 | **P2** | iCloud同步完成后检查 `.md` 冲突文件后缀 | `output_writer.py` 幂等检查避免并发写入；冲突文件手动合并 |
-| **Supermemory API 不可用** | 低 | 语义检索通道中断 | **P2** | 脚本内 try/except 捕获 | 降级为仅 Obsidian 写入，下次重试自动补同步 |
+| **Supermemory API 不可用（已停用）** | 低（已关闭） | 语义检索通道已关闭 | **P2** | — | 仅使用 Obsidian |
 | **Cron Job 静默暂停** | 中 | 记忆不更新 | **P1** | 双保险：Cron last_status + 飞书每日健康检查（待实现） | 手动 `cron job resume 210cba244f36`；加飞线 ping 检查 |
 | **sync_state.json 损坏** | 低 | 重复写入，文件数膨胀 | **P3** | JSON解析失败时自动重建 | 重建为空tracker，容忍少量重复 |
 | **$HOME 被 Hermes 重定向** | 中 | 脚本读取错误的 $HOME 路径 | **P2** | 脚本硬编码 `/Users/laomo` 绕过 | 所有路径已硬编码绝对路径 |
@@ -423,5 +421,5 @@ T+5min ─ 其他 Agent（如墨码开发）通过 Supermemory API 查询相关�
 
 | 日期 | 版本 | 修改内容 | 修改原因 |
 |------|------|---------|---------|
-| 2026-05-19 | v2.0 | 1. 新增SCQA开篇（为什么双通道）<br>2. 新增决策记录表（双通道 vs Notion/单向量库/Git-only）<br>3. 4个同步脚本各增加完整命令签名、参数、读写目录、依赖<br>4. 新增Crontab配置表（全量Job清单 + 管道流程图）<br>5. 新增目录映射表（脚本→Vault目录→Supermemory容器）<br>6. 新增完整同步周期场景（飞书→4脚本→Vault 全链路追踪）<br>7. 新增错误处理表（故障模式×7 + 重试策略 + 告警机制）<br>8. 新增同步数据（运行频次、历史问题）<br>9. 新增风险登记表（8项风险 + 兜底方案）<br>10. 新增交叉引用表（定时任务/内容规范/Agent写入标准）<br>11. 补充写入规范小节，链接到关联文档 | 系统层架构演进专项升级：补齐SCQA框架、决策记录、脚本规范、全场景追踪、风险兜底，使工作流标准达到可执行、可审计、可故障排查水平 |
+| 2026-05-19 | v2.0 | 1. 新增SCQA开篇（为什么单通道）<br>2. 新增决策记录表（Obsidian vs Notion/单向量库/Git-only）<br>3. 4个同步脚本各增加完整命令签名、参数、读写目录、依赖<br>4. 新增Crontab配置表（全量Job清单 + 管道流程图）<br>5. 新增目录映射表（脚本→Vault目录）<br>6. 新增完整同步周期场景（飞书→4脚本→Vault 全链路追踪）<br>7. 新增错误处理表（故障模式×7 + 重试策略 + 告警机制）<br>8. 新增同步数据（运行频次、历史问题）<br>9. 新增风险登记表（8项风险 + 兜底方案）<br>10. 新增交叉引用表（定时任务/内容规范/Agent写入标准）<br>11. 补充写入规范小节，链接到关联文档<br>12. 移除Supermemory引用（服务已停用） | 系统层架构演进专项升级 + Supermemory停用清理 |
 | 2026-05-19 | v1.0 | 初始版本：双通道架构描述 + 4脚本清单 + 触发模式 + 写入规范 | 创建Obsidian工作流标准 |

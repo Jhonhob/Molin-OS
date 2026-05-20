@@ -151,5 +151,5 @@ voice-sop 播客版制作
 ## 七、参考
 
 - TTS 配置：`text-to-speech` tool 配置
-- BGM 库：`supermemory_search("背景音乐库")`
+- BGM 库：参考背景音乐库文档（supermemory已废弃）
 - 配音规范：各 skill 的具体参数

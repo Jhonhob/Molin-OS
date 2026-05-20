@@ -35,7 +35,7 @@ Full evaluation of 24 GitHub repos requested by 尹建业 (Feishu DM). See conve
 | `paperclipai/paperclip` | 404 — repo deleted |
 | `thedotmack/claude-mem` | Hermes has built-in memory |
 | `moye-tech/claude-mem` | Same — memory fork |
-| `supermemoryai/supermemory` | External service, Hermes has built-in |
+| `supermemoryai/supermemory` | External service — decommissioned |
 | `NousResearch/hermes-agent` | The platform we run on |
 | `jackwener/OpenCLI` | Alpha toy, 0 stars, no anti-bot |
 | `jackwener/xiaohongshu-cli` | Beta, no DM support, last commit June 2025 |

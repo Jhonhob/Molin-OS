@@ -87,7 +87,7 @@ next_steps: []
 ### Step 5: 经验蒸馏
 
 成功实验 → 提炼为 skill 或 SOP 更新
-失败实验 → 记录教训到 supermemory，避免重复
+失败实验 → （已废弃 supermemory，改记录到 local 存档）
 
 蒸馏流程：
 ```
@@ -142,7 +142,7 @@ memory(action='add') → 记录教训 "实验AD-xxx失败原因：..."
 ```
 实验结论
     ↓ 经验蒸馏（Step 5）
-supermemory / skill 更新
+supermemory ~~已废弃~~
     ↓
 其他 Agent 可引用
 ```
@@ -245,6 +245,6 @@ QA 循环 (gatekeeper-sop 检查)
 ## 八、参考
 
 - 实验存档：`relay/autodream/`
-- 历史实验：`supermemory_search("autodream experiments")`
+- 历史实验：参考实验存档（supermemory已废弃）
 - 技能创建：`skill_manage(action='create')`
 - 记忆管理：`memory(action='add')`

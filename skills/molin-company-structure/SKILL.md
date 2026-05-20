@@ -247,7 +247,7 @@ AI工具链建设·Prompt模板·Hermes技能市场·MLOps基础设施。为墨�
 **L2成本中心 · ¥100/月预算**
 
 经验沉淀·SOP管理·知识图谱·记忆系统·技能发现。
-- **技能领域:** `self-learning-loop`·`skill-discovery`·`molin-memory`·`supermemory`·`claude-mem`·`obsidian`·`note-taking/*`
+- **技能领域:** `self-learning-loop`·`skill-discovery`·`molin-memory`·`claude-mem`·`obsidian`·`note-taking/*`
 - **目录:** `internal/knowledge/`
 
 ---

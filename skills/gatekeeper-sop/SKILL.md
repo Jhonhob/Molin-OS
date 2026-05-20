@@ -270,7 +270,7 @@ Gatekeeper 的检查范围延伸到 vault 目录结构。`scripts/vault_health_c
 所有 Agent 输出写入前必须经过记忆分层检查：
 
 - L1 工作记忆 → 不进 Obsidian（只在飞书对话/Session）
-- L2 情节记忆 → Supermemory（30天未调用→蒸馏到 L3）
+- L2 情节记忆 → （已废弃）
 - L3 语义记忆 → Obsidian `产出/`（平坦，永久）
 - L4 程序记忆 → skill 文件（版本化管理）
 
@@ -287,7 +287,7 @@ Gatekeeper 拦截的内容自动触发 Escalation：
 ## 五、参考
 
 - QA 评分细化规则：各 Agent 专属 QA SOP
-- 品牌合规详情：`supermemory_search("墨麟品牌合规")`
+- 品牌合规详情：参考品牌合规文档
 - 平台最新规则：调用平台对应的 skill
 - Agent 模板：`skill_view('agent-sop-template')`
 - 治理级别：`config/governance.yaml`

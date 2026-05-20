@@ -250,6 +250,6 @@ R > 30天 且 F < 2 → 自动标记「流失预警」
 - SCRM 工具选型：微伴助手 / 尘锋 SCRM / 句子互动
 - 企微 API 文档：企业微信官方开发文档
 - 私域数据存档：vault `报告/玄骨｜私域日报·{date}.md`
-- 记忆体系：`supermemory_search("私域运营")` 获取历史策略
+- 记忆体系：参考私域运营文档
 - SOP 模板：`skill_view('agent-sop-template')`
 - 门禁检查：所有对外推送内容必须先过 `skill_view('gatekeeper-sop')`
