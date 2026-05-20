@@ -107,7 +107,7 @@ def cmd_help(args: list[str]) -> dict:
         "xianyu reply --msg-id ID --content C": "回复闲鱼消息（墨声客服）",
         "intel reach --url URL": "社交爬虫（基于Agent-Reach⭐19K）",
         "intel trending": "热门趋势（墨研竞情）",
-        "intel predict --topic T --context C": "群体智能预测（基于MiroFish⭐59K）",
+        "intel predict --topic T --context C --mode quick|full": "群体智能预测（MiroFish⭐59K）: quick=快速LLM推演(默认), full=完整管线+OASIS模拟",
         "intel save --topic T --summary S": "保存情报（墨研竞情）",
         "intel firecrawl scrape --url URL": "Firecrawl单页抓取→Markdown（墨研竞情）",
         "intel firecrawl search --query Q": "Firecrawl网络搜索（墨研竞情）",
@@ -252,6 +252,7 @@ async def cmd_intel(args: list[str]) -> dict:
         topic = ""
         context = ""
         num_agents = 5
+        mode = "quick"  # quick=LLM直接推演(默认), full=完整管线(实体提取+OASIS模拟)
 
         i = 0
         while i < len(rest):
@@ -264,19 +265,23 @@ async def cmd_intel(args: list[str]) -> dict:
             elif rest[i] == "--agents" and i + 1 < len(rest):
                 num_agents = int(rest[i + 1])
                 i += 2
+            elif rest[i] == "--mode" and i + 1 < len(rest):
+                mode = rest[i + 1]
+                i += 2
             else:
                 i += 1
 
         if not topic:
             return {"error": "请指定 --topic 参数"}
         from molib.intelligence.predictor import predict
-        result = await predict(topic, context, num_agents)
+        result = await predict(topic, context, num_agents, mode=mode)
         return {
             "action": "prediction",
             "topic": result["topic"],
             "num_agents": result["num_agents"],
-            "final_report": result["final_report"],
-            "confidence_avg": round(result["confidence_avg"], 2),
+            "run_mode": result.get("运行模式", mode),
+            "final_report": result.get("final_report", result),
+            "confidence_avg": round(result.get("confidence_avg", 0), 2),
         }
 
     if subcmd == "save":

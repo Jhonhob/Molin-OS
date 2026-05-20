@@ -1,0 +1,57 @@
+{
+  "zh": {
+    "language": "中文",
+    "code": "zh",
+    "progress": {
+      "startBuildingGraph": "开始构建图谱...",
+      "graphCreated": "图谱已创建: {graphId}",
+      "ontologySet": "本体已设置",
+      "textSplit": "文本已分块: {count}块",
+      "sendingBatch": "发送批次 {current}/{total} ({chunks}块)",
+      "batchFailed": "批次 {batch} 发送失败: {error}",
+      "waitingZepProcess": "等待Zep处理完成...",
+      "waitingEpisodes": "等待{count}个episode处理中...",
+      "episodesTimeout": "episode超时: 已完成{completed}/{total}",
+      "zepProcessing": "Zep处理中: {completed}/{total}, 待处理 {pending}, 已耗时{elapsed}秒",
+      "noEpisodesWait": "没有需要等待的episode",
+      "processingComplete": "处理完成: {completed}/{total}",
+      "fetchingGraphInfo": "获取图谱信息..."
+    },
+    "console": {
+      "zepToolsInitialized": "Zep检索工具服务已初始化",
+      "zepRetryAttempt": "第{attempt}次尝试失败，{delay}秒后重试...",
+      "zepAllRetriesFailed": "{operation} 在{retries}次尝试后失败",
+      "graphSearch": "搜索图谱 {graphId}...",
+      "graphSearchOp": "搜索图谱 {graphId}"
+    },
+    "api": {
+      "zepApiKeyMissing": "ZEP_API_KEY 未配置",
+      "invalidParameters": "参数错误"
+    }
+  },
+  "en": {
+    "language": "English",
+    "code": "en",
+    "progress": {
+      "startBuildingGraph": "Building graph...",
+      "graphCreated": "Graph created: {graphId}",
+      "ontologySet": "Ontology set",
+      "textSplit": "Text split: {count} chunks",
+      "sendingBatch": "Sending batch {current}/{total} ({chunks} chunks)",
+      "batchFailed": "Batch {batch} failed: {error}",
+      "waitingZepProcess": "Waiting for Zep processing...",
+      "waitingEpisodes": "Waiting for {count} episodes...",
+      "episodesTimeout": "Episode timeout: {completed}/{total}",
+      "noEpisodesWait": "No episodes to wait for",
+      "processingComplete": "Processing complete: {completed}/{total}",
+      "fetchingGraphInfo": "Fetching graph info..."
+    },
+    "console": {
+      "zepToolsInitialized": "Zep tools service initialized",
+      "graphSearch": "Searching graph {graphId}..."
+    },
+    "api": {
+      "zepApiKeyMissing": "ZEP_API_KEY is not configured"
+    }
+  }
+}

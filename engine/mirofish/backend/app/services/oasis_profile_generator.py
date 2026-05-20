@@ -16,12 +16,14 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 from openai import OpenAI
-from zep_cloud.client import Zep
+# Zep Cloud 已禁用 — 使用 local_graph_store 替代
+# from zep_cloud.client import Zep
 
 from ..config import Config
 from ..utils.logger import get_logger
 from ..utils.locale import get_language_instruction, get_locale, set_locale, t
-from .zep_entity_reader import EntityNode, ZepEntityReader
+from .local_graph_store import EntityNode
+from .local_entity_reader import LocalEntityReader as ZepEntityReader
 
 logger = get_logger('mirofish.oasis_profile')
 

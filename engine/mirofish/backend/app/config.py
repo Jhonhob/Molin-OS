@@ -69,7 +69,8 @@ class Config:
         errors = []
         if not cls.LLM_API_KEY:
             errors.append("LLM_API_KEY 未配置")
-        if not cls.ZEP_API_KEY:
-            errors.append("ZEP_API_KEY 未配置")
+        # Zep Cloud 已禁用 — 本地 SQLite 存储无需 ZEP_API_KEY
+        # if not cls.ZEP_API_KEY:
+        #     errors.append("ZEP_API_KEY 未配置")
         return errors
 
