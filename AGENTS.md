@@ -138,7 +138,7 @@ python -m molib moneymaker assess --idea "..." # 变现评估（moneymaker-turbo
 python -m molib moneymaker score --plan xxx  # 变现路径评分
 ```
 
-## 22家 Worker 与 20家子公司映射
+## 23家 Worker 与 21家子公司映射
 
 ### VP 营销（5家）
 | 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
@@ -149,13 +149,14 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 墨播短视频 | short_video.py | 短视频脚本+生成 | ffmpeg-video-engine, pixelle-video-engine |
 | 墨声配音 | voice_actor.py | AI语音合成、播客制作 | molin-audio-engine, songwriting |
 
-### VP 运营（4家）
+### VP 运营（5家）
 | 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
 |---------|------------|---------|---------|
 | 墨域私域 | crm.py | CRM、用户分层、社群运营 | molin-crm, social-push-publisher |
 | 墨声客服 | customer_service.py | 自动化客服（消息检测→回复） | molin-customer-service, xianyu-automation |
 | 墨链电商 | ecommerce.py | 订单管理、交易、电商平台 | molin-order |
 | 墨学教育 | education.py | 课程设计、学习路径、辅导 | molin-education, ranedeer-ai-tutor |
+| 墨预教育 | edu_predict.py | 招生预测、决策仿真、话术A/B测试 | — |
 
 ### VP 技术（4家）
 | 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
@@ -193,7 +194,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 
 ## Handoff 自动路由
 
-16家子公司已注册Handoff，支持全自动任务路由：
+17家子公司已注册Handoff，支持全自动任务路由：
 
 ```python
 # Python 调用
@@ -204,7 +205,7 @@ result = HandoffManager.route("帮我写一篇小红书文案", input_data)
 python -m molib handoff route --task "帮我做数据分析"
 ```
 
-支持：内容创作、设计、开发、运维、安全、CRM、客服、数据、交易、BD、财务、法务、教育、情报、出海、知识管理 共16个领域。
+支持：内容创作、设计、开发、运维、安全、CRM、客服、数据、交易、BD、财务、法务、教育、预测、情报、出海、知识管理 共17个领域。
 路由失败时自动降级返回，不会抛出异常。
 
 ## 规划分解

@@ -31,13 +31,13 @@ date '+%Y-%m-%d'
 存入变量 `$TODAY`。
 
 ### Step 1：确认 daily_summary.json
-路径：`/Users/laomo/relay/data/daily_summary.json`
+路径：`/Users/laomo/Molin-OS/relay/data/daily_summary.json`
 - 由墨测数据 Cron 在 21:50 写入
 - 包含：各业务线 today/yesterday/7-day-avg/day_over_day/±2σ-zscore
 - 如果没有 → 跳过环比计算，标记全部 estimate:true
 
 ### Step 2：检查今日 KPI 是否已有
-路径：`/Users/laomo/relay/kpi/content_writer_${TODAY}.json`
+路径：`/Users/laomo/Molin-OS/relay/kpi/content_writer_${TODAY}.json`
 - 如果存在 → 跳过 Step 7，只读取并引用
 - 如果不存在 → 从 daily_summary 提取估算值，写入 KPI
 
@@ -104,7 +104,7 @@ Token 估算：25K tokens × task_count（deepseek-chat 典型值）
 6. 经营建议（明日重点关注 + 成本监控 + W21 达成追踪）
 
 ### Step 10：写入复盘元数据
-路径：`/Users/laomo/relay/data/daily_review_{date}.json`
+路径：`/Users/laomo/Molin-OS/relay/data/daily_review_{date}.json`
 包含：
 ```json
 {

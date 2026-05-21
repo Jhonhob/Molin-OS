@@ -8,7 +8,7 @@ trigger: 每日复盘 Cron 加载此技能写入 KPI 数据；每周经营报告
 changelog:
   - 1.5.0 (2026-05-18): 新增周一复盘·周计划耦合规范（Section 6.2 frontmatter + 周目标追踪表 + 昨日P0回检）。新增陷阱11（daily_summary.json KPI判别可能滞后，22:30需recheck relay/kpi/）
   - 1.4.0 (2026-05-18): 新增第八章「周一 09:30 周计划产出规范」→ 周计划六模块模板（复盘摘要/OKR对齐/各线优先级/学习重点/关注指标/关键决策）。数据源串联：daily_summary.json + relay/kpi/周聚合 + 上周系统日报。
-  - 1.3.0 (2026-05-17): 新增第六章「22:30 系统复盘产出规范」→ 明确 报告/系统｜日报·{date}.md 的六模块模板。修正 relay 绝对路径为 /Users/laomo/relay/（~/.hermes-os/ 不存在于磁盘）。新增陷阱 1（relay 绝对路径）、9（复盘 vs KPI 聚合时序）、10（产出/ vs 报告/ 系统日报区分）。
+  - 1.3.0 (2026-05-17): 新增第六章「22:30 系统复盘产出规范」→ 明确 报告/系统｜日报·{date}.md 的六模块模板。修正 relay 绝对路径为 /Users/laomo/Molin-OS/relay/（~/.hermes-os/ 不存在于磁盘）。新增陷阱 1（relay 绝对路径）、9（复盘 vs KPI 聚合时序）、10（产出/ vs 报告/ 系统日报区分）。
   - 1.2.0 (2026-05-17): v2 输出路径升级，Obsidian v3.0 平坦结构，全量聚合 daily_summary.json
 ---
 
@@ -332,10 +332,10 @@ related: [[KPI｜日报·{date}]], [[银月｜内容经营复盘·{date}]], [[KP
 
 ## 七、参考
 
-- **relay 绝对路径**：`/Users/laomo/relay/`（注意：`~/hermes-os/` 目录在磁盘上不存在，relay 不在 hermes-os 下）
-  - `relay/kpi/{agent}_{date}.json` → `/Users/laomo/relay/kpi/`
-  - `relay/data/daily_summary.json` → `/Users/laomo/relay/data/`
-  - `relay/data/daily_review_{date}.json` → `/Users/laomo/relay/data/`
+- **relay 绝对路径**：`/Users/laomo/Molin-OS/relay/`（所有 relay 数据统一在此目录）
+  - `relay/kpi/{agent}_{date}.json` → `/Users/laomo/Molin-OS/relay/kpi/`
+  - `relay/data/daily_summary.json` → `/Users/laomo/Molin-OS/relay/data/`
+  - `relay/data/daily_review_{date}.json` → `/Users/laomo/Molin-OS/relay/data/`
 - **Obsidian vault 路径**：`/Users/laomo/Library/Mobile Documents/iCloud~md~obsidian/Documents`（v3.0 平坦结构：报告/、产出/、成果/ 等 8 个根目录，无子目录）
 - KPI 看板生成：`skill_view('kpi-dashboard')` — 从 relay/kpi/ 生成可视化的经营看板
 - 看板生成脚本：`scripts/kpi-dashboard/generate_dashboard.py`
@@ -506,11 +506,11 @@ related: [[系统｜日报·{prev_sun}]], [[KPI｜周报·{start}~{end}]], [[KPI
 
 ### ⚠️ 常见陷阱
 
-1. **relay 绝对路径**：relay 在 `/Users/laomo/relay/`，不在 `~/hermes-os/relay/`。`~/hermes-os/` 目录不存在于磁盘——不要假设该路径存在。使用绝对路径 `/Users/laomo/relay/kpi/`、`/Users/laomo/relay/data/`。
+1. **relay 绝对路径**：relay 在 `/Users/laomo/Molin-OS/relay/`。使用绝对路径 `/Users/laomo/Molin-OS/relay/kpi/`、`/Users/laomo/Molin-OS/relay/data/`。
 2. **Vault 路径错误**：不要假设 `~/Obsidian/` 或 `~/MolinOS-Wiki/` —— vault 在 iCloud `Library/Mobile Documents/iCloud~md~obsidian/Documents`
 3. **子目录路径**：v3.0 平坦结构无子目录——所有报告直接写入 `报告/` 根目录，不要写入 `Agents/内容Agent/周报/` 等嵌套路径
-4. **relay/kpi/ 可能不存在**：首次运行需要 `mkdir -p /Users/laomo/relay/kpi/`
-5. **relay/data/ 可能不存在**：全量聚合写入 `relay/data/daily_summary.json`，首次运行需 `mkdir -p /Users/laomo/relay/data/`
+4. **relay/kpi/ 可能不存在**：首次运行需要 `mkdir -p /Users/laomo/Molin-OS/relay/kpi/`
+5. **relay/data/ 可能不存在**：全量聚合写入 `relay/data/daily_summary.json`，首次运行需 `mkdir -p /Users/laomo/Molin-OS/relay/data/`
 6. **estimate 标记**：无法获取精确 token/成本数据时估算并标记 `"estimate": true`，不阻塞流程
 7. **周日低产不告警**：API 成本 -2σ 等级别在周日属正常节奏，标记 ℹ️ 不触发 Escalation
 8. **复盘元数据 JSON**：复盘 Cron 完成后写入 `relay/data/daily_review_{date}.json`，包含 gatekeeper 终判、明日优先级、异常摘要——供 09:00 选题会 Cron 和次晨快照消费

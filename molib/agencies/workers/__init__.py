@@ -10,6 +10,7 @@ from .crm import TwentyClient, segment_users, build_touch_sequence, get_twenty_s
 from .customer_service import CustomerService
 from .ecommerce import Ecommerce
 from .education import Education
+from .edu_predict import EduPredict
 from .developer import Developer
 from .ops import Ops
 from .security import Security
@@ -35,6 +36,7 @@ def register_all():
     WorkerRegistry.register(CustomerService)
     WorkerRegistry.register(Ecommerce)
     WorkerRegistry.register(Education)
+    WorkerRegistry.register(EduPredict)
     WorkerRegistry.register(Developer)
     WorkerRegistry.register(Ops)
     WorkerRegistry.register(Security)

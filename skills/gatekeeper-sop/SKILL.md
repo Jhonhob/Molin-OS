@@ -195,7 +195,7 @@ QA < 60？────────→ 🚫 拦截 + 飞书告警 + 记录原因�
 
 gatekeeper 阻断时，确保目录存在：
 ```bash
-mkdir -p /Users/laomo/relay/gatekeeper_blocked/
+mkdir -p /Users/laomo/Molin-OS/relay/gatekeeper_blocked/
 ```
 
 拦截记录写入 `relay/gatekeeper_blocked/{ticket_id}.json`：

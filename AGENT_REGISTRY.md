@@ -13,6 +13,7 @@
 | service | 墨声客服 | 客服 | `*/15 * * * *` |
 | ecommerce | 墨链电商 | 订单管理 | `0 21 * * *` |
 | edu | 墨学教育 | 教育课程 | 按需 |
+| edu_predict | 墨预教育 | 教育预测仿真 | 按需 |
 | developer | 墨码开发 | 软件开发 | 按需 |
 | ops | 墨维运维 | 运维 | `*/30 * * * *` |
 | security | 墨安安全 | 安全审计 | `0 3 * * 1` |
@@ -27,4 +28,4 @@
 | gatekeeper | Gatekeeper | 合规门禁 | 嵌入所有输出 |
 | kpi-tracker | KPI Tracker | 指标采集 | 嵌入 22:00 |
 
-总计: 22 Agent · 13 定时调度
+总计: 23 Agent · 13 定时调度

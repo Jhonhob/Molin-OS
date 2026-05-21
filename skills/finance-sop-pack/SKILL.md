@@ -21,7 +21,7 @@ trigger: 所有财务相关任务（成本分析/预算报告/经营分析）必
 | 数据源 | 采集方式 | 频次 |
 |--------|----------|------|
 | API Token 消耗 | LLM Provider 用量 API | 每日 |
-| Cron 执行成本 | relay/kpi/ 中的 cost 字段（实际路径：`/Users/laomo/relay/kpi/`） | 每日 |
+| Cron 执行成本 | relay/kpi/ 中的 cost 字段（实际路径：`/Users/laomo/Molin-OS/relay/kpi/`） | 每日 |
 | 固定支出 | 手动记录（API订阅/服务器/工具） | 每周 |
 | 业务收入 | 订单系统 / 闲鱼收入 | 每日 |
 
@@ -180,7 +180,7 @@ trigger: 所有财务相关任务（成本分析/预算报告/经营分析）必
 ### 每日 Cron 提示词关键要素
 
 Cron prompt 中必须硬编码：
-1. **KPI 数据路径**：绝对路径 `/Users/laomo/relay/kpi/`
+1. **KPI 数据路径**：绝对路径 `/Users/laomo/Molin-OS/relay/kpi/`
 2. **Obsidian vault 路径**：`/Users/laomo/Library/Mobile Documents/iCloud~md~obsidian/Documents/`
 3. **日报写入路径**：`报告/墨算财务·日报_{date}.md`（平坦结构，零子目录）
 4. **完成标记**：写入 `relay/finance_daily_{date}.json`
@@ -202,13 +202,13 @@ Cron prompt 中必须硬编码：
 
 ```
 22:00 复盘 Cron → 采集 KPI 成本数据
-    ↓ /Users/laomo/relay/kpi/{agent}_{date}.json
+    ↓ /Users/laomo/Molin-OS/relay/kpi/{agent}_{date}.json
 23:00 财务 Cron → 读取所有 Agent 的 KPI 成本，聚合为财务日报
     ↓
 写入 Obsidian 报告/墨算财务·日报_{date}.md
 ```
 
-⚠️ **路径陷阱**：KPI 数据存放在 `/Users/laomo/relay/kpi/`（注意：`/Users/laomo/Molin-OS/` 目录在磁盘上不存在），不是相对路径 `relay/kpi/`。Cron 运行的 cwd 不保证能解析相对路径，必须使用绝对路径。同理，完成标记写入 `relay/finance_daily_{date}.json`（这个是相对路径，由 Hermes cron 守护）。
+⚠️ **路径陷阱**：KPI 数据存放在 `/Users/laomo/Molin-OS/relay/kpi/`。Cron 运行的 cwd 不保证能解析相对路径，必须使用绝对路径。完成标记写入 `relay/finance_daily_{date}.json`。
 
 ### 数据缺失处理
 

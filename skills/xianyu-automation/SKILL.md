@@ -32,7 +32,7 @@ description: "Manage Xianyu seller conversations with an automated message pipel
 
 此 skill 是 **side Agent** (SOUL_SIDE.md) 的执行层。每次处理消息时必须参考以下锚点：
 
-**定价体系**（报价时自动参考，共12条服务线）:
+**定价体系**（报价时自动参考，共15条服务线）:
   - AI Agent定制: 500-2000, 3-7天
   - Prompt工程优化: 200-800, 1-3天
   - RAG知识库搭建: 800-3000, 5-14天
@@ -44,6 +44,10 @@ description: "Manage Xianyu seller conversations with an automated message pipel
   - 在线预约系统（Cal.com）: 4000-10000, 1-3天（2026-05-16新增）
   - 智能客服系统（Chatwoot）: 3000-12000, 2-5天（2026-05-16新增）
   - AI求职系统（career-ops）: 800-8000, 1-14天（2026-05-16新增）
+  - SaaS原型搭建-基础版: 2999-3999, 5-7天（2026-05-21新增）
+  - SaaS完整搭建-含支付: 5999-6999, 7-10天（2026-05-21新增）
+  - 企业级SaaS全套: 9999-16999, 14-21天（2026-05-21新增）
+  - 产品推广自动化: 499-999, 3-5天（2026-05-21新增）
 
 **消息分级 & 通知规则**:
   - L0 (普通询价) → 自动回复（3分钟内）
@@ -161,6 +165,13 @@ how much, buy, purchase
 辅导, 教一下, 带带, 怎么学, 入门,
 从零开始, 学习路线, 从哪里入手,
 教程, 科普, 讲解, Lesson, tutorial
+
+# SaaS/开发类关键词（2026-05-21新增）
+SaaS, 搭建网站, 做系统, 开发工具,
+小程序, 建站, 在线工具, 会员系统,
+支付集成, 原型, MVP, 快速上线,
+落地页, 官网, 产品推广, 推广工具,
+SEO优化, 外链, 产品推广, 目录提交
 ```
 
 **Match:** Case-insensitive substring match. `"ok"` matches `"OK"`, `"好的"`, `"好的呢～"`, etc.

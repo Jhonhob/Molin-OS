@@ -19,7 +19,7 @@ Step 1: 检查 relay/finance_daily_{date}.json 是否已存在
         → 已存在：跳过全量分析，直接输出摘要（不重复执行）
         → 不存在：执行完整分析
 
-Step 2: ls -la /Users/laomo/relay/kpi/*{date}.json
+Step 2: ls -la /Users/laomo/Molin-OS/relay/kpi/*{date}.json
         → 实时文件系统扫描，不依赖 daily_summary.json 的判别
         → 注意：daily_summary 的 "无KPI文件" 可能在 21:50 生成时为真，
           但 23:00 时已存在
@@ -42,4 +42,4 @@ Step 5: 对比 Step 2 与 Step 4 → 如果有 Step 2 发现但 daily_summary
 |------|------|------|
 | 只读 daily_summary 不扫 relay/kpi/ | 错过 content_writer 22:00 写入的数据 | 必须先 `ls relay/kpi/*{date}.json` |
 | 认为 daily_summary 的 KPI 判别完全准确 | 报告显示"0 KPI"但其实已有 | 用 recheck 结果覆盖 |
-| 使用旧路径 `/Users/laomo/Molin-OS/relay/kpi/` | 文件找不到，成本为 0 | 用绝对路径 `/Users/laomo/relay/kpi/` |
+| 使用旧路径 `/Users/laomo/Molin-OS/relay/kpi/` | 文件找不到，成本为 0 | 用绝对路径 `/Users/laomo/Molin-OS/relay/kpi/` |
