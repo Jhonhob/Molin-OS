@@ -73,50 +73,44 @@ Hermes（你，大脑）→ terminal工具（神经）→ python -m molib <comma
 python -m molib health              # 系统健康检查
 python -m molib help                 # 查看所有命令
 
-# 内容创作（墨笔文创）
-python -m molib content write --topic "主题" --platform xhs
-python -m molib content publish --platform xhs --draft-id xxx
+# ─── 墨育 · 教育增长域 ───
+python -m molib edu acquire ...     # 墨招·获客
+python -m molib edu convert ...     # 墨化·转化
+python -m molib edu retain ...      # 墨留·留存
+python -m molib edu predict ...     # 墨预·预测
+python -m molib edu content ...     # 墨料·内容
 
-# 设计（墨图设计 v2.2）
-python -m molib design image --prompt "描述" --style 写实
-python -m molib design web --prompt "墨麟AI集团官网" --action landing_page --ds apple
-python -m molib design web --prompt "销售数据看板" --action dashboard --ds stripe
-python -m molib design web --prompt "融资计划" --action pitch_deck --ds airbnb
+# ─── 墨研 · AI情报域 ───
+python -m molib intel radar ...     # 墨雷·雷达
+python -m molib intel brief ...     # 墨简·简报
+python -m molib intel review ...    # 墨测·评测
+python -m molib intel kb ...        # 墨档·知识库
 
-# 短视频（墨播短视频）
-python -m molib video script --topic "主题" --duration 60s
+# ─── 墨媒 · IP变现域 ───
+python -m molib media matrix ...    # 墨笔·内容矩阵
+python -m molib media product ...   # 墨课·知识产品
+python -m molib media commerce ...  # 墨商·成交
+python -m molib media live ...      # 墨播·直播
 
-# 私域运营（墨域私域）
-python -m molib crm segment --by 活跃度
-python -m molib crm push --segment 高活跃 --content "消息"
+# ─── 墨海 · 出海域 ───
+python -m molib global taiwan ...   # 墨台·台湾
+python -m molib global localize ... # 墨译·本地化
+python -m molib global sea ...      # 墨东·东南亚
 
-# 客服（墨声客服）
-python -m molib xianyu reply --msg-id xxx --content "回复内容"
+# ─── 墨创 · 一人公司域 ───
+python -m molib solo finance ...    # 墨财·财务
+python -m molib solo legal ...      # 墨法·法务
+python -m molib solo data ...       # 墨数·数据
+python -m molib solo strategy ...   # 墨策·策略
 
-# 情报（墨研竞情）
-python -m molib intel trending
-python -m molib intel save --topic "AI Agent" --summary "..."
-
-# 财务（墨算财务）
-python -m molib finance record --type expense --amount 100 --note "API费用"
-python -m molib finance report
-
-# 电商（墨链电商）
-python -m molib order list --status pending
-python -m molib order status --order-id xxx
-
-# 数据（墨测数据）
-python -m molib data analyze --file xxx.csv
-
-# 交易（墨投交易）
-python -m molib trading signal --symbol BTC/USDT
-python -m molib trading analyze --market-type crypto --symbol BTC/USDT
-python -m molib trading research --ticker BTC
+# ─── 墨枢 · 基础设施 ───
+python -m molib infra dev ...       # 墨技·技术
+python -m molib infra security ...  # 墨卫·安全
+python -m molib infra memory ...    # 记忆系统
 
 # Handoff自动路由
-python -m molib handoff list                     # 查看所有可用Worker
-python -m molib handoff route --task "内容创作"  # 自动路由到匹配Worker
-python -m molib handoff history                  # 查看handoff执行历史
+python -m molib handoff list                     # 查看24条路由
+python -m molib handoff route --task "教育投放方案"  # 自动路由
 
 # 规划分解
 python -m molib plan create --title "..." --description "..."
