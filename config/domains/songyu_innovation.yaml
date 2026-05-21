@@ -45,3 +45,41 @@ kpi_metrics:
   primary: "Contract_Value_Total (合同总签单额)"
   secondary: "Win_Rate (投标/竞标胜率)"
   alert_threshold: "project_margin < 0.25"
+
+# ── 无人值守飞轮 ──
+flywheel:
+  finance_daily:
+    cron: "0 23 * * *"
+    trigger_worker: "墨商"
+    skill_retrieval:
+      intent: "财务日报 ROI审计 成本追踪"
+      domain_filter: "songyu"
+      top_k: 3
+    fallback_skills:
+      - "finance-sop-pack"
+      - "kpi-tracker"
+    output_target: "report/"
+
+  monthly_planning:
+    cron: "0 9 1 * *"
+    trigger_worker: "墨商"
+    skill_retrieval:
+      intent: "月度商业规划 营收方向 战略决策"
+      domain_filter: "songyu"
+      top_k: 3
+    fallback_skills:
+      - "finance-sop-pack"
+      - "kpi-tracker"
+    output_target: "report/"
+
+  business_development:
+    cron: "0 8 * * *"
+    trigger_worker: "墨商"
+    skill_retrieval:
+      intent: "创业研究 商机发现 店铺运营 闲鱼自动化"
+      domain_filter: "songyu"
+      top_k: 3
+    fallback_skills:
+      - "xianyu-automation"
+      - "airtable"
+    output_target: "vault/宋玉_商业与变现/"

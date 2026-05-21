@@ -46,3 +46,42 @@ kpi_metrics:
   primary: "ROI (投资回报率)"
   secondary: "Repeat_Purchase_Rate (用户复购率)"
   alert_threshold: "conversion_rate < 0.02"
+
+# ── 无人值守飞轮 ──
+flywheel:
+  growth_review:
+    cron: "0 21 * * 0"
+    trigger_worker: "墨增"
+    skill_retrieval:
+      intent: "全媒体增长复盘 爆款文案转化分析 AB测试"
+      domain_filter: "yuanyao"
+      top_k: 3
+    fallback_skills:
+      - "content-sop-growth"
+      - "kpi-tracker"
+    output_target: "report/"
+    depends_on: "yinyue.content_factory"
+
+  weekly_planning:
+    cron: "30 9 * * 1"
+    trigger_worker: "墨导"
+    skill_retrieval:
+      intent: "周计划生成 OKR对齐 KPI指标拆解"
+      domain_filter: "yuanyao"
+      top_k: 3
+    fallback_skills:
+      - "kpi-tracker"
+      - "obsidian"
+    output_target: "vault/元瑶_教育与增长/"
+
+  education_research:
+    cron: "0 8 * * *"
+    trigger_worker: "墨学"
+    skill_retrieval:
+      intent: "教育行业研究 课程设计 学习进化"
+      domain_filter: "yuanyao"
+      top_k: 3
+    fallback_skills:
+      - "education-sop-pack"
+      - "github-issues"
+    output_target: "vault/元瑶_教育与增长/"

@@ -49,3 +49,42 @@ kpi_metrics:
   primary: "Retention_Rate_3s (短视频3秒完播率)"
   secondary: "GMV (电商转化总额)"
   alert_threshold: "account_ban_risk == 'high'"
+
+# ── 无人值守飞轮 ──
+flywheel:
+  content_factory:
+    cron: "0 22 * * *"
+    trigger_worker: "墨笔"
+    skill_retrieval:
+      intent: "生成小红书公众号短视频内容 爆款文案写作"
+      domain_filter: "yinyue"
+      top_k: 3
+    fallback_skills:
+      - "content-sop-pack"
+      - "gatekeeper-sop"
+    output_target: "relay/contentmorning.json"
+    depends_on: "ziling.daily_intelligence_scan"
+
+  media_research:
+    cron: "0 8 * * *"
+    trigger_worker: "墨星"
+    skill_retrieval:
+      intent: "全媒体研究 AI生图视频配音趋势"
+      domain_filter: "yinyue"
+      top_k: 3
+    fallback_skills:
+      - "youtube-content"
+      - "xiaohongshu-content-engine"
+    output_target: "vault/银月_内容全媒体/"
+
+  content_review:
+    cron: "0 22 * * *"
+    trigger_worker: "墨笔"
+    skill_retrieval:
+      intent: "内容复盘 质量审计 CTA检测"
+      domain_filter: "yinyue"
+      top_k: 3
+    fallback_skills:
+      - "content-sop-pack"
+      - "kpi-tracker"
+    output_target: "report/"

@@ -75,6 +75,31 @@ intelligencemorning  contentmorning     growthmorning
 
 飞轮接力规则：每棒必须检查上游文件存在且 < 90 分钟，否则发 T4 飞书告警。
 
+## 飞轮语义检索 (v7.0 新增)
+
+Cron Job 不再硬编码技能名，改为通过 `scripts/flywheel_skills.py` 读取 `config/domains/*.yaml` 中的飞轮配置，执行语义检索动态获取技能列表。
+
+**改造前** (硬编码):
+```yaml
+skills: [content-sop-pack, gatekeeper-sop, kpi-tracker]
+```
+
+**改造后** (语义检索):
+```bash
+python3 scripts/flywheel_skills.py yinyue content_factory
+→ 自动检索 domain yinyue 中与 "生成小红书公众号短视频内容" 最相关的 Top-3 技能
+```
+
+各飞轮 → Domain YAML 映射:
+| 飞轮 | Domain YAML | 语义意图 |
+|------|------------|---------|
+| 情报银行 | `ziling_intelligence.yaml` | arXiv 论文抓取 AI前沿技术研究 |
+| 内容工厂 | `yinyue_media.yaml` | 生成小红书公众号短视频内容 |
+| 增长引擎 | `yuanyao_edu_growth.yaml` | 全媒体增长复盘 AB测试 |
+| 财务日报 | `songyu_innovation.yaml` | 财务日报 ROI审计 |
+| 记忆同步 | `xuanhu_infrastructure.yaml` | 记忆同步 ChromaDB |
+| KPI 采集 | `xuanhu_infrastructure.yaml` | KPI采集 数据看板 |
+
 ---
 
 ## 按频率分布

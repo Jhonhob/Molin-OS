@@ -45,3 +45,30 @@ kpi_metrics:
   primary: "Signal_to_Noise_Ratio (情报纯度/信息准确率)"
   secondary: "Discovery_Lead_Time (新机会提前发现时间)"
   alert_threshold: "data_source_loss_rate > 0.15"
+
+# ── 无人值守飞轮 ──
+flywheel:
+  daily_intelligence_scan:
+    cron: "0 7 * * *"
+    trigger_worker: "墨研"
+    skill_retrieval:
+      intent: "arXiv 论文抓取 AI前沿技术研究"
+      domain_filter: "ziling"
+      top_k: 3
+    fallback_skills:
+      - "arxiv"
+      - "blogwatcher"
+    output_target: "vault/紫灵_情报与战略/"
+
+  competitor_price_monitor:
+    cron: "30 9 * * *"
+    trigger_worker: "墨嗅"
+    skill_retrieval:
+      intent: "竞品价格监控 市场趋势分析"
+      domain_filter: "ziling"
+      top_k: 3
+    fallback_skills:
+      - "competitor-analysis"
+      - "market-research"
+    output_target: "relay/"
+    handoff_to: "yinyue"

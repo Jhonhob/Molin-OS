@@ -53,3 +53,97 @@ kpi_metrics:
   primary: "System_Uptime_And_Safety (零安全事故与高可用运行率)"
   secondary: "Token_Efficiency_Ratio (单次并发Token投入产出比)"
   alert_threshold: "monthly_budget_spend_pct > 0.95"
+
+# ── 无人值守飞轮 ──
+flywheel:
+  memory_sync:
+    cron: "0 * * * *"
+    trigger_worker: "墨维"
+    skill_retrieval:
+      intent: "记忆同步 ChromaDB 语义向量合并"
+      domain_filter: "xuangu"
+      top_k: 2
+    fallback_skills:
+      - "mempalace"
+    output_target: "relay/"
+
+  git_backup:
+    cron: "0 2 * * *"
+    trigger_worker: "墨维"
+    skill_retrieval:
+      intent: "Git备份 代码仓库 数据容灾"
+      domain_filter: "xuangu"
+      top_k: 2
+    fallback_skills:
+      - "github-auth"
+      - "github-repo-management"
+    output_target: "local"
+
+  security_audit:
+    cron: "0 3 * * 1"
+    trigger_worker: "墨安"
+    skill_retrieval:
+      intent: "安全审计 漏洞扫描 Token暴露检查"
+      domain_filter: "xuangu"
+      top_k: 3
+    fallback_skills:
+      - "security-sop-pack"
+    output_target: "report/"
+
+  kpi_collection:
+    cron: "50 21 * * *"
+    trigger_worker: "墨算"
+    skill_retrieval:
+      intent: "KPI采集 数据看板 指标聚合"
+      domain_filter: "xuangu"
+      top_k: 3
+    fallback_skills:
+      - "kpi-tracker"
+      - "data-sop-pack"
+    output_target: "relay/kpi/"
+
+  kpi_dashboard:
+    cron: "10 22 * * *"
+    trigger_worker: "墨算"
+    skill_retrieval:
+      intent: "KPI看板生成 趋势图 日报"
+      domain_filter: "xuangu"
+      top_k: 2
+    fallback_skills:
+      - "kpi-dashboard"
+    output_target: "report/"
+
+  daily_review:
+    cron: "30 22 * * *"
+    trigger_worker: "墨算"
+    skill_retrieval:
+      intent: "每日复盘 明日规划 系统健康检查"
+      domain_filter: "xuangu"
+      top_k: 3
+    fallback_skills:
+      - "kpi-tracker"
+      - "obsidian"
+    output_target: "report/"
+
+  memory_distillation:
+    cron: "30 21 * * 0"
+    trigger_worker: "墨维"
+    skill_retrieval:
+      intent: "记忆蒸馏 质量门控 L3资产沉淀"
+      domain_filter: "xuangu"
+      top_k: 2
+    fallback_skills:
+      - "obsidian"
+      - "mempalace"
+    output_target: "vault/集团主脑/"
+
+  autodream_evolution:
+    cron: "0 7 * * 1"
+    trigger_worker: "墨梦"
+    skill_retrieval:
+      intent: "AutoDream认知内化 SKILL更新 自进化"
+      domain_filter: "xuangu"
+      top_k: 2
+    fallback_skills:
+      - "vertical-learning-sop"
+    output_target: "skills/"

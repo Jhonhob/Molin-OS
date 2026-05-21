@@ -45,3 +45,29 @@ kpi_metrics:
   primary: "Net_Profit_Margin_USD (美元净利润率)"
   secondary: "CAC_USD (海外获客成本)"
   alert_threshold: "payment_gateway_dispute_rate > 0.01"
+
+# ── 无人值守飞轮 ──
+flywheel:
+  global_learning:
+    cron: "0 8 * * *"
+    trigger_worker: "墨译"
+    skill_retrieval:
+      intent: "海外技术学习 GitHub开源跟踪 跨境研究"
+      domain_filter: "meining"
+      top_k: 3
+    fallback_skills:
+      - "taiwan-localization"
+      - "blogwatcher"
+    output_target: "vault/梅凝_跨境与全球/"
+
+  cross_border_monitor:
+    cron: "0 8 * * *"
+    trigger_worker: "墨媒"
+    skill_retrieval:
+      intent: "出海热点日报 台湾东南亚市场 PESTEL分析"
+      domain_filter: "meining"
+      top_k: 3
+    fallback_skills:
+      - "market-research"
+      - "competitor-analysis"
+    output_target: "vault/梅凝_跨境与全球/"
