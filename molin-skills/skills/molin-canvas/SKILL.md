@@ -120,11 +120,12 @@ Create and edit Molin Canvas files (.mcanvas) — 对标 Obsidian JSON Canvas。
 3. Add worker/skill nodes for 墨麟 Workers
 4. Connect with edges showing relationships
 5. Set colors by category:
-   - VP 营销: #FF6B6B (red)
-   - VP 技术: #4ECDC4 (teal)
-   - VP 运营: #45B7D1 (blue)
-   - VP 财务: #96CEB4 (green)
-   - VP 战略: #FFEAA7 (yellow)
+   - 元瑶 教育: #FF6B6B (red)
+   - 紫灵 情报: #4ECDC4 (teal)
+   - 银月 内容: #45B7D1 (blue)
+   - 梅凝 出海: #96CEB4 (green)
+   - 宋玉 拓展: #FFEAA7 (yellow)
+   - 玄骨 中枢: #DDA0DD (plum)
 6. Validate: check all edge references
 ```
 

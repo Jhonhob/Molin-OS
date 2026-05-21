@@ -84,20 +84,21 @@ Built on [Hermes Agent](https://github.com/nousresearch/hermes-agent) (Nous Rese
 
 ## 核心特性 / Key Features
 
-### 🤖 28+ 实体子公司
-覆盖营销、运营、技术、财务、战略五大 VP 体系，每个子公司有独立 Worker、SOP、记忆空间。从内容创作到量化交易，从客户服务到红队安全——各司其职。
+### 🏢 六司三十四将
+6 大领域 34 个专业 Worker，每个领域有独立 Profile、飞书Bot、商业闭环和 KPI 体系。从教育增长到跨境出海，从内容媒体到中枢赋能——各司其职。
 
 ### 📚 339+ 技能
 按领域组织的 SKILL.md 技能文件体系。从 SEO 优化到像素艺术，从 FLUX.2 图像生成到量化回测——覆盖一人公司所需全部能力。
 
-### 👤 5 Agent 数字员工
-| 代号 | 名称 | 职责 |
-|:----|:-----|:-----|
-| 玄骨 | Central | 中枢大脑，负责统筹调度、治理决策 |
-| 元瑶 | Edu | 教育 Agent，课程设计、学习路径 |
-| 银月 | Media | 传媒 Agent，内容创作、社交媒体 |
-| 梅凝 | Global | 出海 Agent，多语言本地化、全球运营 |
-| 宋玉 | Startup | 创业 Agent，商业模式、增长策略 |
+### 👤 6 Agent 数字员工
+| 代号 | Profile | 公司 | 职责 |
+|:----|:--------|:-----|:-----|
+| 元瑶 | yuanyao | 教育与用户增长公司 | 知识变现、私域资产、LTV 挖掘 |
+| 紫灵 | ziling | 情报与战略调研公司 | 行业研报、竞品追踪、趋势嗅探 |
+| 银月 | yinyue | 内容生态与全媒体矩阵公司 | 图文视频直播、电商全链路 |
+| 梅凝 | meining | 跨境出海与全球化公司 | AI 本地化、独立站、全球供应链 |
+| 宋玉 | songyu | 创新拓展与商业化公司 | B端大客户、政企关系、线下活动 |
+| 玄骨 | xuanhu | 底层中枢与集团赋能公司 | 系统调度、安全审计、财务 Token 管控 |
 
 ### 🔄 每日自动化飞轮
 ```
@@ -131,81 +132,88 @@ L0 自动执行 → L4 绝对禁止，预算上限 + 审批门禁 + 审计追踪
 
 ## Agent 数字员工 / Agent Profiles
 
-墨麟OS 配备 5 个专用 Agent Profile，每个配置在 `config/hermes-agent/profiles/` 下：
+墨麟OS 配备 6 个专用 Agent Profile，每个配置在 `config/hermes-agent/profiles/` 下，领域 YAML 在 `config/domains/`：
 
-| Profile | 代号 | 职责定位 | 通道接入 |
-|:--------|:-----|:---------|:---------|
-| `shared` | 玄骨 | 中枢总控 · 治理决策 | 飞书主Bot + CLI |
-| `edu` | 元瑶 | 教育 · 课程设计 | 飞书对话 + CLI |
-| `media` | 银月 | 内容 · 社交媒体 | 飞书对话 + CLI |
-| `global` | 梅凝 | 出海 · 本地化 | 飞书对话 + CLI |
-| `side` | 宋玉 | 创业 · 增长 | 飞书对话 + CLI |
+| Profile | 代号 | 公司 | 通道接入 |
+|:--------|:-----|:-----|:---------|
+| `yuanyao` | 元瑶 | 教育与用户增长公司 | 飞书Bot + CLI |
+| `ziling` | 紫灵 | 情报与战略调研公司 | 飞书Bot + CLI |
+| `yinyue` | 银月 | 内容生态与全媒体矩阵公司 | 飞书Bot + CLI |
+| `meining` | 梅凝 | 跨境出海与全球化公司 | 飞书Bot + CLI |
+| `songyu` | 宋玉 | 创新拓展与商业化公司 | 飞书Bot + CLI |
+| `xuanhu` | 玄骨 | 底层中枢与集团赋能公司 | 飞书Bot + CLI |
 
-每个 Profile 有独立的技能集、环境变量、记忆空间，可并行运行不受干扰。
+每个 Profile 有独立的飞书机器人、技能集、环境变量、记忆空间，可并行运行不受干扰。
 
 ---
 
 ## 子公司体系 / Subsidiary System
 
-28+ 家子公司分布于 5 位 VP 麾下 + 共享服务 + 专项 Worker。
+34 个专业 Worker 分布于 6 大领域公司，每个公司有独立商业闭环和 KPI。
 
-### VP 营销 / Marketing（5 家）
+### 🌸 元瑶 · 教育与用户增长公司（6 Worker）
 
-| 子公司 | Worker | 核心能力 |
-|:-------|:-------|:---------|
-| 墨笔文创 | Content Writer | 品牌文案、小红书、公众号、SEO 内容 |
-| 墨韵 IP | IP Manager | IP 孵化、版权管理、品牌衍生 |
-| 墨图设计 | Designer | FLUX.2 生图、149 设计系统、封面/UI |
-| 墨播短视频 | Short Video | 短视频脚本 + 生成、FFmpeg 视频引擎 |
-| 墨声配音 | Voice Actor | AI 语音合成、播客制作、TTS |
+| 子公司 | Worker ID | 核心能力 |
+|:-------|:----------|:---------|
+| 墨增 | yuanyao.growth | 前端引流/投放专家 |
+| 墨销 | yuanyao.closer | 后端销售/转化专家 |
+| 墨导 | yuanyao.tutor | 班主任/用户成功 |
+| 墨学 | yuanyao.curriculum | 教研与课程设计 |
+| 墨创 | yuanyao.pm | 教育产品经理 |
+| 墨域 | yuanyao.community | 私域/社群操盘手 |
 
-### VP 运营 / Operations（4 家）
+### 🔮 紫灵 · 情报与战略调研公司（5 Worker）
 
-| 子公司 | Worker | 核心能力 |
-|:-------|:-------|:---------|
-| 墨域私域 | CRM | 用户分层、社群运营、RFM 模型 |
-| 墨声客服 | Customer Service | 自动化客服、闲鱼消息检测回复 |
-| 墨链电商 | E-commerce | 订单管理、交易链路、多平台 |
-| 墨学教育 | Education | 课程设计、AI 导师、学习路径 |
+| 子公司 | Worker ID | 核心能力 |
+|:-------|:----------|:---------|
+| 墨研 | ziling.researcher | 行业研究员 |
+| 墨数 | ziling.analyst | 数据分析师 |
+| 墨影 | ziling.spy | 竞品追踪员 |
+| 墨嗅 | ziling.scanner | 宏观趋势嗅探器 |
+| 墨投 | ziling.invest | 商业测算/ROI评估 |
 
-### VP 技术 / Technology（4 家）
+### 🌙 银月 · 内容生态与全媒体矩阵公司（6 Worker）
 
-| 子公司 | Worker | 核心能力 |
-|:-------|:-------|:---------|
-| 墨码开发 | Developer | 软件开发、架构设计、代码审查 |
-| 墨维运维 | Ops | 部署、监控、SRE、灾备 |
-| 墨安安全 | Security | 代码审计、漏洞扫描、红队测试 |
-| 墨梦 AutoDream | AutoDream | AI 自动化实验、记忆蒸馏、自学习 |
+| 子公司 | Worker ID | 核心能力 |
+|:-------|:----------|:---------|
+| 墨笔 | yinyue.writer | 爆款主笔/编剧 |
+| 墨图 | yinyue.designer | 视觉排版/原画师 |
+| 墨剪 | yinyue.editor | 音视频后期 |
+| 墨链 | yinyue.shop | 电商运营/店长 |
+| 墨播 | yinyue.streamer | 直播中控/AI主播 |
+| 墨星 | yinyue.pr | 人设与公关经纪人 |
 
-### VP 财务 / Finance（1 家）
+### ❄️ 梅凝 · 跨境出海与全球化公司（5 Worker）
 
-| 子公司 | Worker | 核心能力 |
-|:-------|:-------|:---------|
-| 墨算财务 | Finance | 记账、预算、成本控制、财务报表 |
+| 子公司 | Worker ID | 核心能力 |
+|:-------|:----------|:---------|
+| 墨译 | meining.translator | 本地化翻译官 |
+| 墨媒 | meining.growth | 海外社群/社媒运营 |
+| 墨站 | meining.webmaster | 独立站操盘手 |
+| 墨航 | meining.supply | 跨境供应链 |
+| 墨盾 | meining.compliance | 海外风控 |
 
-### VP 战略 / Strategy（3 家）
+### 🍃 宋玉 · 创新拓展与商业化公司（5 Worker）
 
-| 子公司 | Worker | 核心能力 |
-|:-------|:-------|:---------|
-| 墨商 BD | Business Development | 商务拓展、合作洽谈、销售策略 |
-| 墨海出海 | Global Marketing | 多语言本地化、全球化运营 |
-| 墨研竞情 | Research | 竞争分析、趋势扫描、实时情报 |
+| 子公司 | Worker ID | 核心能力 |
+|:-------|:----------|:---------|
+| 墨商 | songyu.bd | 商务拓展 |
+| 墨案 | songyu.architect | 售前解决方案专家 |
+| 墨关 | songyu.gr | 公共与政企关系 |
+| 墨聚 | songyu.event | 线下活动操盘手 |
+| 墨采 | songyu.procurement | 外部资源采购 |
 
-### 共享服务 / Shared Services（3 家）
+### 💀 玄骨 · 底层中枢与集团赋能公司（7 Worker）
 
-| 子公司 | Worker | 核心能力 |
-|:-------|:-------|:---------|
-| 墨律法务 | Legal | 合同审查、合规评估、风险评估 |
-| 墨脑知识 | Knowledge | 知识图谱、向量记忆、RAG |
-| 墨测数据 | Data Analyst | BI 仪表盘、数据分析、质量检测 |
-
-### 专项 Workers / Specialized（多家）
-
-| Worker | 领域 |
-|:-------|:-----|
-| 墨投交易 | 量化交易策略、信号生成、回测 |
-| Scrapling | 网页抓取、数据采集 |
-| Router9 | 网络流量、多路路由 |
+| 子公司 | Worker ID | 核心能力 |
+|:-------|:----------|:---------|
+| 墨码 | xuanhu.developer | 全栈研发 |
+| 墨维 | xuanhu.ops | 运维与灾备 |
+| 墨安 | xuanhu.security | 安全红队 |
+| 墨梦 | xuanhu.autodream | 自进化引擎 |
+| 墨算 | xuanhu.finance | 财务总监(CFO) |
+| 墨律 | xuanhu.legal | 法务合规 |
+| 墨人 | xuanhu.hr | 算力与组织管理 |
 | + 更多 | 持续扩展中 |
 
 ---
