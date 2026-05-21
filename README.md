@@ -79,7 +79,7 @@ AI 不会「忘记」你告诉过它的事。
 |:----:|:-----|:---------|:-----|
 | L1 | 飞书对话上下文 | 24h | 当前任务连贯性 |
 | L2 | Obsidian 结构化笔记 | 永久 | 项目决策、客户偏好 |
-| L3 | Obsidian `产出/` | 永久 | 知识资产沉淀 |
+| L3 | Obsidian 六司根目录 | 永久 | 知识资产沉淀 |
 | L4 | SKILL.md 版本化 | 永久 | 可复现工作流 |
 
 ### 🚪 全通道接入
@@ -172,11 +172,19 @@ Molin-OS/
 ├── skills/                    技能库 (150+ SKILL.md)
 ├── scripts/                   运维脚本
 ├── engine/mirofish/           MiroFish 预测引擎
-├── vault/                     Obsidian 知识库
+├── vault/                     Obsidian 知识库 (六司根目录)
+│   ├── 集团主脑/              创始人决策·全局战略
+│   ├── 紫灵_情报与战略/       情报·竞品·趋势
+│   ├── 银月_内容全媒体/       内容·视觉·视频
+│   ├── 元瑶_教育与增长/       知识变现·私域
+│   ├── 梅凝_跨境与全球/       本地化·出海
+│   └── 宋玉_商业与变现/       B端·商务·资源
 ├── docs/                      文档
 │   ├── archive/               28 历史文档
-│   ├── CRON_JOBS_AUDIT.md     Cron 审计
 │   └── SYSTEM_OVERVIEW.md     系统全景
+├── config/hermes-agent/
+│   ├── cron_jobs.md           19 Cron Job 全量排班表 (v7.0 六司映射)
+│   └── profiles/              6 Profile .env 模板
 └── relay/                     飞轮管线数据
 ```
 
