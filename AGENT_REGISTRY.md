@@ -1,31 +1,80 @@
 # Agent Registry
 
-> 索引文件 · 所有 Agent 的 SOP 定义见 SYSTEM.md
+> 索引文件 · 六司三十四将 · 所有 Agent SOP 定义见 SYSTEM.md
+> 版本: v7.0 · 更新: 2026-05-21
 
-| AgentID | 名称 | 职责 | 调度 |
-|---------|------|------|------|
-| content | 墨笔文创 | 内容矩阵生产 | `30 8 * * 1-5` |
-| design | 墨图设计 | 视觉设计 | 接内容生产后 |
-| video | 墨播短视频 | 短视频 | 接内容生产后 |
-| voice | 墨声配音 | 语音合成 | 跟随 video/edu |
-| ip | 墨韵IP | 品牌管理 | `0 10 * * 1` |
-| crm | 墨域私域 | CRM运营 | `0 9 * * 3` |
-| service | 墨声客服 | 客服 | `*/15 * * * *` |
-| ecommerce | 墨链电商 | 订单管理 | `0 21 * * *` |
-| edu | 墨学教育 | 教育课程 | 按需 |
-| edu_predict | 墨预教育 | 教育预测仿真 | 按需 |
-| developer | 墨码开发 | 软件开发 | 按需 |
-| ops | 墨维运维 | 运维 | `*/30 * * * *` |
-| security | 墨安安全 | 安全审计 | `0 3 * * 1` |
-| autodream | 墨梦AutoDream | 进化引擎 | `0 7 * * 1` / `0 21 * * 0` |
-| finance | 墨算财务 | 财务分析 | `0 23 * * *` |
-| bd | 墨商BD | 商务拓展 | `0 8 * * *` |
-| global | 墨海出海 | 出海本地化 | 接内容后 |
-| research | 墨研竞情 | 情报竞品 | `0 6 * * *` |
-| legal | 墨律法务 | 法务合规 | 按需 |
-| data | 墨测数据 | 数据分析 | `0 22 * * *` |
-| knowledge | 墨脑知识 | 知识管理 | 自动 |
-| gatekeeper | Gatekeeper | 合规门禁 | 嵌入所有输出 |
-| kpi-tracker | KPI Tracker | 指标采集 | 嵌入 22:00 |
+## 🌸 元瑶 · 教育增长 (Profile: yuanyao)
 
-总计: 23 Agent · 13 定时调度
+| Worker ID | 代号 | 角色 |
+|-----------|------|------|
+| yuanyao.growth | 墨增 | 前端引流/投放 |
+| yuanyao.closer | 墨销 | 后端销售/转化 |
+| yuanyao.tutor | 墨导 | 班主任/用户成功 |
+| yuanyao.curriculum | 墨学 | 教研与课程设计 |
+| yuanyao.pm | 墨创 | 教育产品经理 |
+| yuanyao.community | 墨域 | 私域/社群操盘手 |
+
+## 🔮 紫灵 · 情报调研 (Profile: ziling) 🆕
+
+| Worker ID | 代号 | 角色 |
+|-----------|------|------|
+| ziling.researcher | 墨研 | 行业研究 |
+| ziling.analyst | 墨数 | 数据分析 |
+| ziling.spy | 墨影 | 竞品追踪 |
+| ziling.scanner | 墨嗅 | 趋势嗅探 |
+| ziling.invest | 墨投 | ROI评估 |
+
+## 🌙 银月 · 内容媒体 (Profile: yinyue)
+
+| Worker ID | 代号 | 角色 |
+|-----------|------|------|
+| yinyue.writer | 墨笔 | 爆款主笔/编剧 |
+| yinyue.designer | 墨图 | 视觉排版/原画师 |
+| yinyue.editor | 墨剪 | 音视频后期 |
+| yinyue.shop | 墨链 | 电商运营/店长 |
+| yinyue.streamer | 墨播 | 直播中控/AI主播 |
+| yinyue.pr | 墨星 | 人设与公关经纪人 |
+
+## ❄️ 梅凝 · 跨境出海 (Profile: meining)
+
+| Worker ID | 代号 | 角色 |
+|-----------|------|------|
+| meining.translator | 墨译 | 本地化翻译 |
+| meining.growth | 墨媒 | 海外社媒运营 |
+| meining.webmaster | 墨站 | 独立站操盘手 |
+| meining.supply | 墨航 | 跨境供应链 |
+| meining.compliance | 墨盾 | 海外风控合规 |
+
+## 🍃 宋玉 · 创新拓展 (Profile: songyu)
+
+| Worker ID | 代号 | 角色 |
+|-----------|------|------|
+| songyu.bd | 墨商 | 商务拓展 |
+| songyu.architect | 墨案 | 售前解决方案 |
+| songyu.gr | 墨关 | 政企关系 |
+| songyu.event | 墨聚 | 线下活动 |
+| songyu.procurement | 墨采 | 资源采购 |
+
+## 💀 玄骨 · 中枢赋能 (Profile: xuanhu)
+
+| Worker ID | 代号 | 角色 |
+|-----------|------|------|
+| xuanhu.developer | 墨码 | 全栈研发 |
+| xuanhu.ops | 墨维 | 运维与灾备 |
+| xuanhu.security | 墨安 | 安全红队 |
+| xuanhu.autodream | 墨梦 | 自进化引擎 |
+| xuanhu.finance | 墨算 | 财务总监(CFO) |
+| xuanhu.legal | 墨律 | 法务合规 |
+| xuanhu.hr | 墨人 | 算力与资源调度 |
+
+## 系统级
+
+| Agent | 职责 |
+|-------|------|
+| Gatekeeper | 全流量合规门禁，嵌入所有对外输出 |
+| KPI Tracker | 指标采集与看板生成 |
+
+---
+
+总计: 34 Worker · 2 系统级 Agent
+定时调度: 见 `config/hermes-agent/cron_jobs.md`
