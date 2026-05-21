@@ -3,7 +3,9 @@
 > 索引文件 · 六司三十四将 · 所有 Agent SOP 定义见 SYSTEM.md
 > 版本: v7.0 · 更新: 2026-05-21
 
-## 🌸 元瑶 · 教育增长 (Profile: yuanyao)
+## 🌸 元瑶 · 教育增长 (Profile: yuanyao | Domain: domain.yuanyao)
+>
+> **元瑶教育增长无限公司**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -14,7 +16,9 @@
 | yuanyao.pm | 墨创 | 教育产品经理 |
 | yuanyao.community | 墨域 | 私域/社群操盘手 |
 
-## 🔮 紫灵 · 情报调研 (Profile: ziling) 🆕
+## 🔮 紫灵 · 情报调研 (Profile: ziling | Domain: domain.ziling) 🆕
+>
+> **紫灵商业情报咨询公司**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -24,7 +28,9 @@
 | ziling.scanner | 墨嗅 | 趋势嗅探 |
 | ziling.invest | 墨投 | ROI评估 |
 
-## 🌙 银月 · 内容媒体 (Profile: yinyue)
+## 🌙 银月 · 内容媒体 (Profile: yinyue | Domain: domain.yinyue)
+>
+> **银月造梦全媒体文化传媒公司**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -35,7 +41,9 @@
 | yinyue.streamer | 墨播 | 直播中控/AI主播 |
 | yinyue.pr | 墨星 | 人设与公关经纪人 |
 
-## ❄️ 梅凝 · 跨境出海 (Profile: meining)
+## ❄️ 梅凝 · 跨境出海 (Profile: meining | Domain: domain.meining)
+>
+> **梅凝全球化跨境贸易公司**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -45,7 +53,9 @@
 | meining.supply | 墨航 | 跨境供应链 |
 | meining.compliance | 墨盾 | 海外风控合规 |
 
-## 🍃 宋玉 · 创新拓展 (Profile: songyu)
+## 🍃 宋玉 · 创新拓展 (Profile: songyu | Domain: domain.songyu)
+>
+> **宋玉纵横大客户咨询与商业创新公司**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -55,7 +65,9 @@
 | songyu.event | 墨聚 | 线下活动 |
 | songyu.procurement | 墨采 | 资源采购 |
 
-## 💀 玄骨 · 中枢赋能 (Profile: xuanhu)
+## 💀 玄骨 · 中枢赋能 (Profile: xuanhu | Domain: domain.xuanhu)
+>
+> **玄骨黑客科技与集团基础设施控股公司**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
