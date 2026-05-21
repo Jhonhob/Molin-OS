@@ -120,3 +120,4 @@ hermes/website/node_modules/
 
 # ─── Submodule Externals (managed via .gitmodules) ───
 # No active submodules in this repo
+engine/mirofish/backend/data/*.db

@@ -97,7 +97,7 @@ python -m molib global taiwan ...   # 墨台·台湾
 python -m molib global localize ... # 墨译·本地化
 python -m molib global sea ...      # 墨东·东南亚
 
-# ─── 墨创 · 一人公司域 ───
+# ─── 墨创 · 创业拓展域 ───
 python -m molib solo finance ...    # 墨财·财务
 python -m molib solo legal ...      # 墨法·法务
 python -m molib solo data ...       # 墨数·数据
@@ -169,7 +169,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 墨译·本地化 | `localization_worker.py` | 多语言适配、繁简转换、质量审核 |
 | 墨东·东南亚 | `sea_market_worker.py` | 马/新市场探索（低优先级） 🆕 |
 
-### 域五：墨创 · 一人公司域（4 Worker）— Profile: molin-side
+### 域五：墨创 · 创业拓展域（4 Worker）— Profile: molin-side
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨财·财务 | `solo_finance_worker.py` | 流水记录、成本核算、API追踪、预算 |
