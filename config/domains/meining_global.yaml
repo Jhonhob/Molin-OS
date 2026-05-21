@@ -1,6 +1,6 @@
-# config/domains/meining_global.yaml
+# 跨境出海与全球化公司 (Global Business Co.)
 domain_id: "domain.meining"
-company_name: "梅凝全球化跨境贸易公司"
+company_name: "跨境出海与全球化公司 (Global Business Co.)"
 
 feishu_gateway:
   app_id: "cli_aa881c316d789bb5"

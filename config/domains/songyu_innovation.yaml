@@ -1,6 +1,6 @@
-# config/domains/songyu_innovation.yaml
+# 创新拓展与商业化公司 (Innovation & B2B Co.)
 domain_id: "domain.songyu"
-company_name: "宋玉纵横大客户咨询与商业创新公司"
+company_name: "创新拓展与商业化公司 (Innovation & B2B Co.)"
 
 feishu_gateway:
   app_id: "cli_a9513691d4f89bcf"

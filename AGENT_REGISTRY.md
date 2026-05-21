@@ -5,7 +5,7 @@
 
 ## 🌸 元瑶 · 教育增长 (Profile: yuanyao | Domain: domain.yuanyao)
 >
-> **元瑶教育增长无限公司**
+> **教育与用户增长公司 (Edu & Growth Co.)**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -18,7 +18,7 @@
 
 ## 🔮 紫灵 · 情报调研 (Profile: ziling | Domain: domain.ziling) 🆕
 >
-> **紫灵商业情报咨询公司**
+> **情报与战略调研公司 (Intelligence Co.)**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -30,7 +30,7 @@
 
 ## 🌙 银月 · 内容媒体 (Profile: yinyue | Domain: domain.yinyue)
 >
-> **银月造梦全媒体文化传媒公司**
+> **内容生态与全媒体矩阵公司 (Content & Media Co.)**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -43,7 +43,7 @@
 
 ## ❄️ 梅凝 · 跨境出海 (Profile: meining | Domain: domain.meining)
 >
-> **梅凝全球化跨境贸易公司**
+> **跨境出海与全球化公司 (Global Business Co.)**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -55,7 +55,7 @@
 
 ## 🍃 宋玉 · 创新拓展 (Profile: songyu | Domain: domain.songyu)
 >
-> **宋玉纵横大客户咨询与商业创新公司**
+> **创新拓展与商业化公司 (Innovation & B2B Co.)**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|
@@ -67,7 +67,7 @@
 
 ## 💀 玄骨 · 中枢赋能 (Profile: xuanhu | Domain: domain.xuanhu)
 >
-> **玄骨黑客科技与集团基础设施控股公司**
+> **底层中枢与集团赋能公司 (Group Infrastructure Co.)**
 
 | Worker ID | 代号 | 角色 |
 |-----------|------|------|

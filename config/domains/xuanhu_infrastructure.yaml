@@ -1,6 +1,6 @@
-# config/domains/xuanhu_infrastructure.yaml
+# 底层中枢与集团赋能公司 (Group Infrastructure Co.)
 domain_id: "domain.xuanhu"
-company_name: "玄骨黑客科技与集团基础设施控股公司"
+company_name: "底层中枢与集团赋能公司 (Group Infrastructure Co.)"
 
 feishu_gateway:
   app_id: "cli_aa884b4a88bc9bb4"

@@ -1,6 +1,6 @@
-# config/domains/yinyue_media.yaml
+# 内容生态与全媒体矩阵公司 (Content & Media Co.)
 domain_id: "domain.yinyue"
-company_name: "银月造梦全媒体文化传媒公司"
+company_name: "内容生态与全媒体矩阵公司 (Content & Media Co.)"
 
 feishu_gateway:
   app_id: "cli_a966ede1d9789bd2"

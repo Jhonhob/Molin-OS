@@ -1,6 +1,6 @@
-# config/domains/ziling_intelligence.yaml
+# 情报与战略调研公司 (Intelligence Co.)
 domain_id: "domain.ziling"
-company_name: "紫灵商业情报咨询公司"
+company_name: "情报与战略调研公司 (Intelligence Co.)"
 
 feishu_gateway:
   app_id: "cli_aa8967ade53cdbc3"

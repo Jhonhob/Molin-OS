@@ -1,6 +1,6 @@
-# config/domains/yuanyao_edu_growth.yaml
+# 教育与用户增长公司 (Edu & Growth Co.)
 domain_id: "domain.yuanyao"
-company_name: "元瑶教育增长无限公司"
+company_name: "教育与用户增长公司 (Edu & Growth Co.)"
 
 feishu_gateway:
   app_id: "cli_a956c83187395cd4"
