@@ -7,7 +7,7 @@
 
 治理级别直接定义在此文件中（摘要版），完整参考见 AGENT_REGISTRY.md。
 
-最新更新: 2026-05-19 — v5.0 架构重构后同步
+最新更新: 2026-05-21 — 五域一枢架构 v6.0 重构
 -->
 
 # 墨麟 AI 集团 · 项目上下文
@@ -138,63 +138,63 @@ python -m molib moneymaker assess --idea "..." # 变现评估（moneymaker-turbo
 python -m molib moneymaker score --plan xxx  # 变现路径评分
 ```
 
-## 23家 Worker 与 21家子公司映射
+## 五域一枢架构（25条路由，6个Profile，2026-05-21）
 
-### VP 营销（5家）
-| 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
-|---------|------------|---------|---------|
-| 墨笔文创 | content_writer.py | 文字内容创作、文案、公众号、博客 | molin-xiaohongshu, copywriting, content-strategy |
-| 墨韵IP | ip_manager.py | IP衍生、商标、版权、品牌管理 | ai-taste-quality |
-| 墨图设计 | designer.py | Open Design全栈(149设计系统×134技能) + FLUX.2生图 + 封面/UI | molin-design, excalidraw, pixel-art, open-design |
-| 墨播短视频 | short_video.py | 短视频脚本+生成 | ffmpeg-video-engine, pixelle-video-engine |
-| 墨声配音 | voice_actor.py | AI语音合成、播客制作 | molin-audio-engine, songwriting |
+> 边界判断规则：「付钱方唯一」— 教育机构付钱→墨育，粉丝付钱→墨媒，台湾/东南亚用户→墨海，情报消费者→墨研，一人公司→墨创。
+> 内容不是独立业务，每个域自带内容能力。
 
-### VP 运营（5家）
-| 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
-|---------|------------|---------|---------|
-| 墨域私域 | crm.py | CRM、用户分层、社群运营 | molin-crm, social-push-publisher |
-| 墨声客服 | customer_service.py | 自动化客服（消息检测→回复） | molin-customer-service, xianyu-automation |
-| 墨链电商 | ecommerce.py | 订单管理、交易、电商平台 | molin-order |
-| 墨学教育 | education.py | 课程设计、学习路径、辅导 | molin-education, ranedeer-ai-tutor |
-| 墨预教育 | edu_predict.py | 招生预测、决策仿真、话术A/B测试 | — |
-
-### VP 技术（4家）
-| 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
-|---------|------------|---------|---------|
-| 墨码开发 | developer.py | 软件开发、代码编写 | agent-engineering-backend-architect, cli-anything |
-| 墨维运维 | ops.py | 服务器、部署、DevOps | ghost-os, cli-anything, opensre-sre-agent |
-| 墨安安全 | security.py | 代码审计、安全评估 | red-teaming, ag-vulnerability-scanner |
-| 墨梦AutoDream | auto_dream.py | AI自动化实验、快速原型 | deep-dream-memory, self-learning-loop |
-
-### VP 财务（1家）
+### 域一：墨育 · 教育增长域（5 Worker）— Profile: moyu-edu
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
-| 墨算财务 | finance.py | 记账、预算、成本控制 |
+| 墨招·获客 | `edu_acquisition_worker.py` | 广告投放、增长策略、招生Leads（ads+growth合并） |
+| 墨化·转化 | `edu_conversion_worker.py` | Leads转化、漏斗优化、话术A/B测试 |
+| 墨留·留存 | `edu_retention_worker.py` | 学员续费、NPS追踪、社群运营（crm+cs教育拆分） |
+| 墨预·预测 | `edu_prediction_worker.py` | 招生预测仿真、定价策略模拟（MiroFish教育化） |
+| 墨料·内容 | `edu_content_worker.py` | 招生文案、课程包装、教育内容产出 |
 
-### VP 战略（3家）
-| 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
-|---------|------------|---------|---------|
-| 墨商BD | bd.py | 商务拓展、合作洽谈 | molin-bd-scanner, agent-sales-deal-strategist |
-| 墨海出海 | global_marketing.py | 多语言、全球化、出海运营 | molin-global, weblate-localization |
-| 墨研竞情 | research.py | 竞争分析、趋势研究 | karpathy-autoresearch, world-monitor, mirofish-trends |
+### 域二：墨研 · AI情报域（4 Worker）— Profile: moyu-research
+| 统一名称 | Worker 文件 | 核心能力 |
+|---------|------------|---------|
+| 墨雷·雷达 | `github_radar_worker.py` | AI开源项目监控、技术趋势扫描、Star追踪 🆕 |
+| 墨简·简报 | `intel_brief_worker.py` | 周报生成、行业分析、竞品情报、知识星球 |
+| 墨测·评测 | `ai_review_worker.py` | AI工具实测、功能对比、性价比评估 🆕 |
+| 墨档·知识库 | `knowledge_base_worker.py` | 知识沉淀、RAG检索、知识图谱维护 |
 
-### 共同服务（3家）
-| 统一名称 | Worker 文件 | 核心能力 | 所属技能 |
-|---------|------------|---------|---------|
-| 墨律法务 | legal.py | 合同审查、合规、风险评估 | molin-legal |
-| 墨脑知识 | knowledge.py | 知识管理、RAG、长期记忆 | molin-memory, gitnexus |
-| 墨测数据 | data_analyst.py | 数据分析、测试、质量 | molin-data-analytics, molin-vizro |
+### 域三：墨媒 · IP变现域（4 Worker）— Profile: moyu-media
+| 统一名称 | Worker 文件 | 核心能力 |
+|---------|------------|---------|
+| 墨笔·内容矩阵 | `content_matrix_worker.py` | 全平台内容产出、品牌视觉、AI生图配音设计（ip+content_writer+designer+voice_actor四合一） |
+| 墨课·知识产品 | `knowledge_product_worker.py` | 知识付费课程、训练营策划、录播制作 |
+| 墨商·成交 | `ip_commerce_worker.py` | 接单→报价→交付全链路（bd+shop+order三合一） |
+| 墨播·直播运营 | `live_ops_worker.py` | 直播脚本、短视频策划、多平台分发 |
 
-### 专项预置（2家 — 非标准20家，专用领域）
-| Worker | 核心能力 | 说明 |
-|:-------|:---------|:-----|
-| trading.py | 量化交易策略·信号·回测 | 已激活，CLI: `python -m molib trading` |
-| scrapling_worker.py | 网页抓取·数据采集 | 吸收自 Scrapling |
-| router9.py | 网络流量·多路路由 | 吸收自 9router |
+### 域四：墨海 · 出海域（3 Worker）— Profile: moyu-global
+| 统一名称 | Worker 文件 | 核心能力 |
+|---------|------------|---------|
+| 墨台·台湾 | `taiwan_ops_worker.py` | 台湾市场运营、繁体适配、台区社媒 |
+| 墨译·本地化 | `localization_worker.py` | 多语言适配、繁简转换、质量审核 |
+| 墨东·东南亚 | `sea_market_worker.py` | 马/新市场探索（低优先级） 🆕 |
 
-## Handoff 自动路由
+### 域五：墨创 · 一人公司域（4 Worker）— Profile: moyu-side
+| 统一名称 | Worker 文件 | 核心能力 |
+|---------|------------|---------|
+| 墨财·财务 | `solo_finance_worker.py` | 流水记录、成本核算、API追踪、预算 |
+| 墨法·法务 | `solo_legal_worker.py` | 合同审查、合规检查、风险评估（legal+secure合规合并） |
+| 墨数·数据 | `solo_data_worker.py` | 跨域数据汇总、BI报表、KPI看板（data+data_analyst合并） |
+| 墨策·策略 | `solo_strategy_worker.py` | 战略分析、产品决策、商业模式评估（product+research战略合并） |
 
-17家子公司已注册Handoff，支持全自动任务路由：
+### 墨枢 · 基础设施层（4 Worker — 非业务域）— Profile: moyu-shared
+| 统一名称 | Worker 文件 | 核心能力 |
+|---------|------------|---------|
+| 墨技·技术 | `dev_infra_worker.py` | 全栈开发、系统部署、DevOps（dev+devops+ai三合一） |
+| 墨卫·安全 | `tech_security_worker.py` | 纯技术安全审计、渗透测试（非合规） |
+| 墨梦·实验 | `auto_dream.py` | AI自动化实验、自学习闭环 |
+| 数据采集 | `scrapling_worker.py` | 网页爬取、数据抓取（基础设施） |
+
+### 已废弃（13个）
+`ads_worker`, `growth_worker`, `bd_worker`, `shop_worker`, `order_worker`, `ai_worker`, `product_worker`, `trading_worker`, `ecommerce`, `data_worker`, `data_analyst_worker`, `dev_worker`, `devops_worker` → 全部标记 `_deprecated_*.py`
+
+## Handoff 自动路由（24条，五域一枢）
 
 ```python
 # Python 调用
