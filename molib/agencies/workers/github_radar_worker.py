@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from typing import Any, Dict
-from molib.agencies.worker import ExecutionPlan, WorkerAgent
+from molib.agencies.worker import WorkerAgent
 
 
 class GithubRadarWorker(WorkerAgent):
@@ -11,6 +11,6 @@ class GithubRadarWorker(WorkerAgent):
     available_tools = ["file_tool", "memory_tool", "web_tool"]
     deliverable_spec: Dict[str, Any] = {}
 
-    async def build_plan(self, subtask: Dict[str, Any]) -> ExecutionPlan:
+    async def build_plan(self, subtask: Dict[str, Any]):
         """LLM驱动的执行计划"""
         return await self._llm_build_plan(subtask)

@@ -1,56 +1,84 @@
-"""墨麟OS — 子公司Worker注册表"""
+"""墨麟OS v2.0 — 五域一枢 Worker注册表 (2026-05-21)"""
+
 from .base import SubsidiaryWorker, WorkerRegistry, Task, WorkerResult
 
-from .content_writer import ContentWriter
-from .ip_manager import IpManager
-from .designer import Designer
-from .short_video import ShortVideo
-from .voice_actor import VoiceActor
-from .crm import TwentyClient, segment_users, build_touch_sequence, get_twenty_status
-from .customer_service import CustomerService
-from .ecommerce import Ecommerce
-from .education import Education
-from .edu_predict import EduPredict
-from .developer import Developer
-from .ops import Ops
-from .security import Security
+# ─── 墨育 · 教育增长域 ───
+from .edu_acquisition_worker import EduAcquisitionWorker
+from .edu_conversion_worker import EduConversionWorker
+from .edu_retention_worker import EduRetentionWorker
+from .edu_prediction_worker import EduPredictionWorker
+from .edu_content_worker import EduContentWorker
+
+# ─── 墨研 · AI情报域 ───
+from .github_radar_worker import GithubRadarWorker
+from .intel_brief_worker import IntelBriefWorker
+from .ai_review_worker import AiReviewWorker
+from .knowledge_base_worker import KnowledgeBaseWorker
+
+# ─── 墨媒 · IP变现域 ───
+from .content_matrix_worker import ContentMatrixWorker
+from .knowledge_product_worker import KnowledgeProductWorker
+from .ip_commerce_worker import IpCommerceWorker
+from .live_ops_worker import LiveOpsWorker
+
+# ─── 墨海 · 出海域 ───
+from .taiwan_ops_worker import TaiwanOpsWorker
+from .localization_worker import LocalizationWorker
+from .sea_market_worker import SeaMarketWorker
+
+# ─── 墨创 · 一人公司域 ───
+from .solo_finance_worker import SoloFinanceWorker
+from .solo_legal_worker import SoloLegalWorker
+from .solo_data_worker import SoloDataWorker
+from .solo_strategy_worker import SoloStrategyWorker
+
+# ─── 墨枢 · 基础设施 ───
+from .dev_infra_worker import DevInfraWorker
+from .tech_security_worker import TechSecurityWorker
 from .auto_dream import AutoDream
-from .finance import Finance
-from .bd import Bd
-from .global_marketing import GlobalMarketing
-from .research import Research
-from .legal import Legal
-from .knowledge import Knowledge
-from .data_analyst import DataAnalyst
-from .cocoindex_sync import CocoIndexSync
-from .trading import Trading
 from .scrapling_worker import ScraplingWorker
+from .cocoindex_sync import CocoIndexSync
+
 
 def register_all():
-    WorkerRegistry.register(ContentWriter)
-    WorkerRegistry.register(IpManager)
-    WorkerRegistry.register(Designer)
-    WorkerRegistry.register(ShortVideo)
-    WorkerRegistry.register(VoiceActor)
-    # Crm: Twenty API模式（非Worker子类）
-    WorkerRegistry.register(CustomerService)
-    WorkerRegistry.register(Ecommerce)
-    WorkerRegistry.register(Education)
-    WorkerRegistry.register(EduPredict)
-    WorkerRegistry.register(Developer)
-    WorkerRegistry.register(Ops)
-    WorkerRegistry.register(Security)
-    WorkerRegistry.register(AutoDream)
-    WorkerRegistry.register(Finance)
-    WorkerRegistry.register(Bd)
-    WorkerRegistry.register(GlobalMarketing)
-    WorkerRegistry.register(Research)
-    WorkerRegistry.register(Legal)
-    WorkerRegistry.register(Knowledge)
-    WorkerRegistry.register(DataAnalyst)
+    """注册全部25个Worker — 五域一枢架构"""
+    # 墨育 (5)
+    WorkerRegistry.register(EduAcquisitionWorker)
+    WorkerRegistry.register(EduConversionWorker)
+    WorkerRegistry.register(EduRetentionWorker)
+    WorkerRegistry.register(EduPredictionWorker)
+    WorkerRegistry.register(EduContentWorker)
+
+    # 墨研 (4)
+    WorkerRegistry.register(GithubRadarWorker)
+    WorkerRegistry.register(IntelBriefWorker)
+    WorkerRegistry.register(AiReviewWorker)
+    WorkerRegistry.register(KnowledgeBaseWorker)
+
+    # 墨媒 (4)
+    WorkerRegistry.register(ContentMatrixWorker)
+    WorkerRegistry.register(KnowledgeProductWorker)
+    WorkerRegistry.register(IpCommerceWorker)
+    WorkerRegistry.register(LiveOpsWorker)
+
+    # 墨海 (3)
+    WorkerRegistry.register(TaiwanOpsWorker)
+    WorkerRegistry.register(LocalizationWorker)
+    WorkerRegistry.register(SeaMarketWorker)
+
+    # 墨创 (5 incl cocoindex)
+    WorkerRegistry.register(SoloFinanceWorker)
+    WorkerRegistry.register(SoloLegalWorker)
+    WorkerRegistry.register(SoloDataWorker)
+    WorkerRegistry.register(SoloStrategyWorker)
     WorkerRegistry.register(CocoIndexSync)
-    WorkerRegistry.register(Trading)
+
+    # 墨枢 (4)
+    WorkerRegistry.register(DevInfraWorker)
+    WorkerRegistry.register(TechSecurityWorker)
+    WorkerRegistry.register(AutoDream)
     WorkerRegistry.register(ScraplingWorker)
+
 
 def get_worker(name: str) -> SubsidiaryWorker | None:
     cls = WorkerRegistry.get(name)
@@ -61,8 +89,10 @@ def get_worker(name: str) -> SubsidiaryWorker | None:
             return wcls()
     return None
 
+
 def list_workers() -> list[dict]:
     return [
-        {"id": wid, "name": wcls.worker_name, "desc": wcls.description, "line": getattr(wcls, "oneliner", "")}
+        {"id": wid, "name": wcls.worker_name, "desc": wcls.description,
+         "line": getattr(wcls, "oneliner", "")}
         for wid, wcls in WorkerRegistry._workers.items()
     ]
