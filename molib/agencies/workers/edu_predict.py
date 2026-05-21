@@ -14,9 +14,9 @@ class EduPredict(_Base):
     oneliner = "画像仿真·漏斗转化·定价敏感度·话术A/B测试·竞品分流"
 
     # ── 模型路由 ────────────────────────────────────────────────
-    DEFAULT_MODEL = "deepseek-chat"        # 画像生成、决策仿真（JSON 严格输出）
-    STRUCTURED_MODEL = "deepseek-chat"     # 漏斗计算、结果聚合
-    REPORT_MODEL = "qwen-plus"             # 最终报告生成（长文本）
+    DEFAULT_MODEL = "deepseek-v4-pro"       # 画像生成、决策仿真（JSON 严格输出）
+    STRUCTURED_MODEL = "deepseek-v4-pro"    # 漏斗计算、结果聚合
+    REPORT_MODEL = "qwen3.6-plus"           # 最终报告生成（长文本）
 
     # ── 配置 ────────────────────────────────────────────────────
     MAX_PERSONAS_PER_RUN = 50              # 单次仿真最多画像数
@@ -40,8 +40,8 @@ class EduPredict(_Base):
             "vp": "运营",
             "parent": "元瑶教育 (EduAgency)",
             "description": "教育预测仿真 (DeepSeek 驱动决策仿真)",
-            "model_default": "deepseek-chat",
-            "model_report": "qwen-plus",
+            "model_default": "deepseek-v4-pro",
+            "model_report": "qwen3.6-plus",
         }
 
     # ── 提示词加载 ────────────────────────────────────────────────
