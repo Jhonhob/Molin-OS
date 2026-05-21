@@ -1264,6 +1264,88 @@ def cmd_validate(args: list[str]) -> dict:
     }
 
 
+def cmd_queue(args: list[str]) -> dict:
+    """异步任务队列管理 — push / stats / purge"""
+    from molib.task_queue import LiteTaskQueue
+
+    q = LiteTaskQueue()
+
+    if not args:
+        return {"usage": "python -m molib queue <push|stats|purge> [options]"}
+
+    subcmd = args[0]
+    rest = args[1:]
+
+    if subcmd == "push":
+        worker = "unknown"
+        skill = "unknown"
+        payload = {}
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--worker" and i + 1 < len(rest):
+                worker = rest[i + 1]; i += 2
+            elif rest[i] == "--skill" and i + 1 < len(rest):
+                skill = rest[i + 1]; i += 2
+            elif rest[i] == "--payload" and i + 1 < len(rest):
+                import json as _json
+                payload = _json.loads(rest[i + 1]); i += 2
+            else:
+                i += 1
+        task_id = q.push_task(worker, skill, payload)
+        return {"status": "ok", "action": "push", "task_id": task_id}
+
+    elif subcmd == "stats":
+        return {"status": "ok", "action": "stats", "data": q.get_stats()}
+
+    elif subcmd == "purge":
+        days = 7
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--days" and i + 1 < len(rest):
+                days = int(rest[i + 1]); i += 2
+            else:
+                i += 1
+        deleted = q.purge_completed(before_days=days)
+        return {"status": "ok", "action": "purge", "deleted": deleted, "days": days}
+
+    return {"error": f"未知子命令: {subcmd}", "hint": "push | stats | purge"}
+
+
+def cmd_agent_log(args: list[str]) -> dict:
+    """Agent 可观测日志查询 — errors / cost-summary"""
+    from molib.agent_logger import get_logger
+
+    logger = get_logger()
+
+    if not args:
+        return {"usage": "python -m molib agent-log <errors|cost> [options]"}
+
+    subcmd = args[0]
+    rest = args[1:]
+
+    if subcmd == "errors":
+        limit = 20
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--limit" and i + 1 < len(rest):
+                limit = int(rest[i + 1]); i += 2
+            else:
+                i += 1
+        return {"status": "ok", "errors": logger.recent_errors(limit=limit)}
+
+    elif subcmd == "cost":
+        month = None
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--month" and i + 1 < len(rest):
+                month = rest[i + 1]; i += 2
+            else:
+                i += 1
+        return {"status": "ok", "data": logger.cost_summary(month=month)}
+
+    return {"error": f"未知子命令: {subcmd}", "hint": "errors | cost"}
+
+
 async def run(command: str, args: list[str]) -> dict:
     """分发命令到具体模块"""
     # 同步命令映射（直接返回 dict）
@@ -1286,6 +1368,8 @@ async def run(command: str, args: list[str]) -> dict:
         "flow": cmd_flow,
         "xhs": cmd_xhs,  # 小红书内容引擎
         "notebooklm": cmd_notebooklm,  # Qiaomu Anything → NotebookLM 内容处理器
+        "queue": cmd_queue,  # 异步任务队列
+        "agent-log": cmd_agent_log,  # Agent 可观测日志
     }
     # 异步命令映射（返回 coroutine）
     async_commands = {

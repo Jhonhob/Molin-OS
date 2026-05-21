@@ -109,15 +109,19 @@ fork_repos/
 molin/agents_old/
 molin/core_old/
 
-# ─── Hermes Agent (local install artifacts) ───
-hermes/venv/
-hermes/*.egg-info/
-hermes/.venv/
-hermes/node_modules/
-hermes/ui-tui/node_modules/
-hermes/web/node_modules/
-hermes/website/node_modules/
+# ─── Hermes Agent (upstream dependency — installed separately) ───
+# Hermes Agent 通过 pip/brew 独立安装，不纳入 Molin-OS 仓库
+# 配置保留在 config/hermes-agent/ 中
+hermes/
 
-# ─── Submodule Externals (managed via .gitmodules) ───
-# No active submodules in this repo
-engine/mirofish/backend/data/*.db
+# ─── Archived / Deprecated Skills ───
+skills/archive/
+
+# ─── Runtime databases (auto-generated) ───
+relay/bus.db
+vault/tasks.db
+vault/memory_index.db
+vault/logs/
+*.db-journal
+*.db-wal
+*.db-shm

@@ -1,0 +1,95 @@
+# ============================================
+# Molin-OS 系统硬化配置 (System Hardening v7.5.0)
+# ============================================
+# 集中管理所有防御机制的参数，
+# 使 Hermes 主脑能够动态感知并应用新规则。
+# ============================================
+
+system_version: "7.5.0-Hardened"
+
+# ── 数据总线控制 ──────────────────────────────
+data_bus:
+  engine: "sqlite3-wal"
+  storage_path: "./relay/bus.db"
+  timeout_seconds: 30.0
+  default_ttl_seconds: 3600
+  cleanup_interval_seconds: 600
+
+# ── 技能执行沙箱 ─────────────────────────────
+skill_sandbox:
+  enabled: true
+  sandbox_dir: "./skills/sandboxes"
+  isolated_heavy_skills:
+    - "video_renderer_mo_jian"
+    - "playwright_crawler_mo_xiu"
+    - "torch_inference_mirofish"
+    - "comfyui_image_gen"
+  default_timeout_seconds: 120
+  max_timeout_seconds: 600
+
+# ── 异步网关 ─────────────────────────────────
+async_gateway:
+  host: "0.0.0.0"
+  port: 8000
+  max_queue_size: 500
+  ack_timeout_ms: 1000
+  worker_count: 4
+
+# ── 记忆降噪策略 ─────────────────────────────
+memory_gc:
+  similarity_dedup_threshold: 0.78
+  nightly_consolidation_hour: 2
+  archive_target: "./vault/obsidian/consolidated_knowledge/"
+  max_fingerprint_cache: 10000
+  compact_batch_size: 50
+
+# ── MiroFish 联动闭环 ────────────────────────
+mirofish_monitoring:
+  anomaly_auto_breaker: true
+  probe_interval_seconds: 1800
+  alert_threshold_ratio: 0.7     # 实测 < 预测 * 0.7 触发断路器
+  warning_threshold_ratio: 0.85  # 实测 < 预测 * 0.85 触发轻告警
+  auto_recovery_seconds: 1800
+
+# ── 断路器配置 ───────────────────────────────
+circuit_breaker:
+  enabled: true
+  intelligence_confidence_threshold: 0.7
+  content_body_min_length: 10
+  handoff_retry_max: 3
+  alert_on_failure: false  # 设为 true 启用飞书报警
+
+# ── LiteLLM 多模型网关 ───────────────────────
+llm_gateway:
+  enabled: true
+  models:
+    thinking:
+      primary: "deepseek/deepseek-reasoning"
+      fallback: "qwen/qwen-max"
+    execution:
+      primary: "deepseek/deepseek-chat"
+      fallback: "qwen/qwen-plus"
+    lightweight:
+      primary: "qwen/qwen-turbo"
+  retry:
+    max_attempts: 3
+    backoff_factor: 2
+  rate_limit:
+    rpm: 60      # requests per minute
+    tpm: 100000  # tokens per minute
+
+# ── 飞轮图控配置 ─────────────────────────────
+flywheel:
+  handoff_routes: 24
+  max_flywheel_depth: 10
+  l2_approval_required: true  # L2 治理：关键手递需人工审批
+  checkpoint_interval_nodes: 3
+
+# ── 日志与可观测性 ───────────────────────────
+observability:
+  trace_log_dir: "./vault/logs"
+  jsonl_rotation: "monthly"
+  cost_alert_threshold_usd: 10.0
+  langfuse:
+    enabled: false  # Docker 自托管，需要先 docker run langfuse
+    host: "http://localhost:3000"
