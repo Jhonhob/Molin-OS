@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 墨麟OS Molin-OS — 每日 Git 自动备份脚本
 # 由 cron 调用，每天 02:00 自动备份代码变更至 GitHub
-# v3.0 — 标准化: 备份主仓库 Molin-OS, 不再同步到 MolinOS-Ultra
+# v3.0 — 标准化: 备份主仓库 Molin-OS, 不再同步到 Molin-OS
 
 set -e
 REPO="$HOME/Molin-OS"

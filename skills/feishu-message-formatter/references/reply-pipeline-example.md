@@ -10,7 +10,7 @@ ceo_result = {
     'intent': {
         'type': '分析',
         'target_subsidiaries': ['research', 'shop', 'ip', 'data', 'legal'],
-        'target_vps': ['VP战略', 'VP营销'],
+        'target_vps': ['紫灵·战略', '元瑶·教育'],
         'complexity_score': 7,
         'risk_level': 'low',
         'confidence': 0.94,
