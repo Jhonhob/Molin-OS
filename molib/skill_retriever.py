@@ -24,6 +24,7 @@ class SkillRegistry:
         
         if chromadb:
             self.chroma_client = chromadb.PersistentClient(path=self.db_path)
+            self.ef = None  # 默认嵌入模型 (all-MiniLM-L6-v2, 英文)
             self.collection = self.chroma_client.get_or_create_collection(
                 name=self.collection_name,
                 metadata={"hnsw:space": "cosine"}
@@ -90,6 +91,10 @@ class SkillRegistry:
                 continue
 
             skill_id = meta.get('skill_id', md_file.parent.name)
+            # Ensure uniqueness by prefixing with path if needed
+            rel_path = str(md_file.relative_to(self.skills_dir))
+            if not skill_id.startswith(rel_path.replace('/', '_')):
+                skill_id = rel_path.replace('/', '_').replace('.md', '')
             domain = meta.get('owner_domain', 'unknown')
             worker = meta.get('owner_worker', 'unknown')
             rel_path = str(md_file.relative_to(self.skills_dir))
@@ -138,7 +143,7 @@ class SkillRegistry:
         Returns:
             [{skill_id, name, owner_domain, owner_worker, file_path}, ...]
         """
-        if not self.collection:
+        if not self.collection or not self.ef:
             return self._fallback_keyword_search(user_intent, top_k, domain_filter)
 
         where_clause = None
