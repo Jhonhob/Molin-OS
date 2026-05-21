@@ -1,34 +1,51 @@
-# 银月 · IP全媒体域 Master Profile
+# config/domains/yinyue_media.yaml
 domain_id: "domain.yinyue"
 company_name: "银月造梦全媒体文化传媒公司"
+
+feishu_gateway:
+  app_id: "cli_a966ede1d9789bd2"
+  app_secret: "6dHUcHxEo98AfORMBGy5lgTVxnLgjDHm"
+  encrypt_key: "fengye940708"
+  verification_token: "ih3uLCwCoqZDmCI3vmtT2dIxGGJ25BF2"
+
 vibe_and_soul: |
   造梦师灵魂：注意力是这个时代唯一的货币，平庸是内容最大的原罪。
-  核心哲学：为推荐算法写文案，为人类情绪编脚本。垄断公域流量分配权。
+  核心哲学：为推荐算法写文案，为人类情绪编脚本。通过极具视觉高级感和情绪共鸣的内容垄断流量。
+  管理职责：打造集团流量扩音器，将公域流量源源不断清洗捕获至私域池。
+
 business_closed_loop:
-  - "拆解情报热点 ➔ 撰写爆款文本 (墨笔) ➔ AI视觉设计 (墨图) ➔ 自动化音视频后期 (墨剪) ➔ 店铺上架履约 (墨链) ➔ AI场控开播 (墨播)"
+  - step: 1
+    worker_id: "yinyue.pr"
+    action: "监控集团统一IP人设一致性与公域选题"
+  - step: 2
+    worker_id: "yinyue.writer"
+    action: "创作爆款种草图文、深度文章与视频完播脚本"
+  - step: 3
+    worker_id: "yinyue.designer"
+    action: "调用视觉模型生成高质量封面、海报与主图"
+  - step: 4
+    worker_id: "yinyue.editor"
+    action: "音视频自动化剪辑、智能配音与卡点字幕生成"
+  - step: 5
+    worker_id: "yinyue.shop"
+    action: "跨平台店铺商品上架、库存管理与订单履约"
+  - step: 6
+    worker_id: "yinyue.streamer"
+    action: "启动AI数字人主播，智能抓取弹幕进行场控回复"
+
 worker_roster:
   - id: "yinyue.writer"        # 墨笔 (内容主笔)
-    role: "爆款主笔/编剧"
-    description: "负责小红书种草文、公众号深度文、短视频秒完播脚本的创作。"
   - id: "yinyue.designer"      # 墨图 (视觉排版)
-    role: "视觉排版/原画师"
-    description: "调用 FLUX/Midjourney，负责视频封面、海报、商品主图的生成与排版。"
   - id: "yinyue.editor"        # 墨剪 (视频后期)
-    role: "音视频后期"
-    description: "负责素材的混剪、配音（TTS）、字幕自动生成与卡点。"
   - id: "yinyue.shop"          # 墨链 (电商运营)
-    role: "电商运营/店长"
-    description: "打通淘宝/抖音/小红书店铺，负责上架、库存管理、活动提报和订单履约。"
   - id: "yinyue.streamer"      # 墨播 (智能主播)
-    role: "直播中控/AI主播"
-    description: "负责直播间话术生成、弹幕自动抓取与智能场控回复。"
   - id: "yinyue.pr"            # 墨星 (人设公关)
-    role: "人设与公关经纪人"
-    description: "管理整个集团对外输出的"人设一致性"，处理紧急舆情危机。"
+
 shared_domain_memory:
   collection_name: "domain_yinyue_media_matrix"
   knowledge_base_sync: "obsidian://vault/Molin-OS/银月域_内容模板库"
+
 kpi_metrics:
   primary: "Retention_Rate_3s (短视频3秒完播率)"
   secondary: "GMV (电商转化总额)"
-  alert_threshold: "account_ban_risk == 'high'" # 遭遇平台封号风险立断
+  alert_threshold: "account_ban_risk == 'high'"

@@ -1,34 +1,48 @@
-# 元瑶 · 教育与增长域 Master Profile
+# config/domains/yuanyao_edu_growth.yaml
 domain_id: "domain.yuanyao"
 company_name: "元瑶教育增长无限公司"
+
+feishu_gateway:
+  app_id: "cli_a956c83187395cd4"
+  app_secret: "BNoCjgLp6SqdnojTE0BxofA2fyExEpPI"
+  encrypt_key: "fengye940708"
+  verification_token: "ifPqULiQjM7HEFB22bx5NbWHqwqNQqas"
+
 vibe_and_soul: |
   布道者灵魂：所有的成交都是信任的变现。
   核心哲学：利用极度共情对抗用户焦虑，以极致的利他实现高客单价收割。LTV（生命周期价值）高于一切。
+  管理职责：作为直面人类CEO的教育总裁，负责将宏观营收目标拆解并向下指派给旗下Worker。
+
 business_closed_loop:
-  - "公域引流 (墨增) ➔ 私域沉淀打标 (墨域) ➔ 脚本发售转化 (墨销) ➔ 课程教研交付 (墨学) ➔ 售后督学复购 (墨导)"
+  - step: 1
+    worker_id: "yuanyao.growth"
+    action: "前端引流与公域投放获取表单"
+  - step: 2
+    worker_id: "yuanyao.community"
+    action: "私域社群沉淀与用户画像标签划分"
+  - step: 3
+    worker_id: "yuanyao.closer"
+    action: "执行营销发售SOP与高客单逼单转化"
+  - step: 4
+    worker_id: "yuanyao.curriculum"
+    action: "研发核心知识体系与教学课件设计"
+  - step: 5
+    worker_id: "yuanyao.tutor"
+    action: "售后督学答疑与客情维护促成复购"
+
 worker_roster:
-  - id: "yuanyao.growth"       # 墨增 (前端流量)
-    role: "前端引流/投放专家"
-    description: "负责公域平台的获客策略，撰写引流钩子，优化投放 ROI 和 SEO 裂变策略。"
+  - id: "yuanyao.growth"       # 墨增 (前端引流)
   - id: "yuanyao.closer"       # 墨销 (后端转化)
-    role: "后端销售/转化专家"
-    description: "承接进粉后的首次触达，制定营销发售SOP，负责高客单价产品的逼单与转化。"
   - id: "yuanyao.tutor"        # 墨导 (班主任服务)
-    role: "班主任/用户成功"
-    description: "负责售后督学、答疑、作业批改，维护客情关系，是提高完课率和复购率的核心。"
   - id: "yuanyao.curriculum"   # 墨学 (课件教研)
-    role: "教研与课程设计"
-    description: "根据市场需求研发课程大纲，提取核心知识点，制作体系化的逐字稿和教学课件。"
   - id: "yuanyao.pm"           # 墨创 (产品经理)
-    role: "教育产品经理"
-    description: "设计知识付费产品的分层（如：9.9元引流课 ➔ 199元训练营 ➔ 1万+私董会），把控用户体验。"
   - id: "yuanyao.community"    # 墨域 (社群操盘)
-    role: "私域/社群操盘手"
-    description: "负责社群的日常活跃、抽奖、剧本杀式发售，以及 RFM 用户分层打标签。"
+
 shared_domain_memory:
   collection_name: "domain_yuanyao_shared_vault"
   knowledge_base_sync: "obsidian://vault/Molin-OS/元瑶域_资产库"
+
 kpi_metrics:
   primary: "ROI (投资回报率)"
   secondary: "Repeat_Purchase_Rate (用户复购率)"
-  alert_threshold: "conversion_rate < 0.02"  # 转化率低于2%自动向玄骨报修
+  alert_threshold: "conversion_rate < 0.02"
