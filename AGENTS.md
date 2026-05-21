@@ -143,7 +143,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 > 边界判断规则：「付钱方唯一」— 教育机构付钱→墨育，粉丝付钱→墨媒，台湾/东南亚用户→墨海，情报消费者→墨研，一人公司→墨创。
 > 内容不是独立业务，每个域自带内容能力。
 
-### 域一：墨育 · 教育增长域（5 Worker）— Profile: moyu-edu
+### 域一：墨育 · 教育增长域（5 Worker）— Profile: molin-edu
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨招·获客 | `edu_acquisition_worker.py` | 广告投放、增长策略、招生Leads（ads+growth合并） |
@@ -152,7 +152,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 墨预·预测 | `edu_prediction_worker.py` | 招生预测仿真、定价策略模拟（MiroFish教育化） |
 | 墨料·内容 | `edu_content_worker.py` | 招生文案、课程包装、教育内容产出 |
 
-### 域二：墨研 · AI情报域（4 Worker）— Profile: moyu-research
+### 域二：墨研 · AI情报域（4 Worker）— Profile: molin-research
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨雷·雷达 | `github_radar_worker.py` | AI开源项目监控、技术趋势扫描、Star追踪 🆕 |
@@ -160,7 +160,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 墨测·评测 | `ai_review_worker.py` | AI工具实测、功能对比、性价比评估 🆕 |
 | 墨档·知识库 | `knowledge_base_worker.py` | 知识沉淀、RAG检索、知识图谱维护 |
 
-### 域三：墨媒 · IP变现域（4 Worker）— Profile: moyu-media
+### 域三：墨媒 · IP变现域（4 Worker）— Profile: molin-media
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨笔·内容矩阵 | `content_matrix_worker.py` | 全平台内容产出、品牌视觉、AI生图配音设计（ip+content_writer+designer+voice_actor四合一） |
@@ -168,14 +168,14 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 墨商·成交 | `ip_commerce_worker.py` | 接单→报价→交付全链路（bd+shop+order三合一） |
 | 墨播·直播运营 | `live_ops_worker.py` | 直播脚本、短视频策划、多平台分发 |
 
-### 域四：墨海 · 出海域（3 Worker）— Profile: moyu-global
+### 域四：墨海 · 出海域（3 Worker）— Profile: molin-global
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨台·台湾 | `taiwan_ops_worker.py` | 台湾市场运营、繁体适配、台区社媒 |
 | 墨译·本地化 | `localization_worker.py` | 多语言适配、繁简转换、质量审核 |
 | 墨东·东南亚 | `sea_market_worker.py` | 马/新市场探索（低优先级） 🆕 |
 
-### 域五：墨创 · 一人公司域（4 Worker）— Profile: moyu-side
+### 域五：墨创 · 一人公司域（4 Worker）— Profile: molin-side
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨财·财务 | `solo_finance_worker.py` | 流水记录、成本核算、API追踪、预算 |
@@ -183,7 +183,7 @@ python -m molib moneymaker score --plan xxx  # 变现路径评分
 | 墨数·数据 | `solo_data_worker.py` | 跨域数据汇总、BI报表、KPI看板（data+data_analyst合并） |
 | 墨策·策略 | `solo_strategy_worker.py` | 战略分析、产品决策、商业模式评估（product+research战略合并） |
 
-### 墨枢 · 基础设施层（4 Worker — 非业务域）— Profile: moyu-shared
+### 墨枢 · 基础设施层（4 Worker — 非业务域）— Profile: molin-shared
 | 统一名称 | Worker 文件 | 核心能力 |
 |---------|------------|---------|
 | 墨技·技术 | `dev_infra_worker.py` | 全栈开发、系统部署、DevOps（dev+devops+ai三合一） |
