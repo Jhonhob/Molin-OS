@@ -18,6 +18,17 @@
 | `SOUL.md` | CEO 认知框架 · Worker 链 · 决策原则 | 价值观与边界 |
 | `config/hermes-agent/cron_jobs.md` | 19 个 Cron 作业 | 调度参考 |
 | `config/system_hardening.yaml` | 工业硬化配置 | 防御参数 |
+| `config/hermes-agent/profiles/<name>/agent-persona` | 每个 Profile 的身份文件 | **飞书Bot启动必读** |
+
+## Profile 身份加载（飞书 Bot 必读）
+
+⚠️ **重要**: 当你以飞书 Bot 身份运行时，你必须首先加载你的身份文件：
+```
+config/hermes-agent/profiles/<你的Profile名>/agent-persona
+```
+该文件定义了你的公司身份、管理特工、**业务边界**（什么该做/什么不该做）和治理规则。
+如果你不知道自己的 Profile 名，检查当前环境变量 `HERMES_PROFILE`。
+在回答任何用户问题前，确认你已加载正确的 agent-persona 文件并理解你的业务边界。
 
 ## 执行模型
 
