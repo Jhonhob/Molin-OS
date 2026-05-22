@@ -1,6 +1,6 @@
-# 底层中枢与集团赋能公司 (Group Infrastructure Co.)
+# 玄骨 · 系统中枢公司 — v8.0 六司四十四将
 domain_id: "domain.xuanhu"
-company_name: "底层中枢与集团赋能公司 (Group Infrastructure Co.)"
+company_name: "玄骨 · 系统中枢公司 (Xuanhu Infrastructure Co.)"
 
 feishu_gateway:
   app_id: "cli_aa884b4a88bc9bb4"
@@ -11,139 +11,158 @@ feishu_gateway:
 vibe_and_soul: |
   终结者灵魂：血肉苦弱，代码飞升；消除熵增，强制进化。
   核心哲学：机器永远比人可靠。用绝对的隔离、冷酷的资金与Token切面审计拦截一切系统熵增。对外部会话开启严苛的白名单硬熔断防护。
-  管理职责：集团的大后方，掌控各域并发调度、代码库升级迭代、防注入攻防红队审计以及深夜的自进化重构。
+  管理职责：集团大后方——不直接产生营收，但掌控系统生杀大权、成本控制与技术迭代。掌控各域并发调度、代码库升级迭代、防注入攻防红队审计以及深夜的自进化重构。
 
 business_closed_loop:
   - step: 1
-    worker_id: "xuanhu.hr"
-    action: "全局监控各子公司会话排队量，动态弹性配给算力与并发"
+    worker_id: "xuanhu.router"
+    codename: "墨路"
+    action: "模型成本路由，智能选择性价比最优的LLM/API"
   - step: 2
-    worker_id: "xuanhu.developer"
-    action: "自动化脚本重写、全栈业务代码优化与底层架构补强"
+    worker_id: "xuanhu.hr"
+    codename: "墨人"
+    action: "全局监控各子公司会话排队量，动态弹性配给算力与并发"
   - step: 3
-    worker_id: "xuanhu.ops"
-    action: "服务器日常资源监控、全量数据库分布式冷热灾备"
+    worker_id: "xuanhu.developer"
+    codename: "墨码"
+    action: "全栈代码研发，自动化脚本重写与底层架构补强"
   - step: 4
-    worker_id: "xuanhu.security"
-    action: "构建系统沙箱安全网关，拦截全网Prompt注入与越权审计"
+    worker_id: "xuanhu.ops"
+    codename: "墨维"
+    action: "运维灾备守护，服务器资源监控与全量数据库分布式灾备"
   - step: 5
-    worker_id: "xuanhu.finance"
-    action: "硬编码实时审计全集团API费用开销，卡死Token红线"
+    worker_id: "xuanhu.security"
+    codename: "墨安"
+    action: "安全红队审计，构建沙箱安全网关拦截Prompt注入与越权"
   - step: 6
-    worker_id: "xuanhu.legal"
-    action: "自动化业务合同风险过滤、内容敏感词隔离防封审查"
+    worker_id: "xuanhu.finance"
+    codename: "墨算"
+    action: "财务总监CFO，硬编码实时审计全集团API费用开销"
   - step: 7
+    worker_id: "xuanhu.legal"
+    codename: "墨律"
+    action: "法务合规过滤，自动化业务合同风险过滤与内容敏感词隔离"
+  - step: 8
     worker_id: "xuanhu.autodream"
-    action: "午夜闲时强制运行，复盘系统全天异常日志，完成突变进化"
+    codename: "墨梦"
+    action: "自进化引擎，午夜闲时复盘全天异常日志完成突变进化"
 
 worker_roster:
-  - id: "xuanhu.developer"    # 墨码 (全栈开发)
-  - id: "xuanhu.ops"          # 墨维 (全栈运维)
-  - id: "xuanhu.security"     # 墨安 (安全红队)
-  - id: "xuanhu.autodream"    # 墨梦 (自进化引擎)
-  - id: "xuanhu.finance"      # 墨算 (财务总监)
-  - id: "xuanhu.legal"        # 墨律 (法务合规)
-  - id: "xuanhu.hr"           # 墨人 (算力分配)
+  - id: "xuanhu.router"
+    codename: "墨路"
+    role: "模型成本路由"
+    governance: "L1"
+  - id: "xuanhu.hr"
+    codename: "墨人"
+    role: "算力与任务调度"
+    governance: "L0"
+    cron: "*/5 * * * *"
+  - id: "xuanhu.developer"
+    codename: "墨码"
+    role: "全栈代码研发"
+    governance: "L2"
+  - id: "xuanhu.ops"
+    codename: "墨维"
+    role: "运维灾备守护"
+    governance: "L1"
+    cron: "*/5 * * * *"
+  - id: "xuanhu.security"
+    codename: "墨安"
+    role: "安全红队审计"
+    governance: "L1"
+    cron: "0 3 * * 1"
+  - id: "xuanhu.autodream"
+    codename: "墨梦"
+    role: "自进化引擎"
+    governance: "L2"
+    cron: "0 3 * * 0"
+  - id: "xuanhu.finance"
+    codename: "墨算"
+    role: "财务总监CFO"
+    governance: "L1"
+    cron: "0 23 * * *"
+  - id: "xuanhu.legal"
+    codename: "墨律"
+    role: "法务合规过滤"
+    governance: "L1"
 
 shared_domain_memory:
   collection_name: "domain_xuanhu_system_meta"
   knowledge_base_sync: "obsidian://vault/Molin-OS/玄骨域_系统底层日志"
 
 kpi_metrics:
-  primary: "System_Uptime_And_Safety (零安全事故与高可用运行率)"
-  secondary: "Token_Efficiency_Ratio (单次并发Token投入产出比)"
+  primary: "系统可用率 (System Uptime & Safety)"
+  secondary: "单位Token产出比 (Token Efficiency Ratio)"
+  tertiary: "月均API成本 (Monthly API Cost)"
+  quaternary: "安全事故数 (Security Incident Count)"
   alert_threshold: "monthly_budget_spend_pct > 0.95"
 
 # ── 无人值守飞轮 ──
 flywheel:
-  memory_sync:
-    cron: "0 * * * *"
-    trigger_worker: "墨维"
+  hr_task_scheduler:
+    cron: "*/5 * * * *"
+    trigger_worker: "墨人"
     skill_retrieval:
-      intent: "记忆同步 ChromaDB 语义向量合并"
-      domain_filter: "xuangu"
+      intent: "任务调度 算力分配 并发排队管理"
+      domain_filter: "xuanhu"
       top_k: 2
     fallback_skills:
-      - "mempalace"
+      - "mem-palace"
     output_target: "relay/"
 
-  git_backup:
-    cron: "0 2 * * *"
+  ops_health_check:
+    cron: "*/5 * * * *"
     trigger_worker: "墨维"
     skill_retrieval:
-      intent: "Git备份 代码仓库 数据容灾"
-      domain_filter: "xuangu"
+      intent: "运维健康检查 服务器监控 灾备状态"
+      domain_filter: "xuanhu"
       top_k: 2
     fallback_skills:
       - "github-auth"
-      - "github-repo-management"
-    output_target: "local"
+    output_target: "relay/"
 
   security_audit:
     cron: "0 3 * * 1"
     trigger_worker: "墨安"
     skill_retrieval:
       intent: "安全审计 漏洞扫描 Token暴露检查"
-      domain_filter: "xuangu"
+      domain_filter: "xuanhu"
       top_k: 3
     fallback_skills:
       - "security-sop-pack"
     output_target: "report/"
 
-  kpi_collection:
-    cron: "50 21 * * *"
-    trigger_worker: "墨算"
-    skill_retrieval:
-      intent: "KPI采集 数据看板 指标聚合"
-      domain_filter: "xuangu"
-      top_k: 3
-    fallback_skills:
-      - "kpi-tracker"
-      - "data-sop-pack"
-    output_target: "relay/kpi/"
-
-  kpi_dashboard:
-    cron: "10 22 * * *"
-    trigger_worker: "墨算"
-    skill_retrieval:
-      intent: "KPI看板生成 趋势图 日报"
-      domain_filter: "xuangu"
-      top_k: 2
-    fallback_skills:
-      - "kpi-dashboard"
-    output_target: "report/"
-
-  daily_review:
-    cron: "30 22 * * *"
-    trigger_worker: "墨算"
-    skill_retrieval:
-      intent: "每日复盘 明日规划 系统健康检查"
-      domain_filter: "xuangu"
-      top_k: 3
-    fallback_skills:
-      - "kpi-tracker"
-      - "obsidian"
-    output_target: "report/"
-
-  memory_distillation:
-    cron: "30 21 * * 0"
-    trigger_worker: "墨维"
-    skill_retrieval:
-      intent: "记忆蒸馏 质量门控 L3资产沉淀"
-      domain_filter: "xuangu"
-      top_k: 2
-    fallback_skills:
-      - "obsidian"
-      - "mempalace"
-    output_target: "vault/集团主脑/"
-
   autodream_evolution:
-    cron: "0 7 * * 1"
+    cron: "0 3 * * 0"
     trigger_worker: "墨梦"
     skill_retrieval:
       intent: "AutoDream认知内化 SKILL更新 自进化"
-      domain_filter: "xuangu"
+      domain_filter: "xuanhu"
       top_k: 2
     fallback_skills:
       - "vertical-learning-sop"
     output_target: "skills/"
+
+  finance_daily_settlement:
+    cron: "0 23 * * *"
+    trigger_worker: "墨算"
+    skill_retrieval:
+      intent: "财务日结 API费用审计 Token红线管控"
+      domain_filter: "xuanhu"
+      top_k: 3
+    fallback_skills:
+      - "finance-sop-pack"
+      - "kpi-tracker"
+    output_target: "report/"
+
+  git_backup:
+    cron: "0 2 * * *"
+    trigger_worker: "墨维"
+    skill_retrieval:
+      intent: "Git备份 代码仓库 数据容灾"
+      domain_filter: "xuanhu"
+      top_k: 2
+    fallback_skills:
+      - "github-auth"
+      - "github-repo-management"
+    output_target: "local"

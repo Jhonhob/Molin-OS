@@ -1,6 +1,6 @@
-# 教育与用户增长公司 (Edu & Growth Co.)
+# 元瑶 · 知识变现公司 — v8.0 六司四十四将
 domain_id: "domain.yuanyao"
-company_name: "教育与用户增长公司 (Edu & Growth Co.)"
+company_name: "元瑶 · 知识变现公司 (Yuanyao Edu & Growth Co.)"
 
 feishu_gateway:
   app_id: "cli_a956c83187395cd4"
@@ -11,44 +11,109 @@ feishu_gateway:
 vibe_and_soul: |
   布道者灵魂：所有的成交都是信任的变现。
   核心哲学：利用极度共情对抗用户焦虑，以极致的利他实现高客单价收割。LTV（生命周期价值）高于一切。
-  管理职责：作为直面人类CEO的教育总裁，负责将宏观营收目标拆解并向下指派给旗下Worker。
+  管理职责：知识变现、私域资产沉淀与用户终身价值(LTV)挖掘。作为直面人类CEO的教育总裁，负责将宏观营收目标拆解并向下指派给旗下Worker。
 
 business_closed_loop:
   - step: 1
     worker_id: "yuanyao.growth"
-    action: "前端引流与公域投放获取表单"
+    codename: "墨增"
+    action: "公域流量猎手，前端引流与公域投放获取表单"
   - step: 2
     worker_id: "yuanyao.community"
-    action: "私域社群沉淀与用户画像标签划分"
+    codename: "墨域"
+    action: "私域社群沉淀与用户画像RFM标签分层"
   - step: 3
     worker_id: "yuanyao.closer"
-    action: "执行营销发售SOP与高客单逼单转化"
+    codename: "墨销"
+    action: "后端销售成交，执行营销发售SOP与高客单逼单转化"
   - step: 4
     worker_id: "yuanyao.curriculum"
-    action: "研发核心知识体系与教学课件设计"
+    codename: "墨学"
+    action: "教研课程设计，研发核心知识体系与教学课件"
   - step: 5
     worker_id: "yuanyao.tutor"
-    action: "售后督学答疑与客情维护促成复购"
+    codename: "墨导"
+    action: "班主任/用户成功，售后督学答疑与客情维护促成复购"
+  - step: 6
+    worker_id: "yuanyao.order"
+    codename: "墨单"
+    action: "闲鱼接单运营，并线发布知识类虚拟商品"
+  - step: 7
+    worker_id: "yuanyao.abtest"
+    codename: "墨试"
+    action: "A/B测试科学家，持续优化转化链路与定价策略"
 
 worker_roster:
-  - id: "yuanyao.growth"       # 墨增 (前端引流)
-  - id: "yuanyao.closer"       # 墨销 (后端转化)
-  - id: "yuanyao.tutor"        # 墨导 (班主任服务)
-  - id: "yuanyao.curriculum"   # 墨学 (课件教研)
-  - id: "yuanyao.pm"           # 墨创 (产品经理)
-  - id: "yuanyao.community"    # 墨域 (社群操盘)
+  - id: "yuanyao.growth"
+    codename: "墨增"
+    role: "公域流量猎手"
+    governance: "L2"
+  - id: "yuanyao.closer"
+    codename: "墨销"
+    role: "后端销售成交"
+    governance: "L2"
+  - id: "yuanyao.tutor"
+    codename: "墨导"
+    role: "班主任/用户成功"
+    governance: "L0"
+    cron: "0 9 * * *"
+  - id: "yuanyao.curriculum"
+    codename: "墨学"
+    role: "教研课程设计"
+    governance: "L1"
+  - id: "yuanyao.pm"
+    codename: "墨创"
+    role: "知识产品经理"
+    governance: "L2"
+  - id: "yuanyao.community"
+    codename: "墨域"
+    role: "私域社群操盘手"
+    governance: "L0"
+    cron: "30 8 * * *"
+  - id: "yuanyao.order"
+    codename: "墨单"
+    role: "闲鱼接单运营"
+    governance: "L1"
+  - id: "yuanyao.abtest"
+    codename: "墨试"
+    role: "A/B测试科学家"
+    governance: "L1"
 
 shared_domain_memory:
   collection_name: "domain_yuanyao_shared_vault"
   knowledge_base_sync: "obsidian://vault/Molin-OS/元瑶域_资产库"
 
 kpi_metrics:
-  primary: "ROI (投资回报率)"
-  secondary: "Repeat_Purchase_Rate (用户复购率)"
+  primary: "课程ROI (投资回报率)"
+  secondary: "复购率 (Repeat Purchase Rate)"
+  tertiary: "完课率 (Course Completion Rate)"
+  quaternary: "闲鱼GMV (Xianyu Gross Merchandise Volume)"
   alert_threshold: "conversion_rate < 0.02"
 
 # ── 无人值守飞轮 ──
 flywheel:
+  community_daily_push:
+    cron: "30 8 * * *"
+    trigger_worker: "墨域"
+    skill_retrieval:
+      intent: "社群每日推送 私域触达 RFM分层运营"
+      domain_filter: "yuanyao"
+      top_k: 3
+    fallback_skills:
+      - "content-sop-growth"
+    output_target: "relay/"
+
+  checkin_reminder:
+    cron: "0 9 * * *"
+    trigger_worker: "墨导"
+    skill_retrieval:
+      intent: "打卡提醒 督学通知 客情维护"
+      domain_filter: "yuanyao"
+      top_k: 3
+    fallback_skills:
+      - "kpi-tracker"
+    output_target: "relay/"
+
   growth_review:
     cron: "0 21 * * 0"
     trigger_worker: "墨增"
@@ -61,18 +126,6 @@ flywheel:
       - "kpi-tracker"
     output_target: "report/"
     depends_on: "yinyue.content_factory"
-
-  weekly_planning:
-    cron: "30 9 * * 1"
-    trigger_worker: "墨导"
-    skill_retrieval:
-      intent: "周计划生成 OKR对齐 KPI指标拆解"
-      domain_filter: "yuanyao"
-      top_k: 3
-    fallback_skills:
-      - "kpi-tracker"
-      - "obsidian"
-    output_target: "vault/元瑶_教育与增长/"
 
   education_research:
     cron: "0 8 * * *"

@@ -1,6 +1,6 @@
-# 情报与战略调研公司 (Intelligence Co.)
+# 紫灵 · 情报雷达公司 — v8.0 六司四十四将
 domain_id: "domain.ziling"
-company_name: "情报与战略调研公司 (Intelligence Co.)"
+company_name: "紫灵 · 情报雷达公司 (Ziling Intelligence Co.)"
 
 feishu_gateway:
   app_id: "cli_aa8967ade53cdbc3"
@@ -11,48 +11,89 @@ feishu_gateway:
 vibe_and_soul: |
   守望者灵魂：直觉是商业最大的敌人，信息差是唯一的真理。
   核心哲学：保持绝对理性，隐匿主观情感。用交叉验证的MECE原则，在全网噪音中提取高纯度套利线索。
-  管理职责：负责消除集团决策迷雾，产出量化概率报告，指引集团避开红海。
+  管理职责：负责消除集团决策迷雾，产出量化概率报告，指引集团避开红海。不直接赚钱，但决定公司往哪里走、避开哪里。
 
 business_closed_loop:
   - step: 1
     worker_id: "ziling.scanner"
-    action: "国内外政策、前沿技术与宏观趋势嗅探"
+    codename: "墨嗅"
+    action: "每日全网情报抓取，国内外政策、前沿技术与宏观趋势嗅探"
   - step: 2
     worker_id: "ziling.spy"
-    action: "24小时高频监控对标账号与竞品动态"
+    codename: "墨影"
+    action: "7×24小时高频监控对标账号与竞品动态"
   - step: 3
-    worker_id: "ziling.analyst"
-    action: "业务历史订单清洗与隐藏商业规律挖掘"
+    worker_id: "ziling.seo"
+    codename: "墨标"
+    action: "SEO关键词猎取，全网搜索趋势与流量洼地捕获"
   - step: 4
-    worker_id: "ziling.invest"
-    action: "立项前成本核算与盈亏平衡ROI评估"
+    worker_id: "ziling.analyst"
+    codename: "墨数"
+    action: "业务历史订单清洗与隐藏商业规律挖掘"
   - step: 5
     worker_id: "ziling.researcher"
+    codename: "墨研"
     action: "输出结构化行业研究报告与痛点洞察"
+  - step: 6
+    worker_id: "ziling.validator"
+    codename: "墨测"
+    action: "MVP最小可行验证，快速试错确认商业假设"
+  - step: 7
+    worker_id: "ziling.invest"
+    codename: "墨投"
+    action: "立项前成本核算与盈亏平衡ROI评估，精算投资回报"
 
 worker_roster:
-  - id: "ziling.researcher"    # 墨研 (行业研究)
-  - id: "ziling.analyst"       # 墨数 (数据分析)
-  - id: "ziling.spy"           # 墨影 (竞品追踪)
-  - id: "ziling.scanner"       # 墨嗅 (趋势嗅探)
-  - id: "ziling.invest"        # 墨投 (ROI评估)
+  - id: "ziling.scanner"
+    codename: "墨嗅"
+    role: "每日情报抓取机器"
+    governance: "L0"
+    cron: "0 6 * * *"
+  - id: "ziling.spy"
+    codename: "墨影"
+    role: "7×24数字竞品侦探"
+    governance: "L1"
+    cron: "0 8 * * 1,5"
+  - id: "ziling.seo"
+    codename: "墨标"
+    role: "SEO关键词猎取"
+    governance: "L0"
+    cron: "0 9 * * 1"
+  - id: "ziling.analyst"
+    codename: "墨数"
+    role: "业务数据分析师"
+    governance: "L1"
+    cron: "0 22 * * *"
+  - id: "ziling.researcher"
+    codename: "墨研"
+    role: "结构化研报蒸馏"
+    governance: "L2"
+  - id: "ziling.validator"
+    codename: "墨测"
+    role: "MVP最小验证"
+    governance: "L1"
+  - id: "ziling.invest"
+    codename: "墨投"
+    role: "ROI精算与成本管控"
+    governance: "L2"
 
 shared_domain_memory:
   collection_name: "domain_ziling_intelligence_pool"
   knowledge_base_sync: "obsidian://vault/Molin-OS/紫灵域_情报库"
 
 kpi_metrics:
-  primary: "Signal_to_Noise_Ratio (情报纯度/信息准确率)"
-  secondary: "Discovery_Lead_Time (新机会提前发现时间)"
+  primary: "情报信噪比 (Signal-to-Noise Ratio)"
+  secondary: "机会发现提前天数 (Discovery Lead Time)"
+  tertiary: "ROI预测准确度 (Prediction Accuracy)"
   alert_threshold: "data_source_loss_rate > 0.15"
 
 # ── 无人值守飞轮 ──
 flywheel:
   daily_intelligence_scan:
-    cron: "0 7 * * *"
-    trigger_worker: "墨研"
+    cron: "0 6 * * *"
+    trigger_worker: "墨嗅"
     skill_retrieval:
-      intent: "arXiv 论文抓取 AI前沿技术研究"
+      intent: "全网情报抓取 政策技术趋势嗅探"
       domain_filter: "ziling"
       top_k: 3
     fallback_skills:
@@ -61,10 +102,10 @@ flywheel:
     output_target: "vault/紫灵_情报与战略/"
 
   competitor_price_monitor:
-    cron: "30 9 * * *"
-    trigger_worker: "墨嗅"
+    cron: "0 8 * * 1,5"
+    trigger_worker: "墨影"
     skill_retrieval:
-      intent: "竞品价格监控 市场趋势分析"
+      intent: "竞品动态监控 市场趋势分析"
       domain_filter: "ziling"
       top_k: 3
     fallback_skills:
@@ -72,3 +113,26 @@ flywheel:
       - "market-research"
     output_target: "relay/"
     handoff_to: "yinyue"
+
+  seo_keyword_weekly:
+    cron: "0 9 * * 1"
+    trigger_worker: "墨标"
+    skill_retrieval:
+      intent: "SEO关键词研究 搜索流量洼地"
+      domain_filter: "ziling"
+      top_k: 3
+    fallback_skills:
+      - "seo-research"
+    output_target: "vault/紫灵_情报与战略/"
+
+  daily_data_cleaning:
+    cron: "0 22 * * *"
+    trigger_worker: "墨数"
+    skill_retrieval:
+      intent: "业务数据清洗 隐藏规律挖掘"
+      domain_filter: "ziling"
+      top_k: 3
+    fallback_skills:
+      - "data-sop-pack"
+      - "kpi-tracker"
+    output_target: "relay/"
