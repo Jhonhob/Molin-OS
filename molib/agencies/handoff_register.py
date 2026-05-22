@@ -225,44 +225,64 @@ def register_all_handoffs():
     )
 
     # ═══════════════════════════════════════════
-    # 宋玉 · B2B企业服务公司 (5条) — v8.0 Songyu 修正
-    # 产品孵化路由(prd/stack/hook/appeal/cold/pricing/freelance/launch)已全部废弃
-    # 恢复B2B企业服务: 墨商/墨案/墨关/墨聚/墨采
+    # 宋玉 · 产品孵化公司 (8条) — v8.0 产品孵化+威客接单
+    # 从 B2B 企业服务转型为产品孵化: 墨图纸/墨架/墨钩/墨对/墨冷/墨价/墨单/墨开
     # ═══════════════════════════════════════════
 
     create_handoff(
-        target_worker="songyu.bd",
-        target_worker_name="墨商·商务拓展",
-        tool_name_override="transfer_to_songyu_bd",
-        tool_description_override="商务拓展·战略BD：异业合作、渠道联名、赞助拉通、帮你在行业里找到对口的大客户，搭桥谈判，推进签单"
+        target_worker="songyu.prd",
+        target_worker_name="墨图纸·产品需求",
+        tool_name_override="transfer_to_songyu_prd",
+        tool_description_override="产品需求文档：定义产品愿景、用户故事、功能规格与验收标准，输出完整PRD驱动开发"
     )
 
     create_handoff(
-        target_worker="songyu.proposal",
-        target_worker_name="墨案·售前方案",
-        tool_name_override="transfer_to_songyu_proposal",
-        tool_description_override="售前解决方案：定制PPT提案、商业计划书、技术方案书，把墨麟的技术能力翻译成客户听得懂的价值语言，提升中标率"
+        target_worker="songyu.stack",
+        target_worker_name="墨架·技术选型",
+        tool_name_override="transfer_to_songyu_stack",
+        tool_description_override="技术选型与架构设计：根据PRD选择最优技术栈、设计系统架构、搭建项目骨架与开发环境"
     )
 
     create_handoff(
-        target_worker="songyu.gov",
-        target_worker_name="墨关·政企关系",
-        tool_name_override="transfer_to_songyu_gov",
-        tool_description_override="政企关系·补贴申报：政府补贴申报、行业协会挂靠、政策红利对接，如果你有政府客户或想申报专项资金"
+        target_worker="songyu.hook",
+        target_worker_name="墨钩·钩子工具",
+        tool_name_override="transfer_to_songyu_hook",
+        tool_description_override="钩子工具开发：设计并开发免费引流产品（小工具/计算器/模板），用工具换注册，积累种子用户"
     )
 
     create_handoff(
-        target_worker="songyu.events",
-        target_worker_name="墨聚·线下活动",
-        tool_name_override="transfer_to_songyu_events",
-        tool_description_override="线下活动·私董会：私董会、闭门沙龙、行业展会，线下建立信任，线上放大杠杆——活动本身就是品效合一的获客入口"
+        target_worker="songyu.appeal",
+        target_worker_name="墨对·用户诉求",
+        tool_name_override="transfer_to_songyu_appeal",
+        tool_description_override="用户诉求与价值主张：提炼产品一句话定位，撰写落地页文案与用户沟通话术，让用户秒懂产品价值"
     )
 
     create_handoff(
-        target_worker="songyu.procurement",
-        target_worker_name="墨采·资源采购",
-        tool_name_override="transfer_to_songyu_procurement",
-        tool_description_override="资源采购·供应商选型：AI供应商选型、API比价、外包资源筛选，帮你省钱的同时保证交付质量，毛利低于25%的单子直接拒"
+        target_worker="songyu.cold",
+        target_worker_name="墨冷·冷启动",
+        tool_name_override="transfer_to_songyu_cold",
+        tool_description_override="冷启动策略：种子用户获取、社区冷启动运营、初始增长黑客方案设计、早期用户反馈收集"
+    )
+
+    create_handoff(
+        target_worker="songyu.pricing",
+        target_worker_name="墨价·定价策略",
+        tool_name_override="transfer_to_songyu_pricing",
+        tool_description_override="定价策略设计：竞品定价对标、付费模型设计（订阅/一次性/分层）、价格弹性测试、A/B定价实验"
+    )
+
+    create_handoff(
+        target_worker="songyu.freelance",
+        target_worker_name="墨单·威客接单",
+        tool_name_override="transfer_to_songyu_freelance",
+        tool_description_override="威客接单运营：猪八戒平台半自动化运营，每日巡检新项目、智能匹配投标、GMV统计与接单优化"
+    )
+
+    create_handoff(
+        target_worker="songyu.launch",
+        target_worker_name="墨开·产品发布",
+        tool_name_override="transfer_to_songyu_launch",
+        tool_description_override="产品发布执行：Product Hunt首发策划、渠道分发协调、发布日作战室、T+7发版复盘与数据回收"
     )
 
     # ═══════════════════════════════════════════
