@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/版本-v8.0-6C5CE7?style=flat-square" alt="version">
-  <img src="https://img.shields.io/badge/特工-44-00B894?style=flat-square" alt="workers">
+  <img src="https://img.shields.io/badge/特工-41-00B894?style=flat-square" alt="workers">
   <img src="https://img.shields.io/badge/身份-6-0984E3?style=flat-square" alt="profiles">
   <img src="https://img.shields.io/badge/许可证-MIT-636E72?style=flat-square" alt="license">
   <img src="https://img.shields.io/badge/Python-3.9+-FFEAA7?style=flat-square" alt="python">
@@ -9,7 +9,7 @@
 
 <h1 align="center">墨麟 OS &nbsp;·&nbsp; Molin-OS</h1>
 
-<p align="center"><strong>单人运营的 AI 商业操作系统 · 6 家子公司 · 44 位 AI 特工 · 1 个人</strong></p>
+<p align="center"><strong>单人运营的 AI 商业操作系统 · 6 家子公司 · 41 位 AI 特工 · 1 个人</strong></p>
 <p align="center">本地优先 · 零成本 · 一键部署 · 工业级稳定性</p>
 
 ---
@@ -46,7 +46,7 @@ Molin-OS 用一个统一的 AI 操作系统取代这一切：
 | 特性 | 说明 |
 |------|------|
 | **6 个 AI 身份** | 替代 6 位 VP，各自管理完整业务领域 |
-| **44 位专业特工** | 从竞品追踪到直播带货，各司其职 |
+| **41 位专业特工** | 从竞品追踪到直播带货，各司其职 |
 | **全自动飞轮管线** | 情报→内容→增长，每日无人值守运行 |
 | **零外部付费依赖** | 全部组件自托管、免费、本地运行 |
 | **工业级硬化** | 16 个防御模块：断路器、沙箱隔离、异步网关、记忆去重 |
@@ -75,10 +75,9 @@ Molin-OS 用一个统一的 AI 操作系统取代这一切：
      墨译（本地化翻译） 墨媒（海外媒体） 墨站（独立站建站）
      墨汇（跨境支付）🆕 墨盾（合规风控） 墨荐（产品分发）🆕
 
-🍃 宋玉 · 产品孵化与威客接单公司
-     墨图纸（极简PRD）🆕 墨架（技术选型）🆕 墨钩（免费工具）🆕
-     墨对（平台申诉）🆕 墨冷（冷启动）🆕 墨价（定价策略）🆕
-     墨单（威客接单）🆕 墨开（产品发版）
+🍃 宋玉 · 企业服务公司 (B2B Enterprise Services)
+     墨商（商务BD） 墨案（售前方案） 墨关（政企关系）
+     墨聚（线下活动） 墨采（采购选型）
 
 💀 玄骨 · 底层中枢与集团赋能公司
      墨码（研发部署） 墨维（系统运维） 墨安（安全审计）
@@ -235,7 +234,7 @@ AI 不会「忘记」你告诉过它的事。记忆系统支持跨会话持久�
              ├─ 紫灵 Bot (情报简报、竞品推送)
              ├─ 银月 Bot (内容发布、媒体管理)
              ├─ 梅凝 Bot (跨境运营、全球市场)
-             ├─ 宋玉 Bot (产品孵化、威客接单)
+             ├─ 宋玉 Bot (企业服务、商务对接)
              └─ 玄骨 Bot (系统管控、安全审计)
 
 CLI 终端 · REST API · Telegram · Discord · 企微
@@ -261,7 +260,7 @@ CLI 终端 · REST API · Telegram · Discord · 企微
 - **紫灵（情报战略）**：趋势嗅探 → 竞品监控 → SEO关键词 → 数据清洗 → 结构化研报 → MVP验证 → ROI精算
 - **银月（内容媒体）**：选题策划 → 爆款写作 → 视觉设计 → 视频后期 → SEO深度长文 → 直播变现 → 内容调度发布
 - **梅凝（跨境出海）**：内容本地化 → 独立站搭建 → 跨境支付 → 合规审查 → 海外获客 → 产品分发发版
-- **宋玉（产品孵化）**：极简PRD → 技术选型 → 免费钩子 → 冷启动获客 → 威客接单 → 定价策略 → 平台申诉 → 产品发版
+- **宋玉（企业服务）**：需求嗅探 → 商务对接 → 售前方案 → 政企公关 → 采购选型 → 线下沙龙反哺
 - **玄骨（底层中枢）**：成本路由 → 算力调度 → 研发部署 → 运维守护 → 安全审计 → 财务管控 → 自进化
 
 ---
@@ -335,7 +334,7 @@ Molin-OS/
 ├── AGENTS.md                      Hermes Agent 系统提示 · Worker 映射 · CLI 命令索引
 ├── SYSTEM.md                      主脑 SOP · 记忆架构 · 执行规范
 ├── SOUL.md                        CEO 认知框架 · Worker 链 · 决策原则
-├── AGENT_REGISTRY.md              44 Worker 完整索引与能力描述
+├── AGENT_REGISTRY.md              41 Worker 完整索引与能力描述
 ├── ENVIRONMENT.md                 环境安装与配置指南
 ├── LICENSE                        MIT 许可证
 ├── Makefile                       一键操作（make help 查看全部）
@@ -377,7 +376,7 @@ Molin-OS/
 │   ├── agent_logger.py            JSONL 全链路日志
 │   ├── vault_io.py                Obsidian 安全写入缓冲
 │   ├── hermes_gateway.py          多模型高可用网关
-│   ├── agencies/                  44 Worker 实现
+│   ├── agencies/                  41 Worker 实现
 │   │   ├── smart_dispatcher.py   智能分发器
 │   │   ├── kanban_chain.py       Kanban 编排链
 │   │   ├── handoff_register.py   Handoff 注册表
@@ -527,7 +526,7 @@ python -m molib finance report                           财务报告
 
 | 版本 | 日期 | 里程碑 |
 |:----:|:-----|:-------|
-| **v8.0** | 2026-05 | 六司四十四将架构 · 宋玉完整重构为产品孵化公司 · 新增 16 个 Agent（44 将）· 19 个 Cron 作业 |
+| **v8.0** | 2026-05 | 六司四十一将架构 · Songyu 修正为 B2B 企业服务 5 Agent · 18 个 Cron 作业 |
 | **v7.5.0** | 2026-05 | 工业级硬化：16 个防御模块 · 原子数据总线 · 沙箱隔离 · 异步网关 · 记忆压缩 · 强类型约束 |
 | v7.0 | 2026-05 | 六司三十四将架构 · 6 Profile 飞书 Bot · YAML 配置标准化 |
 | v6.0 | 2026-05 | 五域一枢 · 5 Profile 体系 |

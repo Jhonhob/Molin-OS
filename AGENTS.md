@@ -4,7 +4,7 @@
 本文件在每次会话启动时注入系统提示。
 描述公司执行模型、六司四十四将 Worker 映射、CLI 命令和治理规则。
 
-版本: v8.0 · 更新: 2026-05-21 — 六司四十四将架构重构
+版本: v8.0 · 更新: 2026-05-22 — 六司四十一将架构重构
 -->
 
 # 墨麟 AI 集团 · 项目上下文
@@ -128,23 +128,20 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### 🍃 宋玉 · 产品孵化公司 — Profile: `songyu` | Domain: `songyu_innovation`
-> **使命**: 【完整重构】从「假大空的企业 B2B」→ 真正适合一人公司的「产品孵化+威客接单」流水线
-> **灵魂**: 纵横家 — 一人公司不需要大客户，需要的是产品矩阵和半自动化接单
+### 🍃 宋玉 · 企业服务公司 — Profile: `songyu` | Domain: `songyu_innovation`
+> **使命**: 从C端内卷中杀出来，专做大B端企业级服务 — 用解决方案构建信任，用商务杠杆放大价值
+> **灵魂**: 外交官 — 一人公司不需要大客户数量，需要的是高客单价的深度合作关系
 
 | 代号 | Worker ID | 角色 | 治理 | Cron |
 |------|-----------|------|:----:|:----:|
-| 墨图纸 | `songyu.prd` 🆕 | 极简PRD产品定义 | L2 | — |
-| 墨架 | `songyu.stack` 🆕 | 技术栈选型 | L1 | — |
-| 墨钩 | `songyu.hook` 🆕 | 免费钩子工具 | L1 | — |
-| 墨对 | `songyu.appeal` 🆕 | 平台申诉专家 | L1 | — |
-| 墨冷 | `songyu.cold` 🆕 | 冷启动获客 | L2 | — |
-| 墨价 | `songyu.pricing` 🆕 | 定价策略师 | L2 | — |
-| 墨单 | `songyu.freelance` 🆕 | 威客接单运营 | L1 | `0 8 * * *` |
-| 墨开 | `songyu.launch` | 产品发版指挥 | L2 | — |
+| 墨商 | `songyu.bd` | 商务拓展·战略BD | L1 | — |
+| 墨案 | `songyu.proposal` | 售前解决方案 | L1 | — |
+| 墨关 | `songyu.gov` | 政企关系·补贴申报 | L1 | — |
+| 墨聚 | `songyu.events` | 线下活动·私董会 | L0 | — |
+| 墨采 | `songyu.procurement` | 资源采购·供应商选型 | L1 | — |
 
-**商业闭环**: 墨图纸极简 PRD → 墨架技术选型 → 墨钩免费钩子发布 → 墨冷冷启动触达 → 墨单猪八戒接单 → 墨价定价设计 → 墨对平台申诉 → 墨开产品发版
-**KPI**: 在孵化项目数、猪八戒接单 GMV、首发 7 日注册量、钩子工具 UV
+**商业闭环**: 嗅探大B端需求 → 墨商商务对接 → 墨案定制提案 → 墨关政企公关 → 墨采筛选供应链 → 墨聚线下沙龙反哺
+**KPI**: 合同总签单额(CV)、投标胜率(Win Rate)
 
 ---
 
@@ -215,15 +212,12 @@ python -m molib meining payment ...   # 墨汇·跨境支付
 python -m molib meining compliance .. # 墨盾·合规风控
 python -m molib meining distribution .# 墨荐·产品分发
 
-# 宋玉 · 产品孵化
-python -m molib songyu prd ...        # 墨图纸·极简PRD
-python -m molib songyu stack ...      # 墨架·技术选型
-python -m molib songyu hook ...       # 墨钩·免费工具
-python -m molib songyu appeal ...     # 墨对·平台申诉
-python -m molib songyu cold ...       # 墨冷·冷启动
-python -m molib songyu pricing ...    # 墨价·定价策略
-python -m molib songyu freelance ...  # 墨单·威客接单
-python -m molib songyu launch ...     # 墨开·产品发版
+# 宋玉 · 企业服务
+python -m molib songyu bd ...          # 墨商·商务拓展
+python -m molib songyu proposal ...    # 墨案·售前方案
+python -m molib songyu gov ...         # 墨关·政企关系
+python -m molib songyu events ...      # 墨聚·线下活动
+python -m molib songyu procurement ... # 墨采·资源采购
 
 # 玄骨 · 系统中枢
 python -m molib xuanhu developer ...  # 墨码·全栈研发

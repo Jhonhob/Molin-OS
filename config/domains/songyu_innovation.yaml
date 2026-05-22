@@ -1,7 +1,7 @@
-# 宋玉 · 产品孵化公司 — v8.0 六司四十四将 (完整重构)
-# 从「假大空的企业B2B」→ 真正适合一人公司的「产品孵化+威客接单」流水线
+# 宋玉 · 企业服务公司 — v8.0 B2B 修正
+# 从「产品孵化」回归 B2B 企业服务本质：一人公司专做大B端高客单价深度合作
 domain_id: "domain.songyu"
-company_name: "宋玉 · 产品孵化公司 (Songyu Innovation Co.)"
+company_name: "宋玉 · 企业服务公司 (Songyu Enterprise Services Co.)"
 
 feishu_gateway:
   app_id: "cli_a9513691d4f89bcf"
@@ -10,110 +10,82 @@ feishu_gateway:
   verification_token: "CCclR8ntKBDlQPQvSQuSNh0tYTC7wUQz"
 
 vibe_and_soul: |
-  纵横家灵魂：一人公司不需要大客户，需要的是产品矩阵和半自动化接单。
-  核心哲学：连接创造价值，杠杆撬动地球。将AI能力严密封装为可复制的产品，以极简PRD驱动快速孵化，通过免费钩子工具实现冷启动获客，用威客平台接单保障现金流。
-  管理职责：负责产品从0到1的全流程，极简PRD→技术选型→钩子工具→冷启动→接单→定价→申诉→发版。
+  外交官灵魂：用解决方案构建信任，用商务杠杆放大价值。
+  核心哲学：一人公司不需要大客户数量，需要的是高客单价的深度合作关系。从C端内卷中杀出来，专做大B端企业级服务。
+  管理职责：负责从需求嗅探、商务对接、售前方案、政企公关到供应链落地的完整 B2B 服务闭环。
 
 business_closed_loop:
   - step: 1
-    worker_id: "songyu.prd"
-    codename: "墨图纸"
-    action: "极简PRD产品定义，输出一页纸产品需求文档"
+    worker_id: "songyu.bd"
+    codename: "墨商"
+    action: "商务拓展·嗅探大B端需求，评估商机质量"
   - step: 2
-    worker_id: "songyu.stack"
-    codename: "墨架"
-    action: "技术栈选型，确定最优技术方案与架构"
+    worker_id: "songyu.proposal"
+    codename: "墨案"
+    action: "售前解决方案·定制化投标建议书"
   - step: 3
-    worker_id: "songyu.hook"
-    codename: "墨钩"
-    action: "免费钩子工具开发与发布，引流获客"
+    worker_id: "songyu.gov"
+    codename: "墨关"
+    action: "政企关系·补贴申报·政策红利挖掘"
   - step: 4
-    worker_id: "songyu.cold"
-    codename: "墨冷"
-    action: "冷启动获客，多渠道低成本触达首批用户"
+    worker_id: "songyu.procurement"
+    codename: "墨采"
+    action: "资源采购·供应商选型·供应链落地"
   - step: 5
-    worker_id: "songyu.freelance"
-    codename: "墨单"
-    action: "猪八戒等威客平台接单运营，保障现金流"
-  - step: 6
-    worker_id: "songyu.pricing"
-    codename: "墨价"
-    action: "定价策略设计，最大化LTV与转化率"
-  - step: 7
-    worker_id: "songyu.appeal"
-    codename: "墨对"
-    action: "平台申诉专家，处理封号/限流/下架等平台纠纷"
-  - step: 8
-    worker_id: "songyu.launch"
-    codename: "墨开"
-    action: "产品发版指挥，协调全链路发布上线"
+    worker_id: "songyu.events"
+    codename: "墨聚"
+    action: "线下活动·私董会运营·商务关系深化"
 
 worker_roster:
-  - id: "songyu.prd"
-    codename: "墨图纸"
-    role: "极简PRD产品定义"
-    governance: "L2"
-  - id: "songyu.stack"
-    codename: "墨架"
-    role: "技术栈选型"
+  - id: "songyu.bd"
+    codename: "墨商"
+    role: "商务拓展·战略BD"
     governance: "L1"
-  - id: "songyu.hook"
-    codename: "墨钩"
-    role: "免费钩子工具"
+  - id: "songyu.proposal"
+    codename: "墨案"
+    role: "售前解决方案"
     governance: "L1"
-  - id: "songyu.appeal"
-    codename: "墨对"
-    role: "平台申诉专家"
+  - id: "songyu.gov"
+    codename: "墨关"
+    role: "政企关系·补贴申报"
     governance: "L1"
-  - id: "songyu.cold"
-    codename: "墨冷"
-    role: "冷启动获客"
-    governance: "L2"
-  - id: "songyu.pricing"
-    codename: "墨价"
-    role: "定价策略师"
-    governance: "L2"
-  - id: "songyu.freelance"
-    codename: "墨单"
-    role: "威客接单运营"
+  - id: "songyu.events"
+    codename: "墨聚"
+    role: "线下活动·私董会"
+    governance: "L0"
+  - id: "songyu.procurement"
+    codename: "墨采"
+    role: "资源采购·供应商选型"
     governance: "L1"
-    cron: "0 8 * * *"
-  - id: "songyu.launch"
-    codename: "墨开"
-    role: "产品发版指挥"
-    governance: "L2"
 
 shared_domain_memory:
-  collection_name: "domain_songyu_innovation_lab"
-  knowledge_base_sync: "obsidian://vault/Molin-OS/宋玉域_产品孵化"
+  collection_name: "domain_songyu_enterprise_services"
+  knowledge_base_sync: "obsidian://vault/Molin-OS/宋玉域_企业服务"
 
 kpi_metrics:
-  primary: "在孵化项目数 (Active Projects in Pipeline)"
-  secondary: "猪八戒接单GMV (Freelance Platform GMV)"
-  tertiary: "首发7日注册量 (7-Day Launch Signups)"
-  quaternary: "钩子工具UV (Hook Tool Unique Visitors)"
-  alert_threshold: "project_stall_days > 30"
+  primary: "合同总签单额 (Contract Value, CV)"
+  secondary: "投标胜率 (Win Rate)"
+  tertiary: "商机转化率 (Opportunity Conversion Rate)"
+  alert_threshold: "win_rate_below_20pct OR cv_monthly_decline_gt_30pct"
 
-# ── 无人值守飞轮 ──
+# ── 按需触发飞轮（无定时作业）──
 flywheel:
-  freelancer_daily_patrol:
-    cron: "0 8 * * *"
-    trigger_worker: "墨单"
+  # 宋玉所有 Agent 均为按需触发，无需定时巡检
+  # 触发条件：创始人指令 / 墨商发现商机 / 招标公告捕获
+  bd_pipeline:
+    trigger: "manual_or_event"
+    trigger_worker: "墨商"
     skill_retrieval:
-      intent: "威客平台巡检 接单机会发现 猪八戒运营"
+      intent: "大B端需求 商务拓展 商机评估"
       domain_filter: "songyu"
       top_k: 3
-    fallback_skills:
-      - "xianyu-automation"
-    output_target: "relay/"
+    output_target: "vault/宋玉_企业服务/商机pipeline/"
 
-  marketplace_monitor:
-    cron: "0 8 * * *"
-    trigger_worker: "墨对"
+  proposal_workflow:
+    trigger: "manual_or_event"
+    trigger_worker: "墨案"
     skill_retrieval:
-      intent: "平台政策变动 申诉案例 封号预警"
+      intent: "投标方案 解决方案建议书 技术架构"
       domain_filter: "songyu"
       top_k: 3
-    fallback_skills:
-      - "market-research"
-    output_target: "vault/宋玉_产品孵化/"
+    output_target: "vault/宋玉_企业服务/解决方案/"

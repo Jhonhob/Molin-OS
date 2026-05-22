@@ -1,15 +1,15 @@
 """
-Handoff 注册中心 v8.0 — 六司四十四将架构 (2026-05-21)
+Handoff 注册中心 v8.0 — 六司四十一将架构 (2026-05-22)
 
 44条路由，按6司（紫灵/元瑶/银月/梅凝/宋玉/玄骨）组织。
-宋玉完全重构：从「假大空的企业B2B」→「产品孵化+威客接单」流水线。
-新增16个Agent：墨标/墨测/墨单(闲鱼)/墨试/墨文/墨排/墨汇/墨荐/墨图纸/墨架/墨钩/墨对/墨冷/墨价/墨单(威客)/墨路
+宋玉 v8.0 Songyu 修正：恢复 B2B 企业服务定位（墨商/墨案/墨关/墨聚/墨采）。
+新增9个Agent：墨标/墨测/墨单(闲鱼)/墨试/墨文/墨排/墨汇/墨荐/墨路
 """
 from molib.agencies.handoff import create_handoff
 
 
 def register_all_handoffs():
-    """注册全部44条Handoff路由 — 六司四十四将架构"""
+    """注册全部41条Handoff路由 — 六司四十一将架构"""
     from molib.agencies.handoff import HandoffManager
 
     # ═══════════════════════════════════════════
@@ -225,65 +225,44 @@ def register_all_handoffs():
     )
 
     # ═══════════════════════════════════════════
-    # 宋玉 · 产品孵化公司 (8条) — v8.0 完整重构
-    # 旧路由(墨商/墨案/墨关/墨聚/墨采)已全部废弃
-    # 新路由: 产品孵化 + 威客接单流水线
+    # 宋玉 · B2B企业服务公司 (5条) — v8.0 Songyu 修正
+    # 产品孵化路由(prd/stack/hook/appeal/cold/pricing/freelance/launch)已全部废弃
+    # 恢复B2B企业服务: 墨商/墨案/墨关/墨聚/墨采
     # ═══════════════════════════════════════════
 
     create_handoff(
-        target_worker="songyu.prd",
-        target_worker_name="墨图纸·极简PRD",
-        tool_name_override="transfer_to_songyu_prd",
-        tool_description_override="极简PRD产品定义：一人公司版产品需求文档、MVP范围界定、用户故事地图、功能优先级排序"
+        target_worker="songyu.bd",
+        target_worker_name="墨商·商务拓展",
+        tool_name_override="transfer_to_songyu_bd",
+        tool_description_override="商务拓展·战略BD：异业合作、渠道联名、赞助拉通、帮你在行业里找到对口的大客户，搭桥谈判，推进签单"
     )
 
     create_handoff(
-        target_worker="songyu.stack",
-        target_worker_name="墨架·技术选型",
-        tool_name_override="transfer_to_songyu_stack",
-        tool_description_override="技术栈选型：前端/后端/数据库/部署方案评估、成本对比、一人维护可行性分析"
+        target_worker="songyu.proposal",
+        target_worker_name="墨案·售前方案",
+        tool_name_override="transfer_to_songyu_proposal",
+        tool_description_override="售前解决方案：定制PPT提案、商业计划书、技术方案书，把墨麟的技术能力翻译成客户听得懂的价值语言，提升中标率"
     )
 
     create_handoff(
-        target_worker="songyu.hook",
-        target_worker_name="墨钩·免费工具",
-        tool_name_override="transfer_to_songyu_hook",
-        tool_description_override="免费钩子工具：SEO引流工具开发、免费小工具设计、钩子→产品转化路径设计"
+        target_worker="songyu.gov",
+        target_worker_name="墨关·政企关系",
+        tool_name_override="transfer_to_songyu_gov",
+        tool_description_override="政企关系·补贴申报：政府补贴申报、行业协会挂靠、政策红利对接，如果你有政府客户或想申报专项资金"
     )
 
     create_handoff(
-        target_worker="songyu.appeal",
-        target_worker_name="墨对·平台申诉",
-        tool_name_override="transfer_to_songyu_appeal",
-        tool_description_override="平台申诉专家：App Store/Google/各平台封号申诉、证据链整理、申诉文案撰写"
+        target_worker="songyu.events",
+        target_worker_name="墨聚·线下活动",
+        tool_name_override="transfer_to_songyu_events",
+        tool_description_override="线下活动·私董会：私董会、闭门沙龙、行业展会，线下建立信任，线上放大杠杆——活动本身就是品效合一的获客入口"
     )
 
     create_handoff(
-        target_worker="songyu.cold",
-        target_worker_name="墨冷·冷启动",
-        tool_name_override="transfer_to_songyu_cold",
-        tool_description_override="冷启动获客：Product Hunt发布策略、Reddit/HackerNews推广、IndieHackers社区运营"
-    )
-
-    create_handoff(
-        target_worker="songyu.pricing",
-        target_worker_name="墨价·定价策略",
-        tool_name_override="transfer_to_songyu_pricing",
-        tool_description_override="定价策略师：SaaS定价模型设计、免费/付费版功能划分、价格A/B测试、竞品定价分析"
-    )
-
-    create_handoff(
-        target_worker="songyu.freelance",
-        target_worker_name="墨单·威客接单",
-        tool_name_override="transfer_to_songyu_freelance",
-        tool_description_override="威客接单运营：猪八戒/Upwork/Fiverr接单、标书撰写、报价策略、交付管理、评价维护"
-    )
-
-    create_handoff(
-        target_worker="songyu.launch",
-        target_worker_name="墨开·产品发版",
-        tool_name_override="transfer_to_songyu_launch",
-        tool_description_override="产品发版指挥：上线CheckList、灰度发布、监控告警配置、发版复盘、用户反馈闭环"
+        target_worker="songyu.procurement",
+        target_worker_name="墨采·资源采购",
+        tool_name_override="transfer_to_songyu_procurement",
+        tool_description_override="资源采购·供应商选型：AI供应商选型、API比价、外包资源筛选，帮你省钱的同时保证交付质量，毛利低于25%的单子直接拒"
     )
 
     # ═══════════════════════════════════════════
@@ -346,7 +325,7 @@ def register_all_handoffs():
         tool_description_override="模型成本路由：根据任务复杂度自动选择DeepSeek/百炼/本地模型，优化API成本"
     )
 
-    print(f"[Handoff v8.0] 已注册 {len(HandoffManager._handoffs)} 条路由 — 六司四十四将架构")
+    print(f"[Handoff v8.0] 已注册 {len(HandoffManager._handoffs)} 条路由 — 六司四十一将架构")
 
 
 if __name__ == "__main__":
@@ -360,7 +339,7 @@ if __name__ == "__main__":
         "元瑶·知识变现": ["yuanyao.growth", "yuanyao.closer", "yuanyao.tutor", "yuanyao.curriculum", "yuanyao.pm", "yuanyao.community", "yuanyao.order", "yuanyao.abtest"],
         "银月·内容获客": ["yinyue.writer", "yinyue.designer", "yinyue.editor", "yinyue.seowriter", "yinyue.streamer", "yinyue.pr", "yinyue.scheduler"],
         "梅凝·出海收汇": ["meining.translator", "meining.growth", "meining.webmaster", "meining.payment", "meining.compliance", "meining.distribution"],
-        "宋玉·产品孵化": ["songyu.prd", "songyu.stack", "songyu.hook", "songyu.appeal", "songyu.cold", "songyu.pricing", "songyu.freelance", "songyu.launch"],
+        "宋玉·B2B企业服务": ["songyu.bd", "songyu.proposal", "songyu.gov", "songyu.events", "songyu.procurement"],
         "玄骨·系统中枢": ["xuanhu.developer", "xuanhu.ops", "xuanhu.security", "xuanhu.autodream", "xuanhu.finance", "xuanhu.legal", "xuanhu.hr", "xuanhu.router"],
     }
     for domain, workers in domains.items():
