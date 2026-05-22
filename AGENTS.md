@@ -13,7 +13,7 @@
 
 | 文件 | 用途 | 地位 |
 |------|------|------|
-| `AGENT_REGISTRY.md` | 44 Agent 完整注册表（任务/工具/产出/治理） | 索引与任务参考 |
+| `AGENT_REGISTRY.md` | 41 Agent 完整注册表（任务/工具/产出/治理） | 索引与任务参考 |
 | `SYSTEM.md` | 主脑 SOP · 记忆架构 · 执行规范 | 单一真相源 |
 | `SOUL.md` | CEO 认知框架 · Worker 链 · 决策原则 | 价值观与边界 |
 | `config/hermes-agent/cron_jobs.md` | 19 个 Cron 作业 | 调度参考 |
@@ -48,7 +48,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-## 六司四十四将架构（44 Worker，6 Profile，2026-05-21）
+## 六司四十一将架构（41 Worker，6 Profile，2026-05-22）
 
 ---
 
