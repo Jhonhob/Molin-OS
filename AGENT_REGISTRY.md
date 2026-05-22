@@ -5,7 +5,7 @@
 
 ---
 
-## 🔮 紫灵 · 情报雷达公司 (Profile: ziling | Domain: ziling_intelligence)
+## 🔮 紫灵 · 情报与战略调研公司 (Profile: ziling | Domain: ziling_intelligence)
 
 > 集团的数据雷达与军情六处 — 不直接赚钱，但决定公司往哪里走、避开哪里
 > 商业闭环: 墨嗅每日抓取 → 墨影竞品监控 → 墨标关键词猎取 → 墨数业务数据清洗 → 墨研结构化研报 → 墨测 MVP 快速验证 → 墨投 ROI 精算 → 立项或放弃
@@ -111,7 +111,7 @@ ROI 精算师 — 每个决策都要先过「三问关」
 
 ---
 
-## 🌸 元瑶 · 知识变现公司 (Profile: yuanyao | Domain: yuanyao_edu_growth)
+## 🌸 元瑶 · 教育与用户增长 (Profile: yuanyao | Domain: yuanyao_edu_growth)
 
 > 知识变现、私域资产沉淀与用户终身价值(LTV)挖掘 — 所有成交都是信任的变现
 > 商业闭环: 墨增公域引流 → 墨域私域沉淀+RFM分层 → 墨销脚本发售 → 墨学课程交付 → 墨导督学复购 → 墨单闲鱼并线接单 → 墨试 A/B 持续优化
@@ -231,7 +231,7 @@ A/B 测试科学家 — 让每一次迭代都有数据说话
 
 ---
 
-## 🌙 银月 · 内容获客公司 (Profile: yinyue | Domain: yinyue_media)
+## 🌙 银月 · 内容生态与全媒体矩阵 (Profile: yinyue | Domain: yinyue_media)
 
 > 内容是最便宜的广告 — 靠 SEO/社媒/短视频实现零成本持续获客
 > 商业闭环: 墨标关键词 → 墨排内容日历 → 墨笔短内容/墨文长文 → 墨图视觉配图 → 墨剪视频切片 → Gatekeeper质检 → 墨排调度发布 → 数据回收
@@ -337,7 +337,7 @@ AI 直播主播 — 没有真人在场，AI 主播 7×24 全天候守场
 
 ---
 
-## ❄️ 梅凝 · 出海收汇公司 (Profile: meining | Domain: meining_global)
+## ❄️ 梅凝 · 跨境出海与全球化 (Profile: meining | Domain: meining_global)
 
 > 利用 AI 抹平语言壁垒，赚取外汇，将国内验证过的业务在海外重新做一遍
 > 商业闭环: 墨译母语化重构 → 墨站独立站搭建 → 墨汇支付收汇配置 → 墨盾合规审查 → 墨媒海外获客 → 墨荐发版分发 → 数据回收优化
@@ -429,7 +429,7 @@ AI 直播主播 — 没有真人在场，AI 主播 7×24 全天候守场
 
 ---
 
-## 🍃 宋玉 · 产品孵化公司 (Profile: songyu | Domain: songyu_innovation)
+## 🍃 宋玉 · 创新拓展与商业化 (Profile: songyu | Domain: songyu_innovation)
 
 > 【v8.0 完整重构】从「假大空的企业 B2B」→ 真正适合一人公司的「产品孵化+威客接单」流水线
 > 商业闭环: 墨图纸极简 PRD → 墨架技术选型 → 墨钩免费钩子发布 → 墨冷冷启动触达 → 墨单猪八戒接单 → 墨价定价设计 → 墨对平台申诉 → 墨开产品发版
@@ -549,7 +549,7 @@ AI 直播主播 — 没有真人在场，AI 主播 7×24 全天候守场
 
 ---
 
-## 💀 玄骨 · 系统中枢公司 (Profile: xuanhu | Domain: xuanhu_infrastructure)
+## 💀 玄骨 · 底层中枢与集团赋能 (Profile: xuanhu | Domain: xuanhu_infrastructure)
 
 > 集团大后方 — 不直接产生营收，但掌控系统生杀大权、成本控制与技术迭代
 > 商业闭环: 墨路成本路由 → 墨人调度分配 → 墨码开发执行 → 墨维运维守护 → 墨安安全审计 → 墨算财务管控 → 墨律合规过滤 → 墨梦深夜进化

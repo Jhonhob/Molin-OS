@@ -1,4 +1,4 @@
-"""墨麟OS v2.0 — 五域一枢 Worker注册表 (2026-05-21)"""
+"""墨麟OS v8.0 — 六司四十四将 Worker注册表 (2026-05-22)"""
 
 from .base import SubsidiaryWorker, WorkerRegistry, Task, WorkerResult
 

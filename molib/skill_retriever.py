@@ -1,5 +1,5 @@
 """
-墨麟OS v7.0 · 技能 RAG 检索引擎
+墨麟OS v8.0 · 技能 RAG 检索引擎
 基于 ChromaDB 实现技能的语义检索，替代手动的 skill_view()
 依赖: chromadb (已在 MemPalace 中安装), pyyaml
 """

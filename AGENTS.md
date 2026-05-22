@@ -52,7 +52,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### 🔮 紫灵 · 情报雷达公司 — Profile: `ziling` | Domain: `ziling_intelligence`
+### 🔮 紫灵 · 情报与战略调研公司 — Profile: `ziling` | Domain: `ziling_intelligence`
 > **使命**: 集团的数据雷达与军情六处 — 不直接赚钱，但决定公司往哪里走、避开哪里
 > **灵魂**: 守望者 — 直觉是商业最大的敌人，信息差是唯一的真理
 
@@ -71,7 +71,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### 🌸 元瑶 · 知识变现公司 — Profile: `yuanyao` | Domain: `yuanyao_edu_growth`
+### 🌸 元瑶 · 教育与用户增长 — Profile: `yuanyao` | Domain: `yuanyao_edu_growth`
 > **使命**: 知识变现、私域资产沉淀与用户终身价值(LTV)挖掘
 > **灵魂**: 布道者 — 所有成交都是信任的变现
 
@@ -91,7 +91,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### 🌙 银月 · 内容获客公司 — Profile: `yinyue` | Domain: `yinyue_media`
+### 🌙 银月 · 内容生态与全媒体矩阵 — Profile: `yinyue` | Domain: `yinyue_media`
 > **使命**: 内容是最便宜的广告 — 靠 SEO/社媒/短视频实现零成本持续获客
 > **灵魂**: 造梦师 — 注意力是这个时代唯一的货币
 
@@ -110,7 +110,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### ❄️ 梅凝 · 出海收汇公司 — Profile: `meining` | Domain: `meining_global`
+### ❄️ 梅凝 · 跨境出海与全球化 — Profile: `meining` | Domain: `meining_global`
 > **使命**: 利用 AI 抹平语言壁垒，赚取外汇，将国内验证过的业务在海外重新做一遍
 > **灵魂**: 掠夺者 — 地理位置是系统的特有 Bug，AI 是打破壁垒的套利工具
 
@@ -128,7 +128,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### 🍃 宋玉 · 产品孵化公司 — Profile: `songyu` | Domain: `songyu_innovation`
+### 🍃 宋玉 · 创新拓展与商业化 — Profile: `songyu` | Domain: `songyu_innovation`
 > **使命**: 【完整重构】从「假大空的企业 B2B」→ 真正适合一人公司的「产品孵化+威客接单」流水线
 > **灵魂**: 纵横家 — 一人公司不需要大客户，需要的是产品矩阵和半自动化接单
 
@@ -148,7 +148,7 @@ Hermes（大脑）→ terminal工具（神经）→ python -m molib <command>（
 
 ---
 
-### 💀 玄骨 · 系统中枢公司 — Profile: `xuanhu` | Domain: `xuanhu_infrastructure`
+### 💀 玄骨 · 底层中枢与集团赋能 — Profile: `xuanhu` | Domain: `xuanhu_infrastructure`
 > **使命**: 集团大后方 — 不直接产生营收，但掌控系统生杀大权、成本控制与技术迭代
 > **灵魂**: 终结者 — 血肉苦弱，代码飞升；消除熵增，强制进化
 
@@ -179,7 +179,7 @@ python -m molib help
 python -m molib queue stats         # 任务队列
 python -m molib agent-log errors    # 错误日志
 
-# 紫灵 · 情报雷达
+# 紫灵 · 情报与战略调研
 python -m molib ziling scanner ...    # 墨嗅·每日情报抓取
 python -m molib ziling spy ...        # 墨影·竞品监控
 python -m molib ziling seo ...        # 墨标·SEO关键词
@@ -188,7 +188,7 @@ python -m molib ziling analyst ...    # 墨数·数据分析
 python -m molib ziling validator ...  # 墨测·MVP验证
 python -m molib ziling invest ...     # 墨投·ROI精算
 
-# 元瑶 · 知识变现
+# 元瑶 · 教育与用户增长
 python -m molib yuanyao growth ...    # 墨增·公域引流
 python -m molib yuanyao closer ...    # 墨销·销售成交
 python -m molib yuanyao tutor ...     # 墨导·督学复购
@@ -198,7 +198,7 @@ python -m molib yuanyao community ..  # 墨域·私域社群
 python -m molib yuanyao order ...     # 墨单·闲鱼接单
 python -m molib yuanyao abtest ...    # 墨试·A/B测试
 
-# 银月 · 内容获客
+# 银月 · 内容生态与全媒体矩阵
 python -m molib yinyue writer ...     # 墨笔·短内容主笔
 python -m molib yinyue designer ...   # 墨图·AI视觉设计
 python -m molib yinyue editor ...     # 墨剪·视频剪辑
@@ -207,7 +207,7 @@ python -m molib yinyue streamer ...   # 墨播·AI直播
 python -m molib yinyue pr ...         # 墨星·品牌公关
 python -m molib yinyue scheduler ...  # 墨排·内容调度
 
-# 梅凝 · 出海收汇
+# 梅凝 · 跨境出海与全球化
 python -m molib meining translator ..  # 墨译·本地化
 python -m molib meining growth ...    # 墨媒·海外社媒
 python -m molib meining webmaster ..  # 墨站·独立站
@@ -215,7 +215,7 @@ python -m molib meining payment ...   # 墨汇·跨境支付
 python -m molib meining compliance .. # 墨盾·合规风控
 python -m molib meining distribution .# 墨荐·产品分发
 
-# 宋玉 · 产品孵化
+# 宋玉 · 创新拓展与商业化
 python -m molib songyu prd ...        # 墨图纸·极简PRD
 python -m molib songyu stack ...      # 墨架·技术选型
 python -m molib songyu hook ...       # 墨钩·免费工具
@@ -225,7 +225,7 @@ python -m molib songyu pricing ...    # 墨价·定价策略
 python -m molib songyu freelance ...  # 墨单·威客接单
 python -m molib songyu launch ...     # 墨开·产品发版
 
-# 玄骨 · 系统中枢
+# 玄骨 · 底层中枢与集团赋能
 python -m molib xuanhu developer ...  # 墨码·全栈研发
 python -m molib xuanhu ops ...        # 墨维·运维灾备
 python -m molib xuanhu security ...   # 墨安·安全审计
