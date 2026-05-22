@@ -2,7 +2,7 @@
 
 > 最后更新: 2026-05-22
 > 架构: 六司四十四将 v8.0
-> 共计: 19 个活跃作业
+> 共计: 22 个活跃作业
 
 ---
 
@@ -17,6 +17,7 @@
 | 银月 | 6 Agent | 7 Agent (-墨链shop, +墨文seowriter, +墨排scheduler) |
 | 梅凝 | 5 Agent | 6 Agent (-墨航supply, +墨汇payment, +墨荐distribution) |
 | 玄骨 | 7 Agent | 8 Agent (+墨路router) |
+| 作业数 | 19 | **22** (+GitHub独立日扫, +ProductHunt日报, +竞品定价双周) |
 
 ---
 
@@ -25,7 +26,7 @@
 | 司 | 负责人 Worker | 管辖作业数 | 作业编号 |
 |----|-------------|:--------:|---------|
 | 💀 玄骨 (中枢) | 墨路/墨人/墨码/墨维/墨安/墨算/墨律/墨梦 | 8 | #1 #2 #3 #4 #5 #6 #7 #8 |
-| 🔮 紫灵 (情报) | 墨嗅/墨影/墨标/墨数/墨研/墨测/墨投 | 4 | #9 #10 #11 #12 |
+| 🔮 紫灵 (情报) | 墨嗅/墨影/墨标/墨数/墨研/墨测/墨投 | **7** | #9 #10 #11 #12 #20 #21 #22 |
 | 🌙 银月 (内容) | 墨排/墨笔/墨图/墨剪/墨文/墨播/墨星 | 3 | #13 #14 #15 |
 | 🌸 元瑶 (增长) | 墨增/墨销/墨导/墨学/墨创/墨域/墨单/墨试 | 2 | #16 #17 |
 | ❄️ 梅凝 (跨境) | 墨译/墨媒/墨站/墨汇/墨盾/墨荐 | 1 | #18 |
@@ -35,27 +36,30 @@
 
 ## 作业清单
 
-| # | job_id | 所属司 | Worker | 任务描述 | Cron | 治理 |
-|---|--------|--------|--------|---------|------|:----:|
-| 1 | `xuanhu-hr-schedule` | 💀玄骨 | 墨人 (xuanhu.hr) | 任务调度——全局监控排队量，动态配给算力与并发 | `*/5 * * * *` | L0 |
-| 2 | `xuanhu-ops-health` | 💀玄骨 | 墨维 (xuanhu.ops) | 运维健康检查——服务器资源监控与灾备状态巡检 | `*/5 * * * *` | L1 |
-| 3 | `xuanhu-security-audit` | 💀玄骨 | 墨安 (xuanhu.security) | 安全扫描——沙箱安全网关审计、Token暴露检查 | `0 3 * * 1` | L1 |
-| 4 | `xuanhu-autodream` | 💀玄骨 | 墨梦 (xuanhu.autodream) | 自我进化——午夜复盘全天异常日志，完成突变进化 | `0 3 * * 0` | L2 |
-| 5 | `xuanhu-finance-daily` | 💀玄骨 | 墨算 (xuanhu.finance) | 财务日结——审计全集团API费用，卡死Token红线 | `0 23 * * *` | L1 |
-| 6 | `xuanhu-git-backup` | 💀玄骨 | 墨维 (xuanhu.ops) | Git异地备份——代码仓库与Obsidian全量容灾 | `0 2 * * *` | L1 |
-| 7 | `xuanhu-memory-sync` | 💀玄骨 | 墨维 (xuanhu.ops) | 记忆同步——ChromaDB语义向量增量合并 | `0 * * * *` | L1 |
-| 8 | `xuanhu-kpi-dashboard` | 💀玄骨 | 墨算 (xuanhu.finance) | KPI看板——多维动态仪表盘渲染 | `10 22 * * *` | L1 |
-| 9 | `ziling-scanner-daily` | 🔮紫灵 | 墨嗅 (ziling.scanner) | 每日情报抓取——全网政策、技术、趋势嗅探 | `0 6 * * *` | L0 |
-| 10 | `ziling-spy-weekly` | 🔮紫灵 | 墨影 (ziling.spy) | 竞品监控——7×24竞品动态与对标账号周报 | `0 8 * * 1,5` | L1 |
-| 11 | `ziling-seo-weekly` | 🔮紫灵 | 墨标 (ziling.seo) | 关键词周刊——SEO搜索趋势与流量洼地捕获 | `0 9 * * 1` | L0 |
-| 12 | `ziling-analyst-daily` | 🔮紫灵 | 墨数 (ziling.analyst) | 数据日清洗——业务数据清洗与隐藏规律挖掘 | `0 22 * * *` | L1 |
-| 13 | `yinyue-scheduler-daily` | 🌙银月 | 墨排 (yinyue.scheduler) | 内容发布调度——编排多平台内容日历 | `0 7 * * *` | L0 |
-| 14 | `yinyue-pr-daily` | 🌙银月 | 墨星 (yinyue.pr) | 品牌监控——集团IP人设一致性与舆情追踪 | `0 10 * * *` | L2 |
-| 15 | `yinyue-seo-weekly` | 🌙银月 | 墨文 (yinyue.seowriter) | SEO文章——深度长文搜索流量布局 | `0 10 * * 1` | L2 |
-| 16 | `yuanyao-community-daily` | 🌸元瑶 | 墨域 (yuanyao.community) | 社群每日推送——私域触达与RFM分层运营 | `30 8 * * *` | L0 |
-| 17 | `yuanyao-tutor-daily` | 🌸元瑶 | 墨导 (yuanyao.tutor) | 打卡提醒——督学通知与客情维护 | `0 9 * * *` | L0 |
-| 18 | `meining-global-daily` | ❄️梅凝 | 墨译/墨媒 (meining.translator/growth) | 海外技术学习——GitHub开源跟踪与跨境市场监测 | `0 8 * * *` | L2 |
-| 19 | `songyu-freelance-daily` | 🍃宋玉 | 墨单 (songyu.freelance) | 威客接单巡检——猪八戒平台新项目扫描、匹配投标、GMV统计 | `0 8 * * *` | L1 |
+| # | job_id | 所属司 | Worker | 任务描述 | Cron | 治理 | 写入目标 |
+|---|--------|--------|--------|---------|------|:----:|---------|
+| 1 | `xuanhu-hr-schedule` | 💀玄骨 | 墨人 (xuanhu.hr) | 任务调度——全局监控排队量，动态配给算力与并发 | `*/5 * * * *` | L0 | `00_集团主脑/📈_滚动_系统调度日志.md` |
+| 2 | `xuanhu-ops-health` | 💀玄骨 | 墨维 (xuanhu.ops) | 运维健康检查——服务器资源监控与灾备状态巡检 | `*/5 * * * *` | L1 | `00_集团主脑/📈_滚动_系统健康状态.md` |
+| 3 | `xuanhu-security-audit` | 💀玄骨 | 墨安 (xuanhu.security) | 安全扫描——沙箱安全网关审计、Token暴露检查 | `0 3 * * 1` | L1 | `00_集团主脑/📋_SOP_合规审查标准.md` |
+| 4 | `xuanhu-autodream` | 💀玄骨 | 墨梦 (xuanhu.autodream) | 自我进化——午夜复盘全天异常日志，完成突变进化 | `0 3 * * 0` | L2 | `00_集团主脑/🧬_进化_系统进化日志.md` |
+| 5 | `xuanhu-finance-daily` | 💀玄骨 | 墨算 (xuanhu.finance) | 财务日结——审计全集团API费用，卡死Token红线 | `0 23 * * *` | L1 | `00_集团主脑/📊_报告_财务月报_YYYY-MM.md` |
+| 6 | `xuanhu-git-backup` | 💀玄骨 | 墨维 (xuanhu.ops) | Git异地备份——代码仓库与Obsidian全量容灾 | `0 2 * * *` | L1 | `00_集团主脑/📈_滚动_系统健康状态.md` |
+| 7 | `xuanhu-memory-sync` | 💀玄骨 | 墨维 (xuanhu.ops) | 记忆同步——ChromaDB语义向量增量合并 | `0 * * * *` | L1 | relay/ → Obsidian |
+| 8 | `xuanhu-kpi-dashboard` | 💀玄骨 | 墨算 (xuanhu.finance) | KPI看板——多维动态仪表盘渲染 | `10 22 * * *` | L1 | `00_集团主脑/📊_报告_财务月报_YYYY-MM.md` |
+| 9 | `ziling-scanner-daily` | 🔮紫灵 | 墨嗅 (ziling.scanner) | 每日情报抓取——全网政策、技术、趋势嗅探 | `0 6 * * *` | L0 | `01_紫灵_情报雷达/📈_滚动_AI热点情报.md` |
+| 10 | `ziling-spy-weekly` | 🔮紫灵 | 墨影 (ziling.spy) | 竞品监控——7×24竞品动态与对标账号周报 | `0 8 * * 1,5` | L1 | `01_紫灵_情报雷达/🌲_图谱_竞品全景图.md` |
+| 11 | `ziling-seo-weekly` | 🔮紫灵 | 墨标 (ziling.seo) | 关键词周刊——SEO搜索趋势与流量洼地捕获 | `0 9 * * 1` | L0 | `01_紫灵_情报雷达/📈_滚动_技术研究日报.md` |
+| 12 | `ziling-analyst-daily` | 🔮紫灵 | 墨数 (ziling.analyst) | 数据日清洗——业务数据清洗与隐藏规律挖掘 | `0 22 * * *` | L1 | relay/kpi/ → Obsidian |
+| 13 | `yinyue-scheduler-daily` | 🌙银月 | 墨排 (yinyue.scheduler) | 内容发布调度——编排多平台内容日历 | `0 7 * * *` | L0 | `03_银月_内容获客/📈_滚动_内容诊断日志.md` |
+| 14 | `yinyue-pr-daily` | 🌙银月 | 墨星 (yinyue.pr) | 品牌监控——集团IP人设一致性与舆情追踪 | `0 10 * * *` | L2 | `03_银月_内容获客/📈_滚动_内容诊断日志.md` |
+| 15 | `yinyue-seo-weekly` | 🌙银月 | 墨文 (yinyue.seowriter) | SEO文章——深度长文搜索流量布局 | `0 10 * * 1` | L2 | `03_银月_内容获客/🔬_研究_全媒体深研.md` |
+| 16 | `yuanyao-community-daily` | 🌸元瑶 | 墨域 (yuanyao.community) | 社群每日推送——私域触达与RFM分层运营 | `30 8 * * *` | L0 | `02_元瑶_知识变现/📈_滚动_教育情报日志.md` |
+| 17 | `yuanyao-tutor-daily` | 🌸元瑶 | 墨导 (yuanyao.tutor) | 打卡提醒——督学通知与客情维护 | `0 9 * * *` | L0 | `02_元瑶_知识变现/📈_滚动_教育情报日志.md` |
+| 18 | `meining-global-daily` | ❄️梅凝 | 墨译/墨媒 (meining.translator/growth) | 海外技术学习——GitHub开源跟踪与跨境市场监测 | `0 8 * * *` | L2 | `04_梅凝_出海收汇/📈_滚动_出海热点情报.md` |
+| 19 | `songyu-freelance-daily` | 🍃宋玉 | 墨单 (songyu.freelance) | 威客接单巡检——猪八戒平台新项目扫描、匹配投标、GMV统计 | `0 8 * * *` | L1 | `05_宋玉_产品孵化/📈_滚动_店铺日报.md` |
+| 20 | `ziling-github-trending` | 🔮紫灵 | 墨嗅 (ziling.scanner) | 🆕 GitHub独立日扫——AI/Python/TS/全语言四榜top-20 | `0 5 * * *` | L0 | `01_紫灵_情报雷达/📈_滚动_GitHub技术趋势.md` |
+| 21 | `ziling-ph-daily` | 🔮紫灵 | 墨嗅 (ziling.scanner) | 🆕 ProductHunt日报——AI类+DevTools新品独立扫描 | `30 5 * * *` | L0 | `01_紫灵_情报雷达/📈_滚动_AI热点情报.md` |
+| 22 | `ziling-pricing-biweekly` | 🔮紫灵 | 墨影 (ziling.spy) | 🆕 竞品定价双周监控——5个对标产品价格快照对比 | `0 2 1,15 * *` | L1 | `01_紫灵_情报雷达/🌲_图谱_竞品全景图.md` |
 
 ---
 
@@ -65,10 +69,11 @@
 |------|:------:|------|
 | 每5分钟 | 2 | #1 任务调度, #2 健康检查 |
 | 每小时 | 1 | #7 记忆同步 |
-| 每日 | 11 | #5 财务日结, #6 Git备份, #8 KPI看板, #9 情报抓取, #12 数据清洗, #13 内容调度, #14 品牌监控, #16 社群推送, #17 打卡提醒, #18 海外学习, #19 威客接单 |
+| 每日 | **14** | #5 财务日结, #6 Git备份, #8 KPI看板, #9 情报抓取, #12 数据清洗, #13 内容调度, #14 品牌监控, #16 社群推送, #17 打卡提醒, #18 海外学习, #19 威客接单, #20 GitHub趋势, #21 PH日报 |
 | 每周一+周五 | 1 | #10 竞品监控 |
 | 每周一 | 3 | #3 安全扫描, #11 关键词周刊, #15 SEO文章 |
 | 每周日 | 1 | #4 自我进化 |
+| 每月1/15日 | 1 | #22 竞品定价双周 |
 
 ---
 
@@ -77,8 +82,10 @@
 ```
 00:00 ──────────────────────────────────────────────────────────────
 00:00  #7 记忆同步 (每小时重复)
-02:00  #6 Git异地备份
+02:00  #6 Git异地备份 / #22 竞品定价双周 (仅1/15日)
 03:00  #3 安全扫描 (仅周一) / #4 自我进化 (仅周日)
+05:00  #20 墨嗅·GitHub独立日扫
+05:30  #21 墨嗅·ProductHunt日报
 06:00  #9 墨嗅·每日情报抓取
 07:00  #13 墨排·内容发布调度
 08:00  #10 墨影·竞品监控 (周一/五) / #18 墨译·海外学习 / #19 墨单·威客接单
@@ -94,25 +101,41 @@
 ## 飞轮管线（三棒接力）
 
 ```
-06:00 情报抓取 ──→ 07:00 内容调度 ──→ 08:00 威客接单 ──→ 08:30 社群推送
-   ↓                   ↓                   ↓                    ↓
- ziling.scanner     yinyue.scheduler    songyu.freelance    yuanyao.community
- (墨嗅)              (墨排)              (墨单)              (墨域)
+05:00 GitHub日扫 ──→ 05:30 PH日报 ──→ 06:00 情报抓取 ──→ 07:00 内容调度 ──→ 08:00 威客+海外
+   ↓                   ↓                ↓                ↓                ↓
+ziling (墨嗅)      ziling (墨嗅)    ziling (墨嗅)    yinyue (墨排)   songyu+meining
 ```
 
 飞轮接力规则：每棒必须检查上游产出存在且新鲜（< 90分钟），否则发送飞书 T4 告警。
 
 ---
 
+## 写入规范（Obsidian 文档类型映射）
+
+所有 Cron Job 产出写入 Obsidian 时必须遵循 7 种文档类型：
+
+| Cron 产出类型 | 文档类型 | 写入方式 | 示例 |
+|-------------|---------|---------|------|
+| 每日同类内容（情报/状态/数据） | 📈 滚动日志 | 追加 `## YYYY-MM-DD` 节，新在顶部 | `📈_滚动_AI热点情报.md` |
+| 发现的���归纳知识 | 🌲 常青图谱 / 🔬 深度研究 | 追加 `### YYYY-MM-DD 更新` 节 | `🌲_图谱_竞品全景图.md` |
+| 周期性数据报告 | 📊 周期报告 | 新建含日期文件 | `📊_报告_财务月报_2026-05.md` |
+| 实验/验证结果 | ⚡ 实验记录 | 追加实验节 (HADI) | `⚡_实验_MVP验证记录.md` |
+| 重要决策 | 🔑 决策记录 | 追加 ADR 节 | `🔑_决策_架构演进ADR.md` |
+| 自进化分析 | 🧬 进化日志 | 追加周节 (PDCA) | `🧬_进化_系统进化日志.md` |
+| SOP 流程 | 📋 SOP | 覆盖更新+修订日志 | `📋_SOP_Cron任务体系.md` |
+
+**禁止**: 日报每天新建文件、关键判断无数据锚点、假设与事实混用。
+
+---
+
 ## 部署状态
 
-所有作业由 Hermes Agent cron 工具管理，通过 `config/domains/*.yaml` 中的 flywheel 配置驱动。
+所有作业由 Hermes Agent cron 工具管理，主 Gateway (PID: 37072) 定时调度。
 
 启用命令：
 ```bash
 hermes cron list                    # 查看所有作业状态
-hermes cron resume <job_id>         # 恢复单个作业
+hermes cron status                  # 查看守护进程状态
 hermes cron run <job_id>            # 手动触发一次验证
+hermes cron create --name "..."     # 创建新作业
 ```
-
-⚠️ **安全提醒**：L2 治理级别的飞轮作业（#4 自我进化, #14 品牌监控, #15 SEO文章, #18 海外学习）执行前需创始人确认。
