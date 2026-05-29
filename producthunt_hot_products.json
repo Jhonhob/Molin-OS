@@ -1,0 +1,302 @@
+[
+  {
+    "name": "DockFlow",
+    "description": "Save, switch, and automate Dock layouts for every workflow",
+    "maker": "Asaf Mazuz",
+    "pubDate": "2026-05-23T13:10:35-07:00"
+  },
+  {
+    "name": "WhatCable",
+    "description": "Know what your USB-C cable can really do",
+    "maker": "Zac Zuo",
+    "pubDate": "2026-05-22T07:23:28-07:00"
+  },
+  {
+    "name": "ModelHub",
+    "description": "The missing menu bar app for local LLMs on Mac.",
+    "maker": "Priyanshu Ratnakar",
+    "pubDate": "2026-05-22T09:29:50-07:00"
+  },
+  {
+    "name": "Freu AI",
+    "description": "Automate any Mac app with $0 recurring run cost",
+    "maker": "Justin Jincaid",
+    "pubDate": "2026-05-18T18:08:40-07:00"
+  },
+  {
+    "name": "Stitch 3.0 by Google",
+    "description": "Generate and iterate UI screens with AI on a live canvas",
+    "maker": "Rohan Chaubey",
+    "pubDate": "2026-05-19T22:55:36-07:00"
+  },
+  {
+    "name": "Edgee Fallback Models",
+    "description": "Claude Code that never stops",
+    "maker": "fmerian",
+    "pubDate": "2026-05-21T14:20:06-07:00"
+  },
+  {
+    "name": "Runway Agent",
+    "description": "Generate edited, sound-designed videos via chat",
+    "maker": "Rohan Chaubey",
+    "pubDate": "2026-05-13T20:37:40-07:00"
+  },
+  {
+    "name": "DynamicNotch",
+    "description": "Dynamic island for macOS",
+    "maker": "Evgeniy Petrukovich",
+    "pubDate": "2026-05-23T12:24:38-07:00"
+  },
+  {
+    "name": "Command A+",
+    "description": "Cohere’s open enterprise workhorse",
+    "maker": "Zac Zuo",
+    "pubDate": "2026-05-22T07:16:45-07:00"
+  },
+  {
+    "name": "Coca 2.0",
+    "description": "Keep Your Mac and Apps Awake!",
+    "maker": "Angelo Cammalleri",
+    "pubDate": "2026-05-10T12:34:57-07:00"
+  },
+  {
+    "name": "Google Antigravity CLI",
+    "description": "Run coding agents directly from your terminal",
+    "maker": "Rohan Chaubey",
+    "pubDate": "2026-05-19T22:19:28-07:00"
+  },
+  {
+    "name": "SignalLEMO - Ai Outreach Made Simple",
+    "description": "AI-powered lead outreach for field service contractors",
+    "maker": "Shaquille Adams",
+    "pubDate": "2026-05-22T19:56:16-07:00"
+  },
+  {
+    "name": "Spantop",
+    "description": "Turn any Mac into a real second monitor",
+    "maker": "Aditya Dewaskar",
+    "pubDate": "2026-05-21T21:14:40-07:00"
+  },
+  {
+    "name": "note.md",
+    "description": "Local-first markdown based workspace for research writings",
+    "maker": "André Aigner",
+    "pubDate": "2026-05-22T02:27:42-07:00"
+  },
+  {
+    "name": "Forsy",
+    "description": "Capture and sell your AI agent workflow data",
+    "maker": "Kevin William David",
+    "pubDate": "2026-05-13T02:49:52-07:00"
+  },
+  {
+    "name": "RetroMac",
+    "description": "Turn your Mac into a time machine.",
+    "maker": "Maik Klotz",
+    "pubDate": "2026-05-22T03:09:53-07:00"
+  },
+  {
+    "name": "Memdex",
+    "description": "Turn every AI conversation into reusable local memory",
+    "maker": "Andrew chan",
+    "pubDate": "2026-05-12T05:27:45-07:00"
+  },
+  {
+    "name": "Vibedock",
+    "description": "Toggle Claude Code MCP servers from your menu bar",
+    "maker": "Theo Wtmn",
+    "pubDate": "2026-05-22T06:28:39-07:00"
+  },
+  {
+    "name": "Finderlock",
+    "description": "Lock Mac files in Finder with Touch ID & AES-256",
+    "maker": "Abdelhak Akermi",
+    "pubDate": "2025-09-18T05:55:33-07:00"
+  },
+  {
+    "name": "Area Contrast Checker",
+    "description": "Drag, Select, Know. A new way to check A11y contrast",
+    "maker": "Ayumu Futamata",
+    "pubDate": "2026-05-15T06:06:37-07:00"
+  },
+  {
+    "name": "Bulkmark",
+    "description": "Transform your Twitter/X Bookmarks into real knowledge",
+    "maker": "Alex",
+    "pubDate": "2026-04-14T02:14:14-07:00"
+  },
+  {
+    "name": "Kosshi",
+    "description": "Simple, fast outliner for Mac and iPhone.",
+    "maker": "Junichi Sato",
+    "pubDate": "2026-05-11T09:35:05-07:00"
+  },
+  {
+    "name": "AGG Identify",
+    "description": "A lightweight, secure streamlined OIDC and OAuth2 provider",
+    "maker": "xion",
+    "pubDate": "2026-05-17T11:03:02-07:00"
+  },
+  {
+    "name": "Smart Miles",
+    "description": "Automatic trip tracking for tax-ready exports",
+    "maker": "Alex Phelps",
+    "pubDate": "2026-05-21T06:17:20-07:00"
+  },
+  {
+    "name": "HelioPeak",
+    "description": "Solar monitoring for pvoutput on every Apple device.",
+    "maker": "Sven De Troch",
+    "pubDate": "2026-05-21T05:11:56-07:00"
+  },
+  {
+    "name": "Auto Posts",
+    "description": "Schedule social post, Telegram messages + more",
+    "maker": "Rashid Khasanov",
+    "pubDate": "2026-05-19T13:23:55-07:00"
+  },
+  {
+    "name": "DecisionBox for Databricks",
+    "description": "Connect DecisionBox to your Databricks to validate findings",
+    "maker": "Selçuk Kızıltuğ",
+    "pubDate": "2026-05-21T22:02:35-07:00"
+  },
+  {
+    "name": "Shuffle Design CLI",
+    "description": "Multi-AI CLI for building and redesigning websites",
+    "maker": "Dawid Andrzejewski",
+    "pubDate": "2026-05-21T12:18:28-07:00"
+  },
+  {
+    "name": "Nota: AI Notes & Voice",
+    "description": "Turn voice, scans, sketches, and text into notes with AI",
+    "maker": "Michel Valenzuela",
+    "pubDate": "2026-05-22T06:47:02-07:00"
+  },
+  {
+    "name": "Nugget AI",
+    "description": "Turn customer interviews into your product roadmap",
+    "maker": "Brodie",
+    "pubDate": "2026-05-21T19:35:07-07:00"
+  },
+  {
+    "name": "WordPress 7.0",
+    "description": "Introducing AI tools, new admin experience & design controls",
+    "maker": "Ankit Sharma",
+    "pubDate": "2026-05-21T12:14:44-07:00"
+  },
+  {
+    "name": "Cleo",
+    "description": "The AI PM that runs your team",
+    "maker": "Rahim",
+    "pubDate": "2026-05-21T04:50:50-07:00"
+  },
+  {
+    "name": "buildpipe",
+    "description": "Compose, run and automate multi step AI developer workflows",
+    "maker": "Raiyan Yahya",
+    "pubDate": "2026-05-21T13:28:41-07:00"
+  },
+  {
+    "name": "DCP",
+    "description": "Give your AI agents encrypted permission and keys",
+    "maker": "Iftakhar Rahmany",
+    "pubDate": "2026-05-21T15:45:53-07:00"
+  },
+  {
+    "name": "Zero Assist",
+    "description": "Real-time AI cheating detection for technical interviews",
+    "maker": "Vaibhav Devere",
+    "pubDate": "2026-05-21T08:06:30-07:00"
+  },
+  {
+    "name": "SuprSend AI",
+    "description": "AI-first platform for multi-channel notifications",
+    "maker": "Nikita Navral",
+    "pubDate": "2026-04-01T22:55:17-07:00"
+  },
+  {
+    "name": "TestSprite 3.0",
+    "description": "Let a fleet of parallel agents test your app in minutes",
+    "maker": "Chris Messina",
+    "pubDate": "2026-05-11T21:22:39-07:00"
+  },
+  {
+    "name": "General Compute",
+    "description": "AI models that run on an inference cloud optimized for speed",
+    "maker": "Ben Lang",
+    "pubDate": "2026-04-22T08:18:34-07:00"
+  },
+  {
+    "name": "JAMtime.ai",
+    "description": "Just tell your guitar pedal how to sound",
+    "maker": "Jeff Ward",
+    "pubDate": "2026-05-21T20:17:59-07:00"
+  },
+  {
+    "name": "Prosed",
+    "description": "Go from newsletters & podcasts to published manuscript",
+    "maker": "fmerian",
+    "pubDate": "2026-05-04T00:53:37-07:00"
+  },
+  {
+    "name": "Our Stories",
+    "description": "A storytelling tool for raising bilingual kids",
+    "maker": "Myrto Skourletou",
+    "pubDate": "2026-05-17T15:53:34-07:00"
+  },
+  {
+    "name": "whosthere",
+    "description": "Local Area Network discovery tool with an interactive TUI",
+    "maker": "Ramon Vermeulen",
+    "pubDate": "2026-05-21T03:55:27-07:00"
+  },
+  {
+    "name": "motionvid.ai",
+    "description": "Your AI Motion & Video Editor",
+    "maker": "JustKay",
+    "pubDate": "2026-05-21T04:32:41-07:00"
+  },
+  {
+    "name": "moop",
+    "description": "A social network without media",
+    "maker": "Joseph Fattal",
+    "pubDate": "2026-05-20T14:51:18-07:00"
+  },
+  {
+    "name": "iPromise",
+    "description": "Bring \"Body Doubling\" to your Mac notch",
+    "maker": "Todd Jiang",
+    "pubDate": "2026-05-21T03:45:24-07:00"
+  },
+  {
+    "name": "Faby",
+    "description": "Your virtual coworker with its own computer living in Slack",
+    "maker": "Krish Chelikavada",
+    "pubDate": "2026-05-21T23:35:09-07:00"
+  },
+  {
+    "name": "Shroomie",
+    "description": "AI-powered news made fun and habit-forming",
+    "maker": "Chenglai Huang",
+    "pubDate": "2026-05-21T23:49:14-07:00"
+  },
+  {
+    "name": "Reader Alive",
+    "description": "Translate, listen to, and ask questions about your ebooks",
+    "maker": "Phil Ren",
+    "pubDate": "2026-05-21T01:06:07-07:00"
+  },
+  {
+    "name": "Vivaldi 8.0",
+    "description": "New unified look for full customization",
+    "maker": "Uladzislau Rasliak",
+    "pubDate": "2026-05-20T07:41:40-07:00"
+  },
+  {
+    "name": "AutoSubtitles 2.0",
+    "description": "AI subtitles & animated captions with faster editing",
+    "maker": "David Ellis",
+    "pubDate": "2026-05-20T05:23:35-07:00"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Tiny CV",
+    "description": "Resume builder that fits on one page",
+    "maker": "Andrew Jiang",
+    "published_at_pt": "2026-05-24T19:35:30-07:00",
+    "published_date_pt": "2026-05-24"
+  },
+  {
+    "name": "MashuPack",
+    "description": "Turn codebases into a clean file for Claude and ChatGPT",
+    "maker": "Spencer Nunamaker",
+    "published_at_pt": "2026-05-24T23:30:11-07:00",
+    "published_date_pt": "2026-05-24"
+  },
+  {
+    "name": "Forum",
+    "description": "Dedicated space for Facebook groups",
+    "maker": "Zac Zuo",
+    "published_at_pt": "2026-05-23T08:32:02-07:00",
+    "published_date_pt": "2026-05-23"
+  },
+  {
+    "name": "tldx",
+    "description": "Fast CLI to bulk-check domains via RDAP & MCP",
+    "maker": "Brandon Young",
+    "published_at_pt": "2026-05-24T07:53:43-07:00",
+    "published_date_pt": "2026-05-24"
+  },
+  {
+    "name": "The Incident Challenge",
+    "description": "Production Debugging Games for Software Engineers",
+    "maker": "Avi (Avihai) CT",
+    "published_at_pt": "2026-05-24T01:08:15-07:00",
+    "published_date_pt": "2026-05-24"
+  },
+  {
+    "name": "Pi Coding Agent",
+    "description": "The coding-agent harness you can make your own",
+    "maker": "Zac Zuo",
+    "published_at_pt": "2026-05-24T20:24:52-07:00",
+    "published_date_pt": "2026-05-24"
+  },
+  {
+    "name": "Yansu",
+    "description": "AI that learns how you work and turns it into software",
+    "maker": "Justin Jincaid",
+    "published_at_pt": "2026-05-23T18:28:56-07:00",
+    "published_date_pt": "2026-05-23"
+  },
+  {
+    "name": "DockFlow",
+    "description": "Save, switch, and automate Dock layouts for every workflow",
+    "maker": "Asaf Mazuz",
+    "published_at_pt": "2026-05-23T13:10:35-07:00",
+    "published_date_pt": "2026-05-23"
+  },
+  {
+    "name": "DynamicNotch",
+    "description": "Dynamic island for macOS",
+    "maker": "Evgeniy Petrukovich",
+    "published_at_pt": "2026-05-23T12:24:38-07:00",
+    "published_date_pt": "2026-05-23"
+  }
+]

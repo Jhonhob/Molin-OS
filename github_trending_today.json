@@ -1,0 +1,72 @@
+[
+  {
+    "full_name": "Lum1104/Understand-Anything",
+    "description": "Graphs that teach &gt; graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+    "language": "TypeScript",
+    "stars_today": "5,604",
+    "stars": "32,590"
+  },
+  {
+    "full_name": "anthropics/knowledge-work-plugins",
+    "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+    "language": "Python",
+    "stars_today": "1,441",
+    "stars": "15,973"
+  },
+  {
+    "full_name": "rohitg00/ai-engineering-from-scratch",
+    "description": "Learn it. Build it. Ship it for others.",
+    "language": "Python",
+    "stars_today": "3,154",
+    "stars": "19,343"
+  },
+  {
+    "full_name": "affaan-m/ECC",
+    "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+    "language": "JavaScript",
+    "stars_today": "2,025",
+    "stars": "193,001"
+  },
+  {
+    "full_name": "mukul975/Anthropic-Cybersecurity-Skills",
+    "description": "754 structured cybersecurity skills for AI agents \u00b7 Mapped to 5 frameworks: MITRE ATT&amp;CK, NIST CSF 2.0, MITRE ATLAS, D3FEND &amp; NIST AI RMF \u00b7 agentskills.io standard \u00b7 Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI &amp; 20+ platforms \u00b7 26 security domains \u00b7 Apache 2.0",
+    "language": "Python",
+    "stars_today": "1,004",
+    "stars": "9,512"
+  },
+  {
+    "full_name": "colbymchenry/codegraph",
+    "description": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent \u2014 fewer tokens, fewer tool calls, 100% local",
+    "language": "TypeScript",
+    "stars_today": "3,161",
+    "stars": "26,147"
+  },
+  {
+    "full_name": "manaflow-ai/cmux",
+    "description": "Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents",
+    "language": "Swift",
+    "stars_today": "603",
+    "stars": "19,625"
+  },
+  {
+    "full_name": "multica-ai/andrej-karpathy-skills",
+    "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+    "language": "N/A",
+    "stars_today": "2,749",
+    "stars": "155,708"
+  },
+  {
+    "full_name": "Fincept-Corporation/FinceptTerminal",
+    "description": "FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.",
+    "language": "Python",
+    "stars_today": "317",
+    "stars": "24,023"
+  },
+  {
+    "full_name": "paperless-ngx/paperless-ngx",
+    "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
+    "language": "Python",
+    "stars_today": "176",
+    "stars": "41,453"
+  }
+]

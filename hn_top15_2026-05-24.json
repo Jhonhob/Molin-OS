@@ -1,0 +1,198 @@
+{
+  "scraped_at": "2026-05-24 00:03:39 UTC",
+  "note": "Only 1 post from today (2026-05-24) as the day just started 3 min ago. Top 15 spans May 20-23.",
+  "today_stories_count": 1,
+  "total_top_stories_fetched": 15,
+  "ai_ml_llm_open_source_related": [],
+  "top_stories": [
+    {
+      "id": 48250144,
+      "title": "It's time to talk about my writerdeck",
+      "url": "https://veronicaexplains.net/my-first-writerdeck/",
+      "score": 244,
+      "by": "hggh",
+      "descendants": 124,
+      "time": "2026-05-23 18:45:37 UTC",
+      "timestamp": 1779561937,
+      "type": "story"
+    },
+    {
+      "id": 48252192,
+      "title": "Don't Roll Your Own",
+      "url": "https://susam.net/do-not-roll-your-own.html",
+      "score": 48,
+      "by": "adunk",
+      "descendants": 35,
+      "time": "2026-05-23 22:25:05 UTC",
+      "timestamp": 1779575105,
+      "type": "story"
+    },
+    {
+      "id": 48214311,
+      "title": "My two-part desk setup (2025)",
+      "url": "https://arslan.io/2025/11/18/my-two-part-desk-setup/",
+      "score": 192,
+      "by": "James72689",
+      "descendants": 118,
+      "time": "2026-05-20 21:21:14 UTC",
+      "timestamp": 1779312074,
+      "type": "story"
+    },
+    {
+      "id": 48232721,
+      "title": "Sales and Dungeons: Thermal printer TTRPG utility",
+      "url": "https://sales-and-dungeons.app/",
+      "score": 23,
+      "by": "hyperific",
+      "descendants": 6,
+      "time": "2026-05-22 06:36:56 UTC",
+      "timestamp": 1779431816,
+      "type": "story"
+    },
+    {
+      "id": 48247325,
+      "title": "On The <dl> (2021)",
+      "url": "https://benmyers.dev/blog/on-the-dl/",
+      "score": 337,
+      "by": "ravenical",
+      "descendants": 105,
+      "time": "2026-05-23 13:03:43 UTC",
+      "timestamp": 1779541423,
+      "type": "story"
+    },
+    {
+      "id": 48241890,
+      "title": "Green card seekers must leave U.S. to apply, Trump administration says",
+      "url": "https://www.nytimes.com/2026/05/22/us/politics/green-card-changes-trump.html",
+      "score": 448,
+      "by": "tlhunter",
+      "descendants": 826,
+      "time": "2026-05-22 21:27:12 UTC",
+      "timestamp": 1779485232,
+      "type": "story"
+    },
+    {
+      "id": 48234954,
+      "title": ".NET (OK, C#) finally gets union types",
+      "url": "https://andrewlock.net/exploring-the-dotnet-11-preview-2-dotnet-gets-union-types/",
+      "score": 123,
+      "by": "ingve",
+      "descendants": 102,
+      "time": "2026-05-22 12:28:50 UTC",
+      "timestamp": 1779452930,
+      "type": "story"
+    },
+    {
+      "id": 48252535,
+      "title": "My I3-Emacs Integration",
+      "url": "https://khz.ac/software/i3-integration.html",
+      "score": 7,
+      "by": "nosolace",
+      "descendants": 1,
+      "time": "2026-05-23 23:13:42 UTC",
+      "timestamp": 1779578022,
+      "type": "story"
+    },
+    {
+      "id": 48241335,
+      "title": "Hengefinder: Finding when the sun aligns with your street",
+      "url": "https://victoriaritvo.com/blog/hengefinder/",
+      "score": 101,
+      "by": "evakhoury",
+      "descendants": 24,
+      "time": "2026-05-22 20:39:42 UTC",
+      "timestamp": 1779482382,
+      "type": "story"
+    },
+    {
+      "id": 48206543,
+      "title": "New map reveals lost roads of the Roman Empire",
+      "url": "https://www.scientificamerican.com/article/new-high-resolution-map-transforms-what-we-know-about-roman-roads-and-the-roman-empire/",
+      "score": 31,
+      "by": "sohkamyung",
+      "descendants": 4,
+      "time": "2026-05-20 12:22:31 UTC",
+      "timestamp": 1779279751,
+      "type": "story"
+    },
+    {
+      "id": 48252442,
+      "title": "Bun.Image",
+      "url": "https://bun.com/docs/runtime/image",
+      "score": 22,
+      "by": "chakintosh",
+      "descendants": 9,
+      "time": "2026-05-23 22:57:51 UTC",
+      "timestamp": 1779577071,
+      "type": "story"
+    },
+    {
+      "id": 48248954,
+      "title": "Reverse engineering circuitry in a Spacelab computer from 1980",
+      "url": "https://www.righto.com/2026/05/reverse-engineering-spacelab-computer.html",
+      "score": 78,
+      "by": "elpocko",
+      "descendants": 9,
+      "time": "2026-05-23 16:24:50 UTC",
+      "timestamp": 1779553490,
+      "type": "story"
+    },
+    {
+      "id": 48242959,
+      "title": "SpaceX launches Starship v3 rocket",
+      "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-v3-megarocket-first-test-flight",
+      "score": 336,
+      "by": "busymom0",
+      "descendants": 227,
+      "time": "2026-05-22 23:41:55 UTC",
+      "timestamp": 1779493315,
+      "type": "story"
+    },
+    {
+      "id": 48252060,
+      "title": "Toxic chemical leak at a manufacturing facility in Orange County",
+      "url": "https://www.bbc.com/news/articles/c3w2l249j8go",
+      "score": 72,
+      "by": "borski",
+      "descendants": 40,
+      "time": "2026-05-23 22:09:05 UTC",
+      "timestamp": 1779574145,
+      "type": "story"
+    },
+    {
+      "id": 48247004,
+      "title": "80386 microcode disassembled",
+      "url": "https://www.reenigne.org/blog/80386-microcode-disassembled/",
+      "score": 215,
+      "by": "nand2mario",
+      "descendants": 42,
+      "time": "2026-05-23 12:11:43 UTC",
+      "timestamp": 1779538303,
+      "type": "story"
+    }
+  ],
+  "analysis": {
+    "today_only_post": "Only 1 story from May 24 yet: ID=48252878 'E-Hiking Is Here. You Can Tell by My 1k-Watt Hips. Hypershell's X Ultra S' (posted at 00:00:51 UTC, score=1)",
+    "ai_ml_findings": "No direct AI/ML/LLM stories in top 15. Closest: Bun.Image (runtime image processing), .NET union types (programming language), 'Don't Roll Your Own' (software engineering philosophy). No LLM/ML papers or open-source model releases.",
+    "open_source_findings": "Bun.Image (open source JS runtime feature), .NET union types (open source), 80386 microcode (reverse engineering research).",
+    "notable_high_score": "Top by score: (1) Green card news 448pts, (2) On The <dl> 337pts, (3) SpaceX Starship v3 336pts, (4) writerdeck 244pts, (5) 80386 microcode 215pts",
+    "overall_tone": "Today's HN is heavily politics (green card), space (Starship), retro-tech (80386, Spacelab), and web dev (HTML <dl>, .NET types, Bun). Light on AI content.",
+    "today_only_story_detail": {
+      "title": "E-Hiking Is Here. You Can Tell by My 1k-Watt Hips. Hypershell's X Ultra S",
+      "relevance": "AI/机器人硬件 — 外骨骼设备, WSJ报道",
+      "posted_seconds_after_midnight": 51
+    }
+  },
+  "today_only_story": {
+    "id": 48252878,
+    "title": "E-Hiking Is Here. You Can Tell by My 1k-Watt Hips. Hypershell's X Ultra S",
+    "url": "https://www.wsj.com/tech/personal-tech/robot-legs-hypershell-x-ultra-tested-e8a254e2",
+    "score": 1,
+    "by": "mataug",
+    "descendants": 0,
+    "time": "2026-05-24 00:00:51 UTC",
+    "timestamp": 1779580851,
+    "type": "story",
+    "note": "唯一来自今天的帖子 — 外骨骼/机器人辅助徒步设备 (Hypershell), 与AI/机器人硬件相关"
+  }
+}

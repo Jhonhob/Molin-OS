@@ -69,7 +69,7 @@ def send_dm(profile_name, job_name, status, summary=""):
     r = requests.post(
         "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",
         json={"app_id": bot["app_id"], "app_secret": bot["app_secret"]},
-        timeout=10
+        timeout=30
     )
     token_data = r.json()
     token = token_data.get("tenant_access_token")
@@ -96,7 +96,7 @@ def send_dm(profile_name, job_name, status, summary=""):
     
     r2 = requests.post(
         "https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id",
-        json=payload, headers=headers, timeout=10
+        json=payload, headers=headers, timeout=30
     )
     result = r2.json()
     if result.get("code") == 0:
