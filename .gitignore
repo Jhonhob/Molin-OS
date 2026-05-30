@@ -1,140 +1,58 @@
-# ══════════════════════════════════════════
-# 墨麟OS (Molin-OS) — .gitignore
-# 标准化版本 v2.0 (2026-05-16)
-# ══════════════════════════════════════════
-
-# ─── Secrets & Credentials — NEVER COMMIT ───
-.env
-**/.env
-*.key
-*.pem
-*secret*
-*password*
-**/token.*
-!**/token_manager.*
-!**/token_manager/**
-credentials*
-**/auth.json
-**/auth.env
-!**/.env.example
-!**/.env.dev.example
-*.token
-
-# ─── Python Artifacts ───
+```
+# Dependencies
+node_modules/
+.venv/
+venv/
 __pycache__/
-*.py[cod]
-*.pyo
 *.egg-info/
-*.egg-info
+uv.lock
+package-lock.json
+
+# Build artifacts
 dist/
 build/
-*.egg
-.eggs/
-*.egg-info
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
+target/
 
-# ─── Virtual Environments ───
-venv/
-.venv/
-env/
-.env/
-*.venv
-.venv
+# Environment variables
+.env
+.env.local
+.env.*
 
-# ─── IDE / Editor ───
+# Editor/IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-*.iml
-.claude/
-CLAUDE.md
 
-# ─── OS ───
+# Logs
+*.log
+
+# OS files
 .DS_Store
 Thumbs.db
-Desktop.ini
 
-# Generated Runtime Data
-relay/
-**/relay/*.json
-data/relay/
-output/
-data/relay/
-logs/
-*.log
-.firecrawl/
-
-# ─── Archives ───
-_archived/
-*.tar.gz
+# Compressed files
 *.zip
-!backup_*.tar.gz
-*_backup_*/
-restore_*.log
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 
-# ─── Hermes System Files ───
-.molin/
-.cron.db
-
-# .vault-git-mirror（已废弃，vault 内容在 vault/ 目录中管理）
-#.vault-git-mirror/
-
-# ─── Runtime data (not tracked) ───
-relay/
-
-# ─── Node.js (not a JS project) ───
-node_modules/
-package-lock.json
-package.json
-
-# ─── Large Runtime Binaries ───
-molib/xianyu/static/goofish_js_origin_version_2.js
-molin/xianyu/static/goofish_js_origin_version_2.js
-molib/xianyu/utils/et_f.js
-
-# ─── Temporary / Auto-generated ───
-skills/mlops/training/unsloth/references/llms-full.md
-skills/mlops/training/unsloth/references/llms-txt.md
-docs/absorption-report-*.md
-docs/system-status-*.md
-fork_repos/
-
-# ─── Old Code (moved to molib/) ───
-molin/agents_old/
-molin/core_old/
-
-# ─── Hermes Agent (vendored — keep source, exclude build artifacts) ───
-hermes/venv/
-hermes/.venv/
-hermes/*.egg-info/
-hermes/node_modules/
-hermes/ui-tui/node_modules/
-hermes/web/node_modules/
-hermes/website/node_modules/
-hermes/__pycache__/
-
-# ─── External repos (not submodules — standalone git repos) ───
-AnkiAIUtils/
-Mr.-Ranedeer-AI-Tutor/
-Multi-Agent-Study-Assistant/
-Skill-Anything/
-learn-faster-kit/
-
-# ─── Submodule Externals (managed via .gitmodules) ───
-# No active submodules in this repo
-engine/mirofish/backend/data/*.db
-
-# ─── Runtime databases (auto-generated at deploy time) ───
-relay/bus.db
-vault/tasks.db
-vault/memory_index.db
-vault/logs/
-*.db-journal
-*.db-wal
-*.db-shm
+```
